@@ -53,3 +53,4 @@ Una vez activado se elige una de las dos opciones que ofrece GitHub: si queremos
 La comprobación de que se ha realizado los pasos anteriormente comentados se muestra a continuación:
 
 ![Activación del segundo factor de autenticación](./imagenes/hito0/autenticacion.png "Activación del segundo factor de autenticación")
+
