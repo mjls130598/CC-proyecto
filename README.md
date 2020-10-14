@@ -1,6 +1,6 @@
-# Proyecto para la asignatura Cloud Computing
+# SharingNotes
 
-Realizado por María Jesús López Salmerón para la asignatura Cloud Computing del Máster Universitario de Ingeniería Informática de la UGR.
+Proyecto realizado por María Jesús López Salmerón para la asignatura Cloud Computing del Máster Universitario de Ingeniería Informática de la UGR.
 
 En estos momentos, al ser la gran mayoría de las clases virtuales, es difícil recoger buenos apuntes de las asignaturas ya sea por problemas tecnológicos o al no estar físicamente con tus compañeros para compartir conocimientos.
 
