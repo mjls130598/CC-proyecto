@@ -27,28 +27,28 @@ Las historias de usuario que describen este proyecto se muestran a continuación
 
 Las [clases](https://github.com/mjls130598/CC-proyecto/tree/master/src) que se van a utilizar en este proyecto son las siguientes:
 
-- Apuntes:
--- Nombre del fichero
--- Asignatura
--- Usuario
+* Apuntes:
+	* Nombre del fichero
+	* Asignatura
+	* Usuario
 
-- Asignatura:
--- Nombre de la asignatura
--- Curso en el que se imparte
--- Carrera en la que se imparte
--- Universidad donde se realiza
+* Asignatura:
+	* Nombre de la asignatura
+	* Curso en el que se imparte
+	* Carrera en la que se imparte
+	* Universidad donde se realiza
 
-- Usuario:
--- Nombre del usuario
--- Correo del usuario
--- Contraseña
--- Carrera que realiza
--- Universidad donde estudia
+* Usuario:
+	* Nombre del usuario
+	* Correo del usuario
+	* Contraseña
+	* Carrera que realiza
+	* Universidad donde estudia
 
-- Comentario:
--- Comentario
--- Usuario quien lo realizó
--- Apunte sobre el que lo comenta
+* Comentario:
+	* Comentario
+	* Usuario quien lo realizó
+	* Apunte sobre el que lo comenta
 
 ## Documentaciones
 
