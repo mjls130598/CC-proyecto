@@ -50,13 +50,13 @@ Las [clases](https://github.com/mjls130598/CC-proyecto/tree/master/src) que se v
 	* Usuario quien lo realizó
 	* Apunte sobre el que lo comenta
 
-## Hitos del proyecto
+## Milestones del proyecto
 
-El proyecto se va a dividir en los siguientes hitos:
+El proyecto se va a dividir en los siguientes milestones:
 
 * [Creación de la arquitectura](https://github.com/mjls130598/SharingNotes/milestone/3): que se encargará de aquellas tareas sobre la arquitectura del proyecto.
 
-* [Apuntes](https://github.com/mjls130598/SharingNotes/milestone/5): que se encargará de las tareas relacionadas con los apuntes. Las historias de usuario relacionadas con este hito son las siguientes:
+* [Apuntes](https://github.com/mjls130598/SharingNotes/milestone/5): que se encargará de las tareas relacionadas con los apuntes. Las historias de usuario relacionadas con este milestone son las siguientes:
 
 	* [Como estudiante, necesito que los apuntes estén dividios por universidad, carrera, año y asignatura.](https://github.com/mjls130598/SharingNotes/issues/11)
 	* [Como estudiante, necesito tener la posibilidad de subir apuntes al sistema.](https://github.com/mjls130598/SharingNotes/issues/12)
@@ -66,11 +66,11 @@ El proyecto se va a dividir en los siguientes hitos:
 	* [Como administrador, necesito poder crear una nueva asignatura dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/18)
 	* [Como administrador, necesito poder borrar una asignatura dentro del sistema](https://github.com/mjls130598/SharingNotes/issues/19)
 
-* [Usuarios](https://github.com/mjls130598/SharingNotes/milestone/4): se encargará de las tareas relacionadas con los usuarios. La historia de usuario relacionada con este hito es:
+* [Usuarios](https://github.com/mjls130598/SharingNotes/milestone/4): se encargará de las tareas relacionadas con los usuarios. La historia de usuario relacionada con este milestone es:
 	
 	* [Como estudiante, necesito registrarme en el sistema para tener unos servicios más personalizados.](https://github.com/mjls130598/SharingNotes/issues/10)
 
-* [Comentarios](https://github.com/mjls130598/SharingNotes/milestone/6): se encargará de aquellas tareas sobre los comentarios de un apunte. Las historias de usuario relacionadas con este hito son:
+* [Comentarios](https://github.com/mjls130598/SharingNotes/milestone/6): se encargará de aquellas tareas sobre los comentarios de un apunte. Las historias de usuario relacionadas con este milestone son:
 
 	* [Como estudiante, necesito poder dejar algún comentario sobre un apunte.](https://github.com/mjls130598/SharingNotes/issues/13)
 	* [Como administrador, necesito tener la posibilidad de borrar aquellos comentarios no válidos del sistema.](https://github.com/mjls130598/SharingNotes/issues/17)
@@ -79,5 +79,5 @@ El proyecto se va a dividir en los siguientes hitos:
 
 La documentación de este proyecto se encuentra en varios archivos dentro del [directorio documentación](https://github.com/mjls130598/CC-proyecto/tree/master/documentacion).
 
-La información que estaba escrita en este mismo fichero para el hito 0 se encuentra en el archivo [hito0.md](https://github.com/mjls130598/CC-proyecto/tree/master/documentacion/hito0.md).
+La información que estaba escrita en este mismo fichero para el milestone 0 se encuentra en el archivo [hito0.md](https://github.com/mjls130598/CC-proyecto/tree/master/documentacion/hito0.md).
 
