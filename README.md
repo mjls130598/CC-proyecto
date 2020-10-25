@@ -4,6 +4,10 @@
 
 La arquitectura de este proyecto va a estar basada en una arquitectura de microservicios ya que se quiere encargar cada función principal en un servicio diferente para así manejarlos independientemente. Por ejemplo, mantener la base de datos y la interfaz en dos servicios distintos que se comuniquen entre ellos a través de una API. 
 
+## Lenguaje de programación
+
+El lenguaje de programación elegido para desarrollar *SharingNotes* es *Scala* ya que combina programación funcional con la programación orientada a objetos y puesto que es sencillo al ser parecido al lenguaje *Java*.
+
 ## Historias de usuario
 
 Las historias de usuario que describen este proyecto se muestran a continuación:
