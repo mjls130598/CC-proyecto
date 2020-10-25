@@ -23,6 +23,33 @@ Las historias de usuario que describen este proyecto se muestran a continuación
 - [Como administrador, necesito poder crear una nueva asignatura dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/18)
 - [Como administrador, necesito poder borrar una asignatura dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/19)
 
+## Clases
+
+Las [clases](https://github.com/mjls130598/CC-proyecto/tree/master/src) que se van a utilizar en este proyecto son las siguientes:
+
+- Apuntes:
+-- Nombre del fichero
+-- Asignatura
+-- Usuario
+
+- Asignatura:
+-- Nombre de la asignatura
+-- Curso en el que se imparte
+-- Carrera en la que se imparte
+-- Universidad donde se realiza
+
+- Usuario:
+-- Nombre del usuario
+-- Correo del usuario
+-- Contraseña
+-- Carrera que realiza
+-- Universidad donde estudia
+
+- Comentario:
+-- Comentario
+-- Usuario quien lo realizó
+-- Apunte sobre el que lo comenta
+
 ## Documentaciones
 
 La documentación de este proyecto se encuentra en varios archivos dentro del [directorio documentación](https://github.com/mjls130598/CC-proyecto/tree/master/documentacion).

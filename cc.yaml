@@ -1,0 +1,4 @@
+entidad: src/Apuntes.scala
+usuario: src/Usuario.scala
+asignatura: src/Asignatura.scala
+comentario: src/Comentario.scala
