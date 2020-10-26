@@ -27,32 +27,32 @@ Las historias de usuario que describen este proyecto se muestran a continuación
 
 Las [clases](https://github.com/mjls130598/CC-proyecto/tree/master/src) que se van a utilizar en este proyecto son las siguientes:
 
-* Apuntes (la entidad principal del proyecto):
+* [Apuntes](https://github.com/mjls130598/SharingNotes/blob/master/src/Apuntes.scala) (la entidad principal del proyecto):
 	* Nombre del fichero
 	* Asignatura
 	* Usuario
 
-* Asignatura:
+* [Asignatura](https://github.com/mjls130598/SharingNotes/blob/master/src/Asignatura.scala):
 	* Nombre de la asignatura
 	* Curso en el que se imparte
 	* Carrera en la que se imparte
 	* Universidad donde se realiza
 
-* Usuario:
+* [Usuario](https://github.com/mjls130598/SharingNotes/blob/master/src/Usuario.scala):
 	* Nombre del usuario
 	* Correo del usuario
 	* Contraseña
 	* Carrera que realiza
 	* Universidad donde estudia
 
-* Comentario:
+* [Comentario](https://github.com/mjls130598/SharingNotes/blob/master/src/Comentario.scala):
 	* Comentario
 	* Usuario quien lo realizó
 	* Apunte sobre el que lo comenta
 
 ## Milestones del proyecto
 
-El proyecto se va a dividir en los siguientes milestones:
+El proyecto se va a dividir en los siguientes milestones que corresponderá a la planificación a seguir: 
 
 * [Creación de la arquitectura](https://github.com/mjls130598/SharingNotes/milestone/3): que se encargará de aquellas tareas sobre la arquitectura del proyecto.
 
@@ -74,6 +74,10 @@ El proyecto se va a dividir en los siguientes milestones:
 
 	* [Como estudiante, necesito poder dejar algún comentario sobre un apunte.](https://github.com/mjls130598/SharingNotes/issues/13)
 	* [Como administrador, necesito tener la posibilidad de borrar aquellos comentarios no válidos del sistema.](https://github.com/mjls130598/SharingNotes/issues/17)
+
+* [Test](https://github.com/mjls130598/SharingNotes/milestone/8): se encargará de realizar los correspondientes test para comprobar el correcto funcionamiento del proyecto.
+
+* [Despliegue en la nube](https://github.com/mjls130598/SharingNotes/milestone/7): se encargará de aquellas actividades relacionadas con el despliegue del proyecto en la nube.
 
 ## Documentaciones
 
