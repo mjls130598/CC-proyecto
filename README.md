@@ -52,7 +52,7 @@ Las [clases](https://github.com/mjls130598/CC-proyecto/tree/master/src) que se v
 
 ## Milestones del proyecto
 
-El proyecto se va a dividir en los siguientes milestones que corresponderá a la planificación a seguir: 
+El proyecto se va a dividir en los siguientes milestones que corresponderán a la planificación a seguir: 
 
 * [Creación de la arquitectura](https://github.com/mjls130598/SharingNotes/milestone/3): que se encargará de aquellas tareas sobre la arquitectura del proyecto.
 
