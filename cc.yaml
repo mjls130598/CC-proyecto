@@ -1,4 +1,5 @@
-entidad: src/Apuntes.scala
-usuario: src/Usuario.scala
-asignatura: src/Asignatura.scala
-comentario: src/Comentario.scala
+entidad: src/SharingNotes/Apuntes.scala
+usuario: src/SharingNotes/Usuario.scala
+asignatura: src/SharingNotes/Asignatura.scala
+comentario: src/SharingNotes/Comentario.scala
+main: src/SharingNotes/Principal.scala
