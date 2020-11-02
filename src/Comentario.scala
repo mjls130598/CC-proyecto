@@ -6,3 +6,4 @@ class Comentario(coment: String, user: Usuario, apunt : Apunte){
   val usuario: String = user
   val apunte: String = apunt
 }
+
