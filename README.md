@@ -84,6 +84,7 @@ El proyecto se va a dividir en los siguientes milestones:
 
 	* [Como administrador, necesito poder crear una nueva asignatura dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/18)
 	* [Como administrador, necesito poder borrar una asignatura dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/19)
+	* [Como estudiante, necesito encontrar los apuntes de una asignatura](https://github.com/mjls130598/SharingNotes/issues/24)
 
 ## Planificación
 
