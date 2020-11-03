@@ -21,17 +21,21 @@ Las historias de usuario que describen este proyecto se muestran a continuación
 - [Como administrador, necesito tener la posibilidad de borrar aquellos comentarios no válidos dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/17)
 - [Como administrador, necesito poder crear una nueva asignatura dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/18)
 - [Como administrador, necesito poder borrar una asignatura dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/19)
+- [Como estudiante, necesito encontrar los apuntes de una asignatura](https://github.com/mjls130598/SharingNotes/issues/24)
 
 ## Clases
 
 Las [clases](https://github.com/mjls130598/CC-proyecto/tree/master/src/SharingNotes) que se van a utilizar en este proyecto son las siguientes:
 
 * [Apuntes](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/Apuntes.scala) (la entidad principal del proyecto):
+	* Identificador único
+	* Ubicación
 	* Nombre del fichero
 	* Asignatura
 	* Usuario
 
 * [Asignatura](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/Asignatura.scala):
+	* Identificador único
 	* Nombre de la asignatura
 	* Curso en el que se imparte
 	* Carrera en la que se imparte
@@ -45,6 +49,7 @@ Las [clases](https://github.com/mjls130598/CC-proyecto/tree/master/src/SharingNo
 	* Universidad donde estudia
 
 * [Comentario](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/Comentario.scala):
+	* Identificador único
 	* Comentario
 	* Usuario quien lo realizó
 	* Apunte sobre el que lo comenta
