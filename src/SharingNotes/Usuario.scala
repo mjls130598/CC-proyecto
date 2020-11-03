@@ -7,4 +7,5 @@ class Usuario(nom: String, email: String, password : String, car: String, uni: S
   val contrasenia: String = password
   val carrera: String = car
   val universidad: String = uni
+
 }
