@@ -42,6 +42,15 @@ class SharingNotes{
       apuntes(id) = apunte
     }
   }
+
+  // Método para añadir nuevos comentarios
+
+  def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): Unit = {
+
+    val id = "COM" + (comentarios.size + 1)
+    val comentario = new Comentario(id, coment, usuario, apunte)
+    comentarios(id) = comentario
+  }
 }
 
 object Principal{
@@ -73,6 +82,13 @@ object Principal{
     sharing.aniadirApunte("CC.pdf", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
     sharing.apuntes.foreach{
       case (key, value) => println (key + " -> " + value.identificador)
+    }
+
+    // Añadir comentario a la memoria del proyecto
+
+    sharing.aniadirComentario("Esto es un comentario cualquiera", sharing.apuntes("APUN1"), usuario)
+    sharing.comentarios.foreach{
+      case (key, value) => println (key + " -> " + value.comentario)
     }
   }
 }
