@@ -27,6 +27,21 @@ class SharingNotes{
       asignaturas(id) = asignatura
     }
   }
+
+  // Método para añadir nuevos apuntes
+
+  def aniadirApunte(url: String, nom: String, asig: Asignatura, us: Usuario): Unit = {
+
+    val id = "APUN" + (apuntes.size + 1)
+    val ubicacion = "./" + asig.identificador + "/" + url
+
+    // Sólo se admiten archivos PDF
+
+    if(url.toString.split("\\.").last == "pdf"){
+      val apunte = new Apunte (id, ubicacion, nom, asig, us)
+      apuntes(id) = apunte
+    }
+  }
 }
 
 object Principal{
@@ -46,10 +61,18 @@ object Principal{
 
     // Añadir asignatura a la memoria del proyecto
 
-    sharing.aniadirAsignatura("CC", "1º", "MUII", "Granada", usuario)
+    val admin = new Usuario("Administrador", "admin@admin.com", "x", "x")
+
+    sharing.aniadirAsignatura("CC", "1º", "MUII", "Granada", admin)
     sharing.asignaturas.foreach{
       case (key, value) => println (key + " -> " + value.identificador)
     }
 
+    // Añadir apunte a la memoria del proyecto
+
+    sharing.aniadirApunte("CC.pdf", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
+    sharing.apuntes.foreach{
+      case (key, value) => println (key + " -> " + value.identificador)
+    }
   }
 }
