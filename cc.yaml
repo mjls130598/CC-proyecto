@@ -2,4 +2,4 @@ entidad: src/SharingNotes/Principal.scala
 usuario: src/SharingNotes/Usuario.scala
 asignatura: src/SharingNotes/Asignatura.scala
 comentario: src/SharingNotes/Comentario.scala
-apunte: src/SharingNotes/Apuntes.scala
+apunte: src/SharingNotes/Apunte.scala
