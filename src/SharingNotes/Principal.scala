@@ -1,12 +1,15 @@
 package SharingNotes
 
+import scala.collection.mutable.HashMap
+
 class SharingNotes{
 
-  var asignaturas : List[Asignatura] = List()
-  var usuarios : List[Usuario] = List()
-  var apuntes : List[Apunte] = List()
-  var comentarios : List[Comentario] = List()
+  var asignaturas = new HashMap[String, Asignatura]()
+  var usuarios = new HashMap[String, Usuario]()
+  var apuntes = new HashMap[String, Apunte]()
+  var comentarios = new HashMap[String, Comentario]()
 
+  def aniadirUsuario(usuario : Usuario): Unit = usuarios(usuario.correo) = usuario
 }
 
 object Principal{
@@ -15,7 +18,12 @@ object Principal{
 
     val sharing = new SharingNotes()
 
-    sharing.asignaturas = (new Asignatura("CC", 1, "Informática", "Granada")) :: sharing.asignaturas    
-    println(sharing.asignaturas.mkString("\n"))
+    val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
+    sharing.aniadirUsuario(usuario)
+
+    sharing.usuarios.foreach
+        {
+            case (key, value) => println (key + " -> " + value. nombre)
+        }
   }
 }
