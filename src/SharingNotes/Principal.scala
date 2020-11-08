@@ -74,6 +74,18 @@ class SharingNotes{
     }
   }
 
+  // Método para buscar apuntes de una asignatura
+
+  def buscarApuntes(asignatura : Asignatura): List[Apunte] = {
+
+    // Función que devuelve ese apunte si es de una asignatura dada
+
+    def apunteAsignatura(x: Apunte) = if(x.asignatura == asignatura) List(x) else List()
+
+    val notes = apuntes.values.toList
+    return notes.flatMap(x => apunteAsignatura(x))
+  }
+
   // Método para añadir nuevos comentarios
 
   def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): Unit = {
@@ -161,10 +173,20 @@ object Principal{
     }
 
     // Borrar apunte de la memoria del proyecto
-    
+
     sharing.borrarApunte("APUN1", admin)
     sharing.comentarios.foreach{
       case (key, value) => println (key + " -> " + value.comentario)
+    }
+
+    // Buscar apuntes de una asignatura
+
+    sharing.aniadirApunte("CC.pdf", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
+    sharing.aniadirApunte("CC-T3.pdf", "Tema 3: Docker", sharing.asignaturas("ASIG1"), usuario)
+
+    val apuntes = sharing.buscarApuntes(sharing.asignaturas("ASIG1"))
+    apuntes.foreach{
+      case (apunte) => println(apunte.identificador)
     }
   }
 }
