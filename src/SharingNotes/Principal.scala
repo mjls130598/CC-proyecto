@@ -54,6 +54,26 @@ class SharingNotes{
     }
   }
 
+  // Método para borrar un apunte
+
+  def borrarApunte(id: String, usuario: Usuario) : Unit = {
+
+    // Sólo puede borrar apuntes el administrador del sistema
+
+    if(usuario.nombre == "Administrador"){
+
+      // Antes de borrar el apunte, se borran los comentarios que se hayan
+      // realizado sobre él
+
+      val coments = buscarComentarios(apuntes(id))
+      coments.map(c => borrarComentario(c.identificador, usuario))
+
+      // Por último se borra el apunte
+
+      apuntes -= id
+    }
+  }
+
   // Método para añadir nuevos comentarios
 
   def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): Unit = {
@@ -79,6 +99,7 @@ class SharingNotes{
   def buscarComentarios(apunte : Apunte): List[Comentario] = {
 
     // Función que devuelve ese comentario si es de un apunte dado
+
     def comentarioApunte(x: Comentario) = if(x.apunte == apunte) List(x) else List()
 
     val coments = comentarios.values.toList
@@ -137,6 +158,13 @@ object Principal{
     val comentarios = sharing.buscarComentarios(sharing.apuntes("APUN1"))
     comentarios.foreach{
       case (coment) => println (coment.identificador)
+    }
+
+    // Borrar apunte de la memoria del proyecto
+    
+    sharing.borrarApunte("APUN1", admin)
+    sharing.comentarios.foreach{
+      case (key, value) => println (key + " -> " + value.comentario)
     }
   }
 }
