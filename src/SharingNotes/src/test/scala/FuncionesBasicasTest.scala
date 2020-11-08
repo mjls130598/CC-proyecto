@@ -8,7 +8,7 @@ class FuncionesBasicasTest extends FunSuite {
   val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
   val admin = new Administrador()
 
-  // Comprueba de que se ha insertado los dos usuarios anteriores al sistema
+  // Comprueba que se ha insertado los dos usuarios anteriores al sistema
 
   sharing.aniadirUsuario(usuario)
   sharing.aniadirUsuario(admin)
@@ -19,7 +19,7 @@ class FuncionesBasicasTest extends FunSuite {
     }
   }
 
-  // Comprueba de que se ha añadido una asignatura correctamente
+  // Comprueba que se ha añadido una asignatura correctamente
 
   sharing.aniadirAsignatura("CC", "1º", "MUII", "Granada", admin)
 
@@ -29,33 +29,61 @@ class FuncionesBasicasTest extends FunSuite {
     }
   }
 
-  // Comprueba de que no se ha añadido una asignatura
+  // Comprueba que no se ha añadido una asignatura
 
   sharing.aniadirAsignatura("TID", "1º", "MUII", "Granada", usuario)
+
   test("No insertada en el sistema"){
     assertResult(1){
       sharing.asignaturas.size
     }
   }
 
-  // Comprueba de que se ha añadido un nuevo apunte
+  // Comprueba que se ha añadido un nuevo apunte
 
   sharing.aniadirApunte("CC.pdf", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
+
   test("Insertado nuevo apunte correctamente"){
     assert(sharing.apuntes.keys.exists(_ == "APUN1"))
   }
 
-  // Comprueba de que se ha añadido el apunte correcto
+  // Comprueba que se ha añadido el apunte correcto
 
   sharing.aniadirApunte("CC.doc", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
+
   test("No insertado apunte con un formato erróneo"){
     assert(sharing.apuntes.keys.exists(_ != "APUN2"))
   }
 
-  // Comprueba de que se ha añadido un comentario correctamente
+  // Comprueba que se ha añadido un comentario correctamente
 
-  sharing.aniadirComentario("Esto es un comentario cualquiera", sharing.apuntes("APUN1"), usuario)
+  sharing.aniadirComentario("Esto es un comentario cualquiera",
+    sharing.apuntes("APUN1"), usuario)
+    println(sharing.comentarios.keys.toString)
+
   test("Insertado nuevo comentario correctamente"){
-    assert(sharing.comentarios.values.exists(_.identificador == "COM1"))
+    assert(sharing.comentarios.keys.exists(_ == "COM1"))
+    assert(sharing.comentarios.values.exists(_.apunte == sharing.apuntes("APUN1")))
+  }
+
+  // Comprueba que se ha borrado el comentario anteriormente insertado correctametne
+
+  sharing.aniadirComentario("Esto es otro comentario cualquiera",
+    sharing.apuntes("APUN1"), usuario)
+    println(sharing.comentarios.keys.toString)
+  sharing.borrarComentario("COM2", usuario)
+
+  test("No se ha borrado al no ser un administrador"){
+    assert(sharing.comentarios.keys.exists(_ == "COM2"))
+  }
+
+  sharing.aniadirComentario("Esto es el tercer comentario",
+    sharing.apuntes("APUN1"), usuario)
+    println(sharing.comentarios.keys.toString)
+
+  sharing.borrarComentario("COM3", admin)
+
+  test("Borrado el comentario correctamente"){
+    assert(!sharing.comentarios.keys.exists(_ == "COM3"))
   }
 }
