@@ -71,6 +71,7 @@ class FuncionesBasicasTest extends FunSuite {
   sharing.aniadirComentario("Esto es otro comentario cualquiera",
     sharing.apuntes("APUN1"), usuario)
     println(sharing.comentarios.keys.toString)
+
   sharing.borrarComentario("COM2", usuario)
 
   test("No se ha borrado al no ser un administrador"){
@@ -85,5 +86,13 @@ class FuncionesBasicasTest extends FunSuite {
 
   test("Borrado el comentario correctamente"){
     assert(!sharing.comentarios.keys.exists(_ == "COM3"))
+  }
+
+  // Comprueba que se encuentra los comentarios de un apunte
+
+  test("Se encuentran todos los comentarios de un apunte"){
+    assertResult(2){
+      sharing.buscarComentarios(sharing.apuntes("APUN1")).size
+    }
   }
 }
