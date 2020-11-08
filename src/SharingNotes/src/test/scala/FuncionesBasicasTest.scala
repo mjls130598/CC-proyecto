@@ -127,4 +127,12 @@ class FuncionesBasicasTest extends FunSuite {
     assert(!sharing.apuntes.keys.exists(_ == "APUN4"))
     assert(!sharing.comentarios.values.exists(_.apunte.identificador == "APUN4"))
   }
+
+  // Comprueba que se encuentran los apuntes de una asignatura
+
+  test("Se encuentran todos los apuntes de una asignatura"){
+    assertResult(2){
+      sharing.buscarApuntes(sharing.asignaturas("ASIG1")).size
+    }
+  }
 }
