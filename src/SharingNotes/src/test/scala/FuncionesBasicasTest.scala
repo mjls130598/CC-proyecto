@@ -135,4 +135,38 @@ class FuncionesBasicasTest extends FunSuite {
       sharing.buscarApuntes(sharing.asignaturas("ASIG1")).size
     }
   }
+
+  // Comprueba que un usuario normal no puede eliminar una asignatura
+
+  sharing.borrarAsignatura("ASIG1", usuario)
+
+  test("No se ha borrado una asignatura por no ser el administrador"){
+    assert(sharing.asignaturas.keys.exists(_ == "ASIG1"))
+  }
+
+  // Comprueba que se ha eliminado una asignatura correctamente
+
+  sharing.aniadirAsignatura("TID", "1º", "MUII", "Granada", admin)
+
+  sharing.borrarAsignatura("ASIG2", admin)
+
+  test("Asignatura borrada correctamente"){
+    assert(!sharing.asignaturas.keys.exists(_ == "ASIG2"))
+  }
+
+  // Comprueba que se ha eliminado los apuntes de una asignatura cuando
+  // se elimina ésta
+
+  sharing.aniadirAsignatura("TID", "1º", "MUII", "Granada", admin)
+
+  sharing.aniadirApunte("Tema 1.pdf", "Tema 1 Introducción", sharing.asignaturas("ASIG3"), usuario)
+  sharing.aniadirApunte("Tema 2.pdf", "Tema 2 Preparación de datos", sharing.asignaturas("ASIG3"), usuario)
+
+  sharing.borrarAsignatura("ASIG3", admin)
+
+  test("Asignatura, apuntes y comentarios borrados correctamente"){
+    assert(!sharing.asignaturas.keys.exists(_ == "ASIG3"))
+    assert(!sharing.apuntes.values.exists(_.asignatura.identificador == "ASIG3"))
+    assert(!sharing.comentarios.values.exists(_.apunte.asignatura.identificador == "ASIG3"))
+  }
 }
