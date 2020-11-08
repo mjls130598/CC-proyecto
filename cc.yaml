@@ -1,4 +1,4 @@
-language: scala-2.13.3
+lenguaje: scala-2.13.3
 entidad: src/SharingNotes/src/main/scala/SharingNotes.scala
 usuario: src/SharingNotes/src/main/scala/Usuario.scala
 asignatura: src/SharingNotes/src/main/scala/Asignatura.scala
@@ -6,4 +6,4 @@ comentario: src/SharingNotes/src/main/scala/Comentario.scala
 apunte: src/SharingNotes/src/main/scala/Apunte.scala
 main: src/SharingNotes/src/main/scala/Principal.scala
 test: src/SharingNotes/src/test/scala/FuncionesBasicasTest.scala
-make: Makefile
+fichero_tareas: Makefile
