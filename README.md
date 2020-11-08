@@ -28,7 +28,7 @@ Se ha elegido para hacer los distintos tests sobre el programa que se está real
 
 * Una general con *assert*.
 * Una más específica para diferenciar los valores obtenidos con los esperados con *assertResult*.
-* Otra más específica
+* Otra más específica para asegurarse que realiza las correspondientes excepciones con *assertThrows*.
 
 ## Documentaciones
 
@@ -36,4 +36,4 @@ La documentación de este proyecto se encuentra en varios archivos dentro del [d
 
 La información que estaba escrita en este mismo fichero para el milestone 0 se encuentra en el siguiente [archivo](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone0.md).
 
-La explicación de las actividades realizadas para el milestone 1 está en [milestone1.md](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone1.md)
+La explicación de las actividades realizadas para el milestone 1 está en [milestone1.md](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone1.md).
