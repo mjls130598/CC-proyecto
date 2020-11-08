@@ -12,6 +12,30 @@ Por lo tanto, este proyecto se basa en crear una plataforma donde cualquier alum
 * El siguiente programa está escrito en el lenguaje de programación *Scala*.
 * La biblioteca que se va a usar para realizar los test es la bibliteca *assert* que viene con el lenguaje *Scala*.
 * El marco de prueba elegido para realizar los test es *FunSuite* de la herramienta de test *ScalaTest*.
+* El gestor de tareas seleccionado es *Makefile* para que pueda ejecutar con la herramienta de configuración *sbt (Scala Build Tool)*.
+
+## Poner en marcha el proyecto
+
+1. Descargar este proyecto en el dispositivo:
+  `git clone git@github.com:mjls130598/SharingNotes.git`
+
+2. Dirigirse a la carpeta del proyecto:
+  `cd SharingNotes/`
+
+3. Instalar los programas necesarios para la ejecución del programa:
+  `make install`
+
+4. Compilar el programa:
+  `make compile`
+
+5. Ejecutar el programa:
+  `make run`
+
+6. Ejecutar los test del proyecto:
+  `make test`
+
+Si fuera necesario realizar una limpieza del proyecto:
+  `make clean`
 
 ## Estructura del proyecto
 
@@ -41,6 +65,10 @@ Como marco de pruebas se ha elegido *FunSuite* de la biblioteca *ScalaTest* pues
 Además, ofrece diferentes tipos de test, además de etiquetas o funcionalidades dentro de los test para ofrecer distintos mensajes al usuario.
 
 Se ha elegido este marco de pruebas al recoger la información oficial de [*FunSuites*](http://doc.scalatest.org/1.8/org/scalatest/FunSuite.html).
+
+## Justificación del gestor de tareas elegido
+
+Se ha elegido como gestor de tareas la herramienta *Makefile* puesto que se quiere utilizar la herramienta de construcción *sbt* para la compilación, la ejecución y la comprobación mediante test del programa y, para poder utilizarlo, es necesario instalarlo en el dispositivo y ejecutar los distintos comandos *sbt* en la carpeta donde se encuentra el código del proyecto.
 
 ## Documentaciones
 

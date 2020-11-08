@@ -6,3 +6,4 @@ comentario: src/SharingNotes/src/main/scala/Comentario.scala
 apunte: src/SharingNotes/src/main/scala/Apunte.scala
 main: src/SharingNotes/src/main/scala/Principal.scala
 test: src/SharingNotes/src/test/scala/FuncionesBasicasTest.scala
+make: Makefile
