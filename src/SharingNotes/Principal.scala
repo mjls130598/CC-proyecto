@@ -67,7 +67,12 @@ class SharingNotes{
 
   // Método para borrar un comentario
 
-  def borrarComentario(id: String): Unit = comentarios -= id
+  def borrarComentario(id: String, usuario: Usuario): Unit ={
+
+    // Sólo el administrador puede borrar comentarios
+
+     if(usuario.nombre == "Administrador") comentarios -= id
+   }
 
   // Método para buscar comentarios de un apunte
 
@@ -120,7 +125,7 @@ object Principal{
 
     // Borrar comentario de la memoria del proyecto
 
-    sharing.borrarComentario(sharing.comentarios.last._1)
+    sharing.borrarComentario(sharing.comentarios.last._1, admin)
     println(sharing.comentarios.size)
 
     // Buscar comentarios de un apunte
