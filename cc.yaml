@@ -1,5 +1,6 @@
-entidad: src/SharingNotes/main/Principal.scala
-usuario: src/SharingNotes/main/Usuario.scala
-asignatura: src/SharingNotes/main/Asignatura.scala
-comentario: src/SharingNotes/main/Comentario.scala
-apunte: src/SharingNotes/main/Apunte.scala
+entidad: src/SharingNotes/src/main/scala/SharingNotes.scala
+usuario: src/SharingNotes/src/main/scala/Usuario.scala
+asignatura: src/SharingNotes/src/main/scala/Asignatura.scala
+comentario: src/SharingNotes/src/main/scala/Comentario.scala
+apunte: src/SharingNotes/src/main/scala/Apunte.scala
+main: src/SharingNotes/src/main/scala/Principal.scala
