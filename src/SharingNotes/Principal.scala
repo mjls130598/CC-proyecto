@@ -9,6 +9,12 @@ class SharingNotes{
   var apuntes = new HashMap[String, Apunte]()
   var comentarios = new HashMap[String, Comentario]()
 
+  // Variables para controlar los identificadores
+
+  var idAsig = 0
+  var idApun = 0
+  var idCom = 0
+
   // Método para añadir nuevos usuarios al programa
 
   def aniadirUsuario(usuario : Usuario): Unit = usuarios(usuario.correo) = usuario
@@ -22,7 +28,10 @@ class SharingNotes{
     // una nueva asignatura
 
     if(usuario.nombre == "Administrador"){
-      val id = "ASIG" + (asignaturas.size + 1)
+
+      idAsig += 1
+
+      val id = "ASIG" + idAsig
       val asignatura = new Asignatura(id, nombre, curso, carrera, universidad)
       asignaturas(id) = asignatura
     }
@@ -32,7 +41,9 @@ class SharingNotes{
 
   def aniadirApunte(url: String, nom: String, asig: Asignatura, us: Usuario): Unit = {
 
-    val id = "APUN" + (apuntes.size + 1)
+    idApun += 1
+
+    val id = "APUN" + idApun
     val ubicacion = "./" + asig.identificador + "/" + url
 
     // Sólo se admiten archivos PDF
@@ -46,6 +57,8 @@ class SharingNotes{
   // Método para añadir nuevos comentarios
 
   def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): Unit = {
+
+    idCom += 1
 
     val id = "COM" + (comentarios.size + 1)
     val comentario = new Comentario(id, coment, usuario, apunte)
