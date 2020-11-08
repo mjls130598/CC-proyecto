@@ -37,6 +37,23 @@ class SharingNotes{
     }
   }
 
+  // Método para borrar una asignatura del sistema
+
+  def borrarAsignatura(id : String, usuario: Usuario): Unit = {
+
+    if(usuario.nombre == "Administrador"){
+
+      // Primero se borra los apuntes de esa asignatura
+
+      val notes = buscarApuntes(asignaturas(id))
+      notes.map(n => borrarApunte(n.identificador, usuario))
+
+      // Por último, se borra la asignatura
+      asignaturas -= id
+    }
+
+  }
+
   // Método para añadir nuevos apuntes
 
   def aniadirApunte(url: String, nom: String, asig: Asignatura, us: Usuario): Unit = {
@@ -187,6 +204,16 @@ object Principal{
     val apuntes = sharing.buscarApuntes(sharing.asignaturas("ASIG1"))
     apuntes.foreach{
       case (apunte) => println(apunte.identificador)
+    }
+
+    // Borrar una asignatura de la memoria del proyecto
+
+    sharing.borrarAsignatura("ASIG1", admin)
+    sharing.apuntes.foreach{
+      case (key, value) => println (key + " -> " + value.identificador)
+    }
+    sharing.comentarios.foreach{
+      case (key, value) => println (key + " -> " + value.comentario)
     }
   }
 }
