@@ -64,6 +64,12 @@ class SharingNotes{
     val comentario = new Comentario(id, coment, usuario, apunte)
     comentarios(id) = comentario
   }
+
+  // Método para borrar un comentario
+
+  def borrarComentario(id: String): Unit = {
+    comentarios -= id
+  }
 }
 
 object Principal{
@@ -103,5 +109,10 @@ object Principal{
     sharing.comentarios.foreach{
       case (key, value) => println (key + " -> " + value.comentario)
     }
+
+    // Borrar comentario de la memoria del proyecto
+
+    sharing.borrarComentario(sharing.comentarios.last._1)
+    println(sharing.comentarios.size)
   }
 }
