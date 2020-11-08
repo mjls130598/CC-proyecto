@@ -67,8 +67,16 @@ class SharingNotes{
 
   // Método para borrar un comentario
 
-  def borrarComentario(id: String): Unit = {
-    comentarios -= id
+  def borrarComentario(id: String): Unit = comentarios -= id
+
+  // Método para buscar comentarios de un apunte
+
+  def buscarComentarios(apunte : Apunte): List[Comentario] = {
+
+    def comentarioApunte(x: Comentario) = if(x.apunte == apunte) List(x) else List()
+
+    val coments = comentarios.values.toList
+    return coments.flatMap(x => comentarioApunte(x))
   }
 }
 
@@ -114,5 +122,15 @@ object Principal{
 
     sharing.borrarComentario(sharing.comentarios.last._1)
     println(sharing.comentarios.size)
+
+    // Buscar comentarios de un apunte
+
+    sharing.aniadirComentario("Esto es un comentario cualquiera", sharing.apuntes("APUN1"), usuario)
+    sharing.aniadirComentario("Esto es otro comentario cualquiera", sharing.apuntes("APUN1"), usuario)
+
+    val comentarios = sharing.buscarComentarios(sharing.apuntes("APUN1"))
+    comentarios.foreach{
+      case (coment) => println (coment.identificador)
+    }
   }
 }
