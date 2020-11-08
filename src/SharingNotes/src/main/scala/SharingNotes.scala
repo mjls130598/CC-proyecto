@@ -110,7 +110,7 @@ class SharingNotes{
 
     idCom += 1
 
-    val id = "COM" + (comentarios.size + 1)
+    val id = "COM" + idCom
     val comentario = new Comentario(id, coment, usuario, apunte)
     comentarios(id) = comentario
   }
