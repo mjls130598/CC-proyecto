@@ -1,4 +1,4 @@
-lenguaje: scala-2.13.3
+lenguaje: scala
 entidad: src/SharingNotes/src/main/scala/SharingNotes.scala
 usuario: src/SharingNotes/src/main/scala/Usuario.scala
 asignatura: src/SharingNotes/src/main/scala/Asignatura.scala
