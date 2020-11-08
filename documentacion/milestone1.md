@@ -50,6 +50,8 @@ Las [clases](https://github.com/mjls130598/CC-proyecto/tree/master/src/SharingNo
 	* Carrera que realiza
 	* Universidad donde estudia
 
+* [Administrador](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/src/main/scala/Administrador.scala): Una clase que hereda de *Usuario*.
+
 * [Comentario](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/src/main/scala/Comentario.scala):
 	* Identificador único
 	* Comentario
