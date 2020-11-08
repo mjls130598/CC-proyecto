@@ -52,35 +52,34 @@ class FuncionesBasicasTest extends FunSuite {
   sharing.aniadirApunte("CC.doc", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
 
   test("No insertado apunte con un formato erróneo"){
-    assert(sharing.apuntes.keys.exists(_ != "APUN2"))
+    assert(sharing.apuntes.keys.exists(_ == "APUN2"))
   }
 
   // Comprueba que se ha añadido un comentario correctamente
 
   sharing.aniadirComentario("Esto es un comentario cualquiera",
     sharing.apuntes("APUN1"), usuario)
-    println(sharing.comentarios.keys.toString)
 
   test("Insertado nuevo comentario correctamente"){
     assert(sharing.comentarios.keys.exists(_ == "COM1"))
     assert(sharing.comentarios.values.exists(_.apunte == sharing.apuntes("APUN1")))
   }
 
-  // Comprueba que se ha borrado el comentario anteriormente insertado correctametne
+  // Comprueba que un usuario normal no puede borrar un comentario
 
   sharing.aniadirComentario("Esto es otro comentario cualquiera",
     sharing.apuntes("APUN1"), usuario)
-    println(sharing.comentarios.keys.toString)
 
   sharing.borrarComentario("COM2", usuario)
 
-  test("No se ha borrado al no ser un administrador"){
+  test("No se ha borrado por no ser un administrador"){
     assert(sharing.comentarios.keys.exists(_ == "COM2"))
   }
 
+  // Comprueba que se ha borrado el comentario anteriormente insertado correctamente
+
   sharing.aniadirComentario("Esto es el tercer comentario",
     sharing.apuntes("APUN1"), usuario)
-    println(sharing.comentarios.keys.toString)
 
   sharing.borrarComentario("COM3", admin)
 
@@ -94,5 +93,38 @@ class FuncionesBasicasTest extends FunSuite {
     assertResult(2){
       sharing.buscarComentarios(sharing.apuntes("APUN1")).size
     }
+  }
+
+  // Comprueba que un usuario normal no puede eliminar un apunte
+
+  sharing.aniadirApunte("Tema 2.pdf", "Tema 2 Test", sharing.asignaturas("ASIG1"), usuario)
+
+  sharing.borrarApunte("APUN2", usuario)
+
+  test("No se ha borrado el apunte por no ser el administrador"){
+    assert(sharing.apuntes.keys.exists(_ == "APUN2"))
+  }
+
+  // Comprueba que se eliminan los apuntes correctamente
+
+  sharing.aniadirApunte("Tema 3.pdf", "Tema 3 Docker", sharing.asignaturas("ASIG1"), usuario)
+
+  sharing.borrarApunte("APUN3", admin)
+
+  test("Borrado el apunte correctamente"){
+    assert(!sharing.apuntes.keys.exists(_ == "APUN3"))
+  }
+
+  // Comprueba que se eliminan todos los comentarios sobre un apunte
+
+  sharing.aniadirApunte("Tema 1.pdf", "Tema 1 Arquitectura", sharing.asignaturas("ASIG1"), usuario)
+
+  sharing.aniadirComentario("Este es el cuarto comentario realizado", sharing.apuntes("APUN4"), usuario)
+
+  sharing.borrarApunte("APUN4", admin)
+
+  test("Borrado apunte y sus comentarios"){
+    assert(!sharing.apuntes.keys.exists(_ == "APUN4"))
+    assert(!sharing.comentarios.values.exists(_.apunte.identificador == "APUN4"))
   }
 }
