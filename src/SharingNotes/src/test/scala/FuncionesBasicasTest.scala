@@ -13,46 +13,51 @@ class FuncionesBasicasTest extends FunSuite {
   sharing.aniadirUsuario(usuario)
   sharing.aniadirUsuario(admin)
 
-  test("Insertado nuevos usuarios correctamente") {
+  test("Nuevos usuarios") {
     assertResult(2){
       sharing.usuarios.size
     }
+    info("El nuevo usuario se ha insertado correctamente")
   }
 
   // Comprueba que se ha añadido una asignatura correctamente
 
   sharing.aniadirAsignatura("CC", "1º", "MUII", "Granada", admin)
 
-  test("Insertada nueva asignatura correctamente"){
+  test("Nueva asignatura"){
     assertResult(1){
       sharing.asignaturas.size
     }
+    info("La nueva asignatura se ha insertado correctamente")
   }
 
   // Comprueba que no se ha añadido una asignatura
 
   sharing.aniadirAsignatura("TID", "1º", "MUII", "Granada", usuario)
 
-  test("No insertada en el sistema"){
+  test("Usuario común inserta una asignatura"){
     assertResult(1){
       sharing.asignaturas.size
     }
+    info("No puede, sólo lo realiza un administrador")
   }
 
   // Comprueba que se ha añadido un nuevo apunte
 
   sharing.aniadirApunte("CC.pdf", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
 
-  test("Insertado nuevo apunte correctamente"){
+  test("Nuevo apunte"){
     assert(sharing.apuntes.keys.exists(_ == "APUN1"))
+    info("El nuevo apunte se ha insertado correctamente")
   }
 
   // Comprueba que se ha añadido el apunte correcto
 
   sharing.aniadirApunte("CC.doc", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
 
-  test("No insertado apunte con un formato erróneo"){
+  test("Insertar apunte con un formato distinto a PDF"){
     assert(sharing.apuntes.keys.exists(_ == "APUN2"))
+    info("No se ha insertado, sólo se añaden PDFs")
   }
 
   // Comprueba que se ha añadido un comentario correctamente
@@ -60,9 +65,10 @@ class FuncionesBasicasTest extends FunSuite {
   sharing.aniadirComentario("Esto es un comentario cualquiera",
     sharing.apuntes("APUN1"), usuario)
 
-  test("Insertado nuevo comentario correctamente"){
+  test("Nuevo comentario"){
     assert(sharing.comentarios.keys.exists(_ == "COM1"))
     assert(sharing.comentarios.values.exists(_.apunte == sharing.apuntes("APUN1")))
+    info("El nuevo comentario se ha insertado correctamente")
   }
 
   // Comprueba que un usuario normal no puede borrar un comentario
@@ -72,8 +78,9 @@ class FuncionesBasicasTest extends FunSuite {
 
   sharing.borrarComentario("COM2", usuario)
 
-  test("No se ha borrado por no ser un administrador"){
+  test("Usuario común borra un comentario"){
     assert(sharing.comentarios.keys.exists(_ == "COM2"))
+    info("Sólo el administrador borra un comentario")
   }
 
   // Comprueba que se ha borrado el comentario anteriormente insertado correctamente
@@ -83,13 +90,15 @@ class FuncionesBasicasTest extends FunSuite {
 
   sharing.borrarComentario("COM3", admin)
 
-  test("Borrado el comentario correctamente"){
+  test("Borrar un comentario"){
     assert(!sharing.comentarios.keys.exists(_ == "COM3"))
+    info("El comentario se ha borrado correctamente")
+
   }
 
   // Comprueba que se encuentra los comentarios de un apunte
 
-  test("Se encuentran todos los comentarios de un apunte"){
+  test("Búsqueda de los comentarios de un apunte"){
     assertResult(2){
       sharing.buscarComentarios(sharing.apuntes("APUN1")).size
     }
@@ -101,8 +110,9 @@ class FuncionesBasicasTest extends FunSuite {
 
   sharing.borrarApunte("APUN2", usuario)
 
-  test("No se ha borrado el apunte por no ser el administrador"){
+  test("Usuario común borra un apunte"){
     assert(sharing.apuntes.keys.exists(_ == "APUN2"))
+    info("No se ha borrado, sólo lo puede hacer el administrador")
   }
 
   // Comprueba que se eliminan los apuntes correctamente
@@ -111,8 +121,9 @@ class FuncionesBasicasTest extends FunSuite {
 
   sharing.borrarApunte("APUN3", admin)
 
-  test("Borrado el apunte correctamente"){
+  test("Borrar un apunte"){
     assert(!sharing.apuntes.keys.exists(_ == "APUN3"))
+    info("El apunte se ha borrado correctamente")
   }
 
   // Comprueba que se eliminan todos los comentarios sobre un apunte
@@ -123,14 +134,15 @@ class FuncionesBasicasTest extends FunSuite {
 
   sharing.borrarApunte("APUN4", admin)
 
-  test("Borrado apunte y sus comentarios"){
+  test("Borrar apunte y sus correspondientes comentarios"){
     assert(!sharing.apuntes.keys.exists(_ == "APUN4"))
     assert(!sharing.comentarios.values.exists(_.apunte.identificador == "APUN4"))
+    info("No está en el sistema el apunte ni los comentarios realizados sobre él")
   }
 
   // Comprueba que se encuentran los apuntes de una asignatura
 
-  test("Se encuentran todos los apuntes de una asignatura"){
+  test("Búsqueda de los apuntes de una asignatura"){
     assertResult(2){
       sharing.buscarApuntes(sharing.asignaturas("ASIG1")).size
     }
@@ -140,8 +152,9 @@ class FuncionesBasicasTest extends FunSuite {
 
   sharing.borrarAsignatura("ASIG1", usuario)
 
-  test("No se ha borrado una asignatura por no ser el administrador"){
+  test("Usuario común borra una asignatura"){
     assert(sharing.asignaturas.keys.exists(_ == "ASIG1"))
+    info("No puede eliminar una asignatura, sólo lo puede realizar el administrador")
   }
 
   // Comprueba que se ha eliminado una asignatura correctamente
@@ -152,6 +165,7 @@ class FuncionesBasicasTest extends FunSuite {
 
   test("Asignatura borrada correctamente"){
     assert(!sharing.asignaturas.keys.exists(_ == "ASIG2"))
+    info("La asignatura no se encuentra almacenada en el sistema")
   }
 
   // Comprueba que se ha eliminado los apuntes de una asignatura cuando
@@ -168,5 +182,7 @@ class FuncionesBasicasTest extends FunSuite {
     assert(!sharing.asignaturas.keys.exists(_ == "ASIG3"))
     assert(!sharing.apuntes.values.exists(_.asignatura.identificador == "ASIG3"))
     assert(!sharing.comentarios.values.exists(_.apunte.asignatura.identificador == "ASIG3"))
+    info("No se encuentra la asignatura, ni los apuntes sobre una asignatura ni " +
+      "los comentarios realizados sobre cada un de los apuntes anteriores en el sistema")
   }
 }
