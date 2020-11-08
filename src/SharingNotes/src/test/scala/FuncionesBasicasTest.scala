@@ -37,4 +37,18 @@ class FuncionesBasicasTest extends FunSuite {
       sharing.asignaturas.size
     }
   }
+
+  // Prueba de que se ha añadido un nuevo apunte
+
+  sharing.aniadirApunte("CC.pdf", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
+  test("Insertado nuevo apunte correctamente"){
+    assert(sharing.apuntes.keys.exists(_ == "APUN1"))
+  }
+
+  // Prueba de que se ha añadido el apunte correcto
+
+  sharing.aniadirApunte("CC.doc", "Apunte de CC", sharing.asignaturas("ASIG1"), usuario)
+  test("No insertado apunte con un formato erróneo"){
+    assert(sharing.apuntes.keys.exists(_ != "APUN2"))
+  }
 }
