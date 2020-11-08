@@ -17,7 +17,7 @@ object Principal{
 
     // Añadir asignatura a la memoria del proyecto
 
-    val admin = new Usuario("Administrador", "admin@admin.com", "x", "x")
+    val admin = new Administrador()
 
     sharing.aniadirAsignatura("CC", "1º", "MUII", "Granada", admin)
     sharing.asignaturas.foreach{
