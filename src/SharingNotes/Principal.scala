@@ -78,6 +78,7 @@ class SharingNotes{
 
   def buscarComentarios(apunte : Apunte): List[Comentario] = {
 
+    // Función que devuelve ese comentario si es de un apunte dado
     def comentarioApunte(x: Comentario) = if(x.apunte == apunte) List(x) else List()
 
     val coments = comentarios.values.toList
