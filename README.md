@@ -23,6 +23,7 @@ Las historias de usuario que describen este proyecto se muestran a continuación
 - [Como administrador, necesito poder borrar una asignatura dentro del sistema.](https://github.com/mjls130598/SharingNotes/issues/19)
 - [Como estudiante, necesito encontrar los apuntes de una asignatura](https://github.com/mjls130598/SharingNotes/issues/24)
 - [Como estudiante, quiero filtrar la búsqueda de apuntes por universidad, carrera, curso y asignatura](https://github.com/mjls130598/SharingNotes/issues/30)
+- [Como usuario, quiero ver los comentarios que dejan sobre un apunte](https://github.com/mjls130598/SharingNotes/issues/31)
 
 ## Clases
 
@@ -79,6 +80,7 @@ El proyecto se va a dividir en los siguientes milestones:
 
 	* [Como estudiante, necesito poder dejar algún comentario sobre un apunte.](https://github.com/mjls130598/SharingNotes/issues/13)
 	* [Como administrador, necesito tener la posibilidad de borrar aquellos comentarios no válidos del sistema.](https://github.com/mjls130598/SharingNotes/issues/17)
+	* [Como usuario, quiero ver los comentarios que dejan sobre un apunte](https://github.com/mjls130598/SharingNotes/issues/31)
 
 * [Asignaturas](https://github.com/mjls130598/SharingNotes/milestone/7): se encargará de aquellas tareas relacionadas con las asignaturas. Las historias de usuario correspondientes a este milestone son:
 
@@ -101,9 +103,7 @@ La planificación que se va a seguir, por ahora, para el desarrollo de este proy
 
 * A continuación, se realizará la inserción de nuevos apuntes.
 
-* Una vez realizada la inserción y la eliminación de apuntes, se centrará en el buscador y en la distribución visual de los apuntes.
-
-* Después, se hará la inserción de un comentario sobre uno de los apuntes y la eliminación de los comentarios no deseados.
+* Después, se hará la inserción de un comentario sobre uno de los apuntes, su búsqueda según el apunte dado y la eliminación de los comentarios no deseados.
 
 * Cuando se haya conseguido eliminar comentarios, se creará la manera de borrar los apuntes no deseados y sus comentarios.
 
