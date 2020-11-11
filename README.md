@@ -54,14 +54,6 @@ Se ha elegido para hacer los distintos tests sobre el programa que se está real
 
 La información obtenida sobre esta biblioteca se recogió de la página oficial de [*ScalaTest*](https://www.scalatest.org/user_guide/using_assertions).
 
-## Justificación del marco de pruebas elegido
-
-Como marco de pruebas se ha elegido *FunSuite* de la biblioteca *ScalaTest* puesto que es sencillo de crear los diferentes test al programa y utiliza la biblioteca de aserciones *Assertion*.
-
-Además, ofrece diferentes tipos de test, además de etiquetas o funcionalidades dentro de los test para ofrecer distintos mensajes al usuario.
-
-Se ha elegido este marco de pruebas al recoger la información oficial de [*FunSuites*](http://doc.scalatest.org/1.8/org/scalatest/FunSuite.html).
-
 ## Justificación del gestor de tareas  y del marco de prueba elegidos
 
 Para *Scala* se ofrece una diversidad de gestores de tareas como los siguientes:
