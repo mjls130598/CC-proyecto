@@ -1,7 +1,7 @@
 import SharingNotes._
 import org.scalatest.FunSuite
 
-class FuncionesBasicasTest extends FunSuite {
+class SharingNotesTest extends FunSuite {
 
   val sharing = new SharingNotes()
 
