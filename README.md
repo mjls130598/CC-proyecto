@@ -85,7 +85,6 @@ Las funciones que se han realizados, además de sus correspondientes tests, son 
   * El test de esta función se puede observar [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L99).
   * Este método corresponde a la historia de usuario [HU12](https://github.com/mjls130598/SharingNotes/issues/31).
 
-
 ## Justificación del gestor de tareas y del marco de prueba elegidos
 
 Para *Scala* se ofrece una diversidad de gestores de tareas como los siguientes:
@@ -136,6 +135,39 @@ Para *Scala* se ofrece una diversidad de gestores de tareas como los siguientes:
   * Como *sbt* y *Maven*, separa los ficheros de distintos idiomas en distintas carpetas, divide el código que implementa el proyecto y el que realiza los tests e incluye un fichero de configuración y varias carpetas con un archivo de construcción por cada subproyecto.
 
 Se elige *sbt* al ser el más utilizado para realizar proyectos en *Scala*, al tener una estructura de escritorio sencilla, al ser fácil su uso y al no estar archivo de configuración en XML. Su configuración se encuentra en el fichero [*build.sbt*](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/build.sbt).
+
+## Justificación de la biblioteca de aserciones
+
+En Scala hay varias bibliotecas que se encargan de realizar las aserciones. En este caso se centrarán en las siguientes:
+
+* **ScalaTest**:
+  * Soporta diferentes estilos de test.
+  * Es la herramienta de test más flexible actualmente.
+  * Se puede utilizar tanto para *Scala* como para *Java*.
+  * Puede escalar en proyectos de todos los tamaños.
+  * Es muy rápido aprender a realizar tests.
+  * Se pueden realizar tanto tests *TDD* como *BDD*.
+  * Se pueden hacer múltiples comparaciones en una prueba.
+  * Los *DSLs* para *Scala* son más potentes que los de *Java*.
+  * Ofrece, además de aserciones, potentes *matchers*.
+
+* **JUnit**:
+  * Es un marco de código abierto que se ocupa de la escritura y de la ejecución de los tests de un proyecto.
+  * Está pensado para utilizarlo en *Java*.
+  * Es rápido y sencillo escribir el código.
+  * Muestra el progreso de la prueba en una barra.
+  * Se puede realizar tanto *BDD* como *TDD*.
+
+* **ScalaCheck**:
+  * Se puede utilizar tanto en *Java* como en *Scala*.
+  * Está integrado sobre otros marcos de prueba como *ScalaTest*.
+  * No utiliza aserciones, sino propiedades.
+  * Dentro de una propiedad, se pueden añadir varios argumentos que comprueben el correcto funcionamiento de una parte del código del proyecto.
+  * Ofrece un generador de datos para utilizarlos en los tests.
+  * Para comprobar que una función se realiza correctamente, ejecuta más de una vez el test que comprueba su funcionalidad.
+  * Sólo se puede realizar para *TDD*.
+
+Se elige la biblioteca *ScalaTest* puesto que es la más popular con diferencia para el lenguaje *Scala*, tiene una gran variedad de estilos de tests, es muy flexible a la hora de crear pruebas, es también muy rápido de aprender a realizar tests de distintas complejidades y se pueden realizar múltiples comparaciones en un test.
 
 ## Documentaciones
 
