@@ -85,6 +85,57 @@ Las funciones que se han realizados, además de sus correspondientes tests, son 
   * El test de esta función se puede observar [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L99).
   * Este método corresponde a la historia de usuario [HU12](https://github.com/mjls130598/SharingNotes/issues/31).
 
+## Justificación del gestor de tareas y del marco de prueba elegidos
+
+Para *Scala* se ofrece una diversidad de gestores de tareas como los siguientes:
+
+* **sbt (Scala Build Tool)**:
+  * Ofrece una estructura de directorios sencilla que separa los test del código en sí:
+    ```
+    build.sbt
+    project/
+    src/
+      |-- main/
+        |-- java/
+        |-- resources/
+        |-- scala/
+      |-- test/
+        |-- java/
+        |-- resources/
+        |-- scala/
+    target
+    ```
+  * Fue específicamente creada para *Scala*.
+  * Soporte nativo para integrarse con muchos marcos de prueba.
+  * Ofrece la compilación, los test y la implementación.
+  * Sólo se vuelve a compilar aquellas fuentes que se hayan modificado o las pruebas que no se hayan superado previamente.
+  * Construye las descripciones escritas en *Scala* usando *DSL*.
+  * La gestión de dependencias la realiza a través de *Apache Ivy*, la cual permite los repositorios en formato Maven.
+  * Rápida iteración y depuración al incorporar el intérprete de *Scala*.
+  * Soporta proyectos mixtos Java-Scala.
+
+* **Maven**:
+  * Su estructura de directorios es similar a la de *sbt*.
+  * Con un archivo en XML describe el proyecto de software que se está construyendo, sus dependencias, el orden de construcción, los directorios y los complementos necesarios.
+  * Utiliza convenciones para el procedimiento de compilación y solo es necesario anotar las excepciones.
+  * Descarga dinámicamente las bibliotecas de Java y los complementos de Maven y los almacena en una caché local.
+  * Las dependencias se pueden cargar desde el sistema de archivos local o desde repositorios públicos.
+  * Tiene una arquitectura basada en complementos que le permite hacer uso de cualquier aplicación controlable a través de la entrada estándar.
+  * Como *sbt*, incorpora la compilación, los tests y la implementación.
+  * Intenta evitar la mayor cantidad de configuración posible, proporcionando plantillas de proyecto.
+  * Ofrece aislamiento entre las dependencias del proyecto y los complementos.
+
+* **Gradle**:
+  * Utiliza un DAG para determinar el orden en el que las tareas pueden ser ejecutadas.
+  * Introduce *Groovy* y *Kotlin* basados en *DSL*.
+  * Diseñado para la compilación de proyectos grandes.
+  * Admite el almacenamiento en caché de componentes de compilación.
+  * Ofrece un software que es extensible para nuevas funciones y lenguajes de programación con un subsistema de complementos.
+  * Como los dos gestores anteriores, ofrece la compilación, los test y la implementación del proyecto.
+  * Como *sbt* y *Maven*, separa los ficheros de distintos idiomas en distintas carpetas, divide el código que implementa el proyecto y el que realiza los tests e incluye un fichero de configuración y varias carpetas con un archivo de construcción por cada subproyecto.
+
+Se elige *sbt* al ser el más utilizado para realizar proyectos en *Scala*, al tener una estructura de escritorio sencilla, al ser fácil su uso y al no estar archivo de configuración en XML. Su configuración se encuentra en el fichero [*build.sbt*](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/build.sbt).
+
 ## Justificación de la biblioteca de aserciones
 
 En Scala hay varias bibliotecas que se encargan de realizar las aserciones. En este caso se centrarán en las siguientes:
