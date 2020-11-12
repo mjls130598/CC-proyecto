@@ -169,6 +169,8 @@ En Scala hay varias bibliotecas que se encargan de realizar las aserciones. En e
 
 Se elige la biblioteca *ScalaTest* puesto que es la más popular con diferencia para el lenguaje *Scala*, tiene una gran variedad de estilos de tests, es muy flexible a la hora de crear pruebas, es también muy rápido de aprender a realizar tests de distintas complejidades y se pueden realizar múltiples comparaciones en un test.
 
+El archivo que se encarga de realizar los tests es [SharingNotesTest.scala](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/src/test/scala/SharingNotesTest.scala) y la biblioteca ya está incorporada en el archivo de configuración [build.sbt](https://github.com/mjls130598/SharingNotes/blob/f447fbfbb0651995d621f9c4b5d3e4bc8562d21f/src/SharingNotes/build.sbt#L3).
+
 ## Documentaciones
 
 La documentación de este proyecto se encuentra en varios archivos dentro del [directorio documentación](https://github.com/mjls130598/SharingNotes/tree/master/documentacion).
