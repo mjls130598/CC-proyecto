@@ -85,6 +85,41 @@ Las funciones que se han realizados, además de sus correspondientes tests, son 
   * El test de esta función se puede observar [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L99).
   * Este método corresponde a la historia de usuario [HU12](https://github.com/mjls130598/SharingNotes/issues/31).
 
+## Justificación de la biblioteca de aserciones
+
+En Scala hay varias bibliotecas que se encargan de realizar las aserciones. En este caso se centrarán en las siguientes:
+
+* **ScalaTest**:
+  * Soporta diferentes estilos de test.
+  * Es la herramienta de test más flexible actualmente.
+  * Se puede utilizar tanto para *Scala* como para *Java*.
+  * Puede escalar en proyectos de todos los tamaños.
+  * Es muy rápido aprender a realizar tests.
+  * Se pueden realizar tanto tests *TDD* como *BDD*.
+  * Se pueden hacer múltiples comparaciones en una prueba.
+  * Los *DSLs* para *Scala* son más potentes que los de *Java*.
+  * Ofrece, además de aserciones, potentes *matchers*.
+
+* **JUnit**:
+  * Es un marco de código abierto que se ocupa de la escritura y de la ejecución de los tests de un proyecto.
+  * Está pensado para utilizarlo en *Java*.
+  * Es rápido y sencillo escribir el código.
+  * Muestra el progreso de la prueba en una barra.
+  * Se puede realizar tanto *BDD* como *TDD*.
+
+* **ScalaCheck**:
+  * Se puede utilizar tanto en *Java* como en *Scala*.
+  * Está integrado sobre otros marcos de prueba como *ScalaTest*.
+  * No utiliza aserciones, sino propiedades.
+  * Dentro de una propiedad, se pueden añadir varios argumentos que comprueben el correcto funcionamiento de una parte del código del proyecto.
+  * Ofrece un generador de datos para utilizarlos en los tests.
+  * Para comprobar que una función se realiza correctamente, ejecuta más de una vez el test que comprueba su funcionalidad.
+  * Sólo se puede realizar para *TDD*.
+
+Se elige la biblioteca *ScalaTest* puesto que es la más popular con diferencia para el lenguaje *Scala*, tiene una gran variedad de estilos de tests, es muy flexible a la hora de crear pruebas, es también muy rápido de aprender a realizar tests de distintas complejidades y se pueden realizar múltiples comparaciones en un test.
+
+El archivo que se encarga de realizar los tests es [SharingNotesTest.scala](https://github.com/mjls130598/SharingNotes/blob/master/src/SharingNotes/src/test/scala/SharingNotesTest.scala) y la biblioteca ya está incorporada en el archivo de configuración [build.sbt](https://github.com/mjls130598/SharingNotes/blob/f447fbfbb0651995d621f9c4b5d3e4bc8562d21f/src/SharingNotes/build.sbt#L3).
+
 ## Documentaciones
 
 La documentación de este proyecto se encuentra en varios archivos dentro del [directorio documentación](https://github.com/mjls130598/SharingNotes/tree/master/documentacion).
