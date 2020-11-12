@@ -6,4 +6,4 @@ comentario: src/SharingNotes/src/main/scala/Comentario.scala
 apunte: src/SharingNotes/src/main/scala/Apunte.scala
 main: src/SharingNotes/src/main/scala/Principal.scala
 test: src/SharingNotes/src/test/scala/SharingNotesTest.scala
-fichero_tareas: Makefile
+fichero_tareas: src/SharingNotes/build.sbt
