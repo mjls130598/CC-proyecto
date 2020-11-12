@@ -11,7 +11,7 @@ Por lo tanto, este proyecto se basa en crear una plataforma donde cualquier alum
 * La arquitectura de este proyecto está basada en una arquitectura microservicios.
 * El siguiente programa está escrito en el lenguaje de programación *Scala*.
 * El gestor de tareas y el marco de prueba que se va a utilizar es *sbt (Scala Build Tool)*.
-* La biblioteca que se va a usar para realizar los test es la bibliteca *assert* que viene con el lenguaje *Scala*.
+* La biblioteca que se va a usar para realizar los test es la bibliteca *ScalaTest*.
 
 ## Poner en marcha el proyecto
 
@@ -49,39 +49,48 @@ Las clases que la forman son:
 
 Las funciones que se han realizados, además de sus correspondientes tests, son las siguientes:
 
-* [**Añadir usuario**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L20): se encarga de insertar un nuevo usuario en la memoria del sistema. En los test correspondientes a este método se encuentran en [este enlace](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L11).
+* [**Añadir usuario**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L20): se encarga de insertar un nuevo usuario en la memoria del sistema.
+  * En los test correspondientes a este método se encuentran en [este enlace](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L11).
+  * Este método corresponde a la historia de usuario [HU1](https://github.com/mjls130598/SharingNotes/issues/10).
 
-* [**Añadir asignatura**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L24): se encarga de que el administrador del sistema añada una asignatura al programa. Los test que comprueban el correcto funcionamiento del método se encuentra [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L23).
+* [**Añadir asignatura**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L24): se encarga de que el administrador del sistema añada una asignatura al programa.
+  * Los test que comprueban el correcto funcionamiento del método se encuentra [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L23).
+  * Este método está indicado en la historia de usuario [HU8](https://github.com/mjls130598/SharingNotes/issues/18).
 
-* [**Borrar asignatura**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L42): el administrador del sistema borra una de las asignaturas que están guardadas en el sistema. En esta [línea de código](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L151) se encuentran los test de esta función.
+* [**Borrar asignatura**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L42): el administrador del sistema borra una de las asignaturas que están guardadas en el sistema.
+  * En esta [línea de código](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L151) se encuentran los test de esta función.
+  * En la historia de usuario [HU9](https://github.com/mjls130598/SharingNotes/issues/19) se explica la función que debe realizar este método.
 
-* [**Añadir apunte**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L59): insertar en la memoria de la aplicación un apunte dado. Su test correspondiente se encuentra en [este link](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L45).
+* [**Añadir apunte**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L59): insertar en la memoria de la aplicación un apunte dado.
+  * Su test correspondiente se encuentra en [este link](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L45).
+  * Su funcionalidad ha sido sacada de la historia de usuario [HU2](https://github.com/mjls130598/SharingNotes/issues/12).
 
-* [**Borrar apunte**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L77): el administrador del sistema indica el apunte que desea eliminar definitivamente del programa. Los test pertenecientes a esta función se pueden encontrar [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L107).
+* [**Borrar apunte**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L77): el administrador del sistema indica el apunte que desea eliminar definitivamente del programa.
+  * Los test pertenecientes a esta función se pueden encontrar [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L107).
+  * Este método corresponde a la historia de usuario [HU6](https://github.com/mjls130598/SharingNotes/issues/16).
 
-* [**Buscar los apuntes de una asignatura**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L97): dada una asignatura, devuelve todos los apuntes que pertenezcan a esa asignatura. El test de este método se puede ver a través del [siguiente enlace](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L143).
+* [**Buscar los apuntes de una asignatura**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L97): dada una asignatura, devuelve todos los apuntes que pertenezcan a esa asignatura.
+  * El test de este método se puede ver a través del [siguiente enlace](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L143).
+  * Este método cumple parte de la historia de usuario [HU10](https://github.com/mjls130598/SharingNotes/issues/24).
 
-* [**Añadir comentario**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L109): se encarga de añadir un comentario sobre un apunte en concreto al programa. Su test correspondiente está en el [siguiente enlace](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L63).
+* [**Añadir comentario**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L109): se encarga de añadir un comentario sobre un apunte en concreto al programa.
+  * Su test correspondiente está en el [siguiente enlace](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L63).
+  * Su funcionalidad se encuentra explicada en la historia de usuario [HU3](https://github.com/mjls130598/SharingNotes/issues/13).
 
-* [**Borrar comentario**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L120): el administrador del sistema se encarga de borrar aquellos comentarios que no desea que sigan visibles en el sistema. Sus test correspondientes se encuentran [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L74).
+* [**Borrar comentario**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L120): el administrador del sistema se encarga de borrar aquellos comentarios que no desea que sigan visibles en el sistema.
+  * Sus test correspondientes se encuentran [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L74).
+  * Este método se ha sacado de la historia de usuario [HU7](https://github.com/mjls130598/SharingNotes/issues/17).
 
-* [**Buscar comentarios de un apunte**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L129): mostrar aquellos comentarios sobre un apunte previamente dado. El test de esta función se puede observar [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L99).
+* [**Buscar comentarios de un apunte**](https://github.com/mjls130598/SharingNotes/blob/d1cc1af8772e0b11eca7411ec43af78ada6ae07f/src/SharingNotes/src/main/scala/SharingNotes.scala#L129): mostrar aquellos comentarios sobre un apunte previamente dado.
+  * El test de esta función se puede observar [aquí](https://github.com/mjls130598/SharingNotes/blob/17aebbd100823f08c25118b91090e8700ccf0386/src/SharingNotes/src/test/scala/SharingNotesTest.scala#L99).
+  * Este método corresponde a la historia de usuario [HU12](https://github.com/mjls130598/SharingNotes/issues/31).
 
-## Justificación de la biblioteca de aserciones
-
-Se ha elegido para hacer los distintos tests sobre el programa que se está realizando la biblioteca *Assertion* puesto que ofrece distintas aserciones, entre las principales se encuentran:
-
-* Una general con *assert*.
-* Una más específica para diferenciar los valores obtenidos con los esperados con *assertResult*.
-* Otra más específica para asegurarse que realiza las correspondientes excepciones con *assertThrows*.
-
-La información obtenida sobre esta biblioteca se recogió de la página oficial de [*ScalaTest*](https://www.scalatest.org/user_guide/using_assertions).
 
 ## Justificación del gestor de tareas y del marco de prueba elegidos
 
 Para *Scala* se ofrece una diversidad de gestores de tareas como los siguientes:
 
-* *sbt (Scala Build Tool)*:
+* **sbt (Scala Build Tool)**:
   * Ofrece una estructura de directorios sencilla que separa los test del código en sí:
     ```
     build.sbt
@@ -106,7 +115,7 @@ Para *Scala* se ofrece una diversidad de gestores de tareas como los siguientes:
   * Rápida iteración y depuración al incorporar el intérprete de *Scala*.
   * Soporta proyectos mixtos Java-Scala.
 
-* *Maven*:
+* **Maven**:
   * Su estructura de directorios es similar a la de *sbt*.
   * Con un archivo en XML describe el proyecto de software que se está construyendo, sus dependencias, el orden de construcción, los directorios y los complementos necesarios.
   * Utiliza convenciones para el procedimiento de compilación y solo es necesario anotar las excepciones.
@@ -117,7 +126,7 @@ Para *Scala* se ofrece una diversidad de gestores de tareas como los siguientes:
   * Intenta evitar la mayor cantidad de configuración posible, proporcionando plantillas de proyecto.
   * Ofrece aislamiento entre las dependencias del proyecto y los complementos.
 
-* *Gradle*:
+* **Gradle**:
   * Utiliza un DAG para determinar el orden en el que las tareas pueden ser ejecutadas.
   * Introduce *Groovy* y *Kotlin* basados en *DSL*.
   * Diseñado para la compilación de proyectos grandes.
