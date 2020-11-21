@@ -243,6 +243,25 @@ Por último, se va al directorio de trabajo y se ejecutan los tests del proyecto
 
 El fichero donde está escrito la explicación anterior se encuentra en [*Dockerfile*](https://github.com/mjls130598/SharingNotes/blob/master/Dockerfile).
 
+## Subir Dockerfile a DockerHub
+
+Para subir el *Dockerfile* anterior a *DockerHub*, primero hay que crearse una cuenta en él.
+
+Una vez creada la cuenta, nos dirigimos al apartado *Repositories* y, dentro de él, clickeamos sobre el botón que hay en la esquina derecha superior *Create Repository*.
+
+A continuación, se escribe el nombre del repositorio y una breve descripción. En este caso se llama de la misma manera que este repositorio (*sharingnotes*). Se deja como repositorio público y se señala el repositorio de *GitHub* al que debe estar conectado. Por último, se indica dónde se encuentra el archivo *Dockerfile* dentro del repositorio *GitHub* dado.
+
+Los datos comentados anteriormente se refleja en las siguientes imágenes:
+
+![Creando repositorio](./documentacion/imagenes/hito3/dockerHubCreate.png "Creando repositorio en DockerHub")
+![Creando repositorio](./documentacion/imagenes/hito3/dockerHubCreate.png "Creando repositorio en DockerHub")
+
+Por lo tanto, el repositorio creado en *DockerHub* se encuentra en el siguiente [enlace](https://hub.docker.com/repository/docker/mjls130598/sharingnotes/).
+
+En la siguiente imagen, podemos ver que se ha automatizado la actualización del contenedor y que se ha construido el *Dockerfile* del apartado anterior correctamente.
+
+![Automatización](./documentacion/imagenes/hito3/dockerHubAutomated.png "Actualizaciones automáticas en DockerHub")
+
 ## Documentaciones
 
 La documentación de este proyecto se encuentra en varios archivos dentro del [directorio documentación](https://github.com/mjls130598/SharingNotes/tree/master/documentacion).
