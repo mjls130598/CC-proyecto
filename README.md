@@ -210,7 +210,37 @@ Las posibles imágenes base con las que se podría ejecutar este proyecto dentro
   * Los usuarios que se crean por defecto son root, bin, daemon, adm, lp, sync, shutdown, halt, mail, operator, games, ftp, nobody, dbus, systemd-coredump y systemd-resolve.
   * La última actualización se ejecutó hace tres meses.
 
-Entre las comentadas se ha elegido *Ubuntu* como imagen base del contenedor. 
+Entre las comentadas se ha elegido *Ubuntu* como imagen base del contenedor.
+
+## Dockerfile
+
+Primero, se indica la imagen base que se va a usar, en este caso es Ubuntu 18.04.
+
+`FROM ubuntu:18.04`
+
+A continuación, se indica que el directorio donde va a trabajar el contenedor es *sharing*.
+
+`WORKDIR sharing`
+
+Después, se copia en el contenedor los archivos que forman parte del proyecto:
+
+`COPY src/SharingNotes sharing`
+
+Seguidamente, se actualiza el sistema y se instala todo aquello necesario para instalar y ejecutar *sbt*.
+
+```
+RUN  apt-get update && apt-get install -y curl gnupg && \
+  echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
+  curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | apt-key add && \
+  apt-get update && \
+  apt-get install -y sbt openjdk-11-jdk
+```
+
+Por último, se va al directorio de trabajo y se ejecutan los tests del proyecto cuando se ejecute el contenedor.
+
+`CMD cd sharing && sbt test`
+
+El fichero donde está escrito la explicación anterior se encuentra en [*Dockerfile*](https://github.com/mjls130598/SharingNotes/blob/master/Dockerfile).
 
 ## Documentaciones
 
