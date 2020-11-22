@@ -1,8 +1,10 @@
 FROM ubuntu:18.04
 
-WORKDIR sharing
+WORKDIR app/test
 
-COPY src/SharingNotes sharing
+VOLUME app/test
+
+COPY src/SharingNotes .
 
 RUN  apt-get update && apt-get install -y curl gnupg && \
   echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
@@ -11,4 +13,4 @@ RUN  apt-get update && apt-get install -y curl gnupg && \
   apt-get install -y sbt openjdk-11-jdk && \
   apt-get remove -y curl gnupg
 
-CMD cd sharing && sbt test
+CMD sbt test

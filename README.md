@@ -220,11 +220,15 @@ Primero, se indica la imagen base que se va a usar, en este caso es Ubuntu 18.04
 
 A continuación, se indica que el directorio donde va a trabajar el contenedor es *sharing*.
 
-`WORKDIR sharing`
+`WORKDIR app/test`
+
+Posteriormente, el directorio creado en el paso anterior se indica que va a ser el volumen del contenedor.
+
+`VOLUME app/test`
 
 Después, se copia en el contenedor los archivos que forman parte del proyecto:
 
-`COPY src/SharingNotes sharing`
+`COPY src/SharingNotes .`
 
 Seguidamente, se actualiza el sistema y se instala todo aquello necesario para instalar y ejecutar *sbt*. Una vez instalado *sbt* se borra aquellas herramientas que fueron necesarias para
 
@@ -237,9 +241,9 @@ RUN  apt-get update && apt-get install -y curl gnupg && \
   apt-get remove -y curl gnupg
 ```
 
-Por último, se va al directorio de trabajo y se ejecutan los tests del proyecto cuando se ejecute el contenedor.
+Por último, se ejecutan los tests del proyecto cuando se ejecute el contenedor.
 
-`CMD cd sharing && sbt test`
+`CMD sbt test`
 
 El fichero donde está escrito la explicación anterior se encuentra en [*Dockerfile*](https://github.com/mjls130598/SharingNotes/blob/master/Dockerfile).
 
