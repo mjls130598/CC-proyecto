@@ -257,14 +257,40 @@ A continuación, se escribe el nombre del repositorio y una breve descripción. 
 
 Los datos comentados anteriormente se refleja en las siguientes imágenes:
 
-![Creando repositorio](./documentacion/imagenes/hito3/dockerHubCreate.png "Creando repositorio en DockerHub")
-![Creando repositorio](./documentacion/imagenes/hito3/dockerHubCreate.png "Creando repositorio en DockerHub")
+![Creando repositorio](./documentacion/imagenes/milestone3/dockerHubCreate.png "Creando repositorio en DockerHub")
+![Creando repositorio](./documentacion/imagenes/milestone3/dockerHubCreate.png "Creando repositorio en DockerHub")
 
 Por lo tanto, el repositorio creado en *DockerHub* se encuentra en el siguiente [enlace](https://hub.docker.com/repository/docker/mjls130598/sharingnotes/).
 
 En la siguiente imagen, podemos ver que se ha automatizado la actualización del contenedor y que se ha construido el *Dockerfile* del apartado anterior correctamente.
 
-![Automatización](./documentacion/imagenes/hito3/dockerHubAutomated.png "Actualizaciones automáticas en DockerHub")
+![Automatización](./documentacion/imagenes/milestone3/dockerHubAutomated.png "Actualizaciones automáticas en DockerHub")
+
+## Uso de registros alternativos y públicos de contenedores
+
+Hay diversos tipos de registros de contenedores alternativos a *DockerHub*, como *Container Registry* de Google, *Azure Container Registry*, *GitLab Container Registry* y *GitHub Container Registry*. Se decide utilizar *GitHub Container Registry* al estar el proyecto almacenado en un repositorio de GitHub, para que así se pueda acceder al contenedor más fácilmente.
+
+Los pasos que sean seguido para utilizar *GitHub Container Registry*, obtenidos de su [página oficial](https://docs.github.com/en/free-pro-team@latest/packages/managing-container-images-with-github-container-registry/pushing-and-pulling-docker-images), son los siguientes:
+
+1. Crear un token de acceso personal a través de la página oficial de *GitHub*, en el apartado *Settings*, dentro de la sección *Developer settings*. Dentro de la última sección nos dirigimos a *Personal Access Token* y se genera un nuevo token. Para generar el nuevo token para *Docker*, se debe activar los permisos *repo* y *write:packages*. Cuando se haya generado, se copia y se guarda en un archivo llamado *TOKEN.txt* Para realizar este paso se ha seguido la página oficial de *GitHub* sobre los [tokens de acceso personal](https://docs.github.com/es/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token).
+
+2. Una vez obtenido y guardado el token, autenticamos el paquete con *Docker* con la siguiente orden `cat /media/mjesus/MJESUS/TOKEN.txt | sudo docker login ghcr.io -u mjls130598 --password-stdin`.
+
+3. Activar el soporte de mejora de contenedores, dirigiéndose en el menú desplegable de la foto de perfil de la esquina derecha de la ventana a *Feature preview* y, dentro de ella, a *Enable*. Esta información se ha sacado de una página oficial de [*GitHub*](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/enabling-improved-container-support).
+
+4. Cuando se haya autenticado correctamente, se publica el paquete. Para eso escribimos los siguientes comandos en la terminal con los datos obtenidos de la imagen creada en el *Docker* local.
+
+```
+sudo docker tag a9b72808c2b5 ghcr.io/mjls130598/sharingnotes/sharingnotes:1.0.0
+sudo docker push ghcr.io/mjls130598/sharingnotes/sharingnotes:1.0.0
+```
+El paquete creado debe aparecer en la página *Packages* como la que se muestra en la siguiente imagen:
+
+![Paquete creado](./documentacion/imagenes/milestone3/packages.png "Paquete creado")
+
+Para que este paquete sea público, debemos acceder dentro de él, a *Package Settings* y, en la zona *Danger Zone* clickear sobre *Make public*.
+
+Por último, para que esté conectado con este repositorio, dentro de la página del paquete, se le da a *Connect Repository* y se selecciona el repositorio al que se quiere conectar. Una vez dado, debe aparecer en esa misma página el README del repositorio.
 
 ## Avances en el proyecto
 
