@@ -27,7 +27,7 @@ class SharingNotes{
     // Sólo aquel usuario que sea el administrador del sistema puede insertar
     // una nueva asignatura
 
-    if(usuario.nombre == "Administrador"){
+    if(usuario.getClass.getSimpleName == "Administrador"){
 
       idAsig += 1
 
@@ -41,7 +41,7 @@ class SharingNotes{
 
   def borrarAsignatura(id : String, usuario: Usuario): Unit = {
 
-    if(usuario.nombre == "Administrador"){
+    if(usuario.getClass.getSimpleName == "Administrador"){
 
       // Primero se borra los apuntes de esa asignatura
 
@@ -78,7 +78,7 @@ class SharingNotes{
 
     // Sólo puede borrar apuntes el administrador del sistema
 
-    if(usuario.nombre == "Administrador"){
+    if(usuario.getClass.getSimpleName == "Administrador"){
 
       // Antes de borrar el apunte, se borran los comentarios que se hayan
       // realizado sobre él
@@ -121,7 +121,7 @@ class SharingNotes{
 
     // Sólo el administrador puede borrar comentarios
 
-     if(usuario.nombre == "Administrador") comentarios -= id
+     if(usuario.getClass.getSimpleName == "Administrador") comentarios -= id
    }
 
   // Método para buscar comentarios de un apunte

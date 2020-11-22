@@ -266,6 +266,14 @@ En la siguiente imagen, podemos ver que se ha automatizado la actualización del
 
 ![Automatización](./documentacion/imagenes/hito3/dockerHubAutomated.png "Actualizaciones automáticas en DockerHub")
 
+## Avances en el proyecto
+
+Los avances que se han realizado para este milestone son los siguientes:
+
+* Se ha arreglado la seguridad del proyecto en cuanto a quién debe realizar una cierta acción dentro del sistema comprobando la clase del usuario gracias al conjunto de métodos `getClass.getSimpleName`. Este cambio se ve reflejado en el issue [*"Mejorar la seguridad del sistema"*](https://github.com/mjls130598/SharingNotes/issues/34) que corresponde a las historias de usuario [HU6](https://github.com/mjls130598/SharingNotes/issues/16), [HU7](https://github.com/mjls130598/SharingNotes/issues/17), [HU8](https://github.com/mjls130598/SharingNotes/issues/18) y [HU9](https://github.com/mjls130598/SharingNotes/issues/19).
+
+*
+
 ## Documentaciones
 
 La documentación de este proyecto se encuentra en varios archivos dentro del [directorio documentación](https://github.com/mjls130598/SharingNotes/tree/master/documentacion).
