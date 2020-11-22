@@ -210,7 +210,7 @@ Las posibles imágenes base con las que se podría ejecutar este proyecto dentro
   * Los usuarios que se crean por defecto son root, bin, daemon, adm, lp, sync, shutdown, halt, mail, operator, games, ftp, nobody, dbus, systemd-coredump y systemd-resolve.
   * La última actualización se ejecutó hace tres meses.
 
-Entre las comentadas se ha elegido *Ubuntu* como imagen base del contenedor.
+Entre las comentadas se ha elegido *Ubuntu* como imagen base del contenedor al ofrecer los recursos justos que se pueden necesitar para el proyecto.
 
 ## Dockerfile
 
@@ -273,6 +273,8 @@ Los avances que se han realizado para este milestone son los siguientes:
 * Se ha arreglado la seguridad del proyecto en cuanto a quién debe realizar una cierta acción dentro del sistema comprobando la clase del usuario gracias al conjunto de métodos `getClass.getSimpleName`. Este cambio se ve reflejado en el issue [*"Mejorar la seguridad del sistema"*](https://github.com/mjls130598/SharingNotes/issues/34) que corresponde a las historias de usuario [HU6](https://github.com/mjls130598/SharingNotes/issues/16), [HU7](https://github.com/mjls130598/SharingNotes/issues/17), [HU8](https://github.com/mjls130598/SharingNotes/issues/18) y [HU9](https://github.com/mjls130598/SharingNotes/issues/19).
 
 * Corregir la parte de la URL del fichero importado para sólo quedarse con el nombre de éste, es decir, no se incluya la ruta donde el usuario tiene guardado en su dispositivo (tanto Windows u otro dispositivo) el apunte subido. Esta corrección se encuentra detallada en el issue [*"Cambiar el nombre que se guarda cuando se inserta un fichero en memoria"*](https://github.com/mjls130598/SharingNotes/issues/38). Esta parte pertenece a la historia de usuario [HU2](https://github.com/mjls130598/SharingNotes/issues/12).
+
+* Se ha encontrado una [biblioteca de *Lucene*](https://github.com/outr/lucene4s) para *Scala* para realizar la recuperación de información correspondientes con las historias de usuario [HU4](https://github.com/mjls130598/SharingNotes/issues/14) y [HU11](https://github.com/mjls130598/SharingNotes/issues/30). Se ha estado investigando cómo funciona realmente y cómo se puede incorporar al proyecto según los datos que éste vaya a almacenar y a manejar.
 
 ## Documentaciones
 
