@@ -58,14 +58,16 @@ class SharingNotes{
 
   def aniadirApunte(url: String, nom: String, asig: Asignatura, us: Usuario): Unit = {
 
+    val nombre = url.split("/ | \\\\").last
+
     // Sólo se admiten archivos PDF
 
-    if(url.toString.split("\\.").last == "pdf"){
+    if(nombre.split("\\.").last == "pdf"){
 
       idApun += 1
 
       val id = "APUN" + idApun
-      val ubicacion = "./" + asig.identificador + "/" + url
+      val ubicacion = "./" + asig.identificador + "/" + nombre
 
       val apunte = new Apunte (id, ubicacion, nom, asig, us)
       apuntes(id) = apunte
