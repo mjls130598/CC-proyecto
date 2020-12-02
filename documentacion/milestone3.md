@@ -82,14 +82,14 @@ A continuación, se escribe el nombre del repositorio y una breve descripción. 
 
 Los datos comentados anteriormente se refleja en las siguientes imágenes:
 
-![Creando repositorio](https://github.com/mjls130598/SharingNotes/tree/master/documentacion/imagenes/milestone3/dockerHubCreate.png "Creando repositorio en DockerHub")
-![Creando repositorio](https://github.com/mjls130598/SharingNotes/tree/master/documentacion/imagenes/milestone3/dockerHubCreate2.png "Creando repositorio en DockerHub")
+![Creando repositorio](./imagenes/milestone3/dockerHubCreate.png "Creando repositorio en DockerHub")
+![Creando repositorio](./imagenes/milestone3/dockerHubCreate2.png "Creando repositorio en DockerHub")
 
 Por lo tanto, el repositorio creado en *DockerHub* se encuentra en el siguiente [enlace](https://hub.docker.com/repository/docker/mjls130598/sharingnotes/).
 
 En la siguiente imagen, podemos ver que se ha automatizado la actualización del contenedor y que se ha construido el *Dockerfile* del apartado anterior correctamente.
 
-![Automatización](https://github.com/mjls130598/SharingNotes/tree/master/documentacion/imagenes/milestone3/dockerHubAutomated.png "Actualizaciones automáticas en DockerHub")
+![Automatización](./imagenes/milestone3/dockerHubAutomated.png "Actualizaciones automáticas en DockerHub")
 
 ## Uso de registros alternativos y públicos de contenedores
 
@@ -111,7 +111,7 @@ sudo docker push ghcr.io/mjls130598/sharingnotes/sharingnotes:1.0.0
 ```
 El paquete creado debe aparecer en la página *Packages* como la que se muestra en la siguiente imagen:
 
-![Paquete creado](https://github.com/mjls130598/SharingNotes/tree/master/documentacion/imagenes/milestone3/packages.png "Paquete creado")
+![Paquete creado](./imagenes/milestone3/packages.png "Paquete creado")
 
 Para que este paquete sea público, debemos acceder dentro de él, a *Package Settings* y, en la zona *Danger Zone* clickear sobre *Make public*.
 
