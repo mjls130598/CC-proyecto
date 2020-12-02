@@ -1,9 +1,9 @@
 lenguaje: scala
-entidad: src/SharingNotes/src/main/scala/SharingNotes.scala
-usuario: src/SharingNotes/src/main/scala/Usuario.scala
-asignatura: src/SharingNotes/src/main/scala/Asignatura.scala
-comentario: src/SharingNotes/src/main/scala/Comentario.scala
-apunte: src/SharingNotes/src/main/scala/Apunte.scala
-main: src/SharingNotes/src/main/scala/Principal.scala
-test: src/SharingNotes/src/test/scala/SharingNotesTest.scala
-fichero_tareas: src/SharingNotes/build.sbt
+entidad: src/main/scala/SharingNotes.scala
+usuario: src/main/scala/Usuario.scala
+asignatura: src/main/scala/Asignatura.scala
+comentario: src/main/scala/Comentario.scala
+apunte: src/main/scala/Apunte.scala
+main: src/main/scala/Principal.scala
+test: src/test/scala/SharingNotesTest.scala
+fichero_tareas: build.sbt
