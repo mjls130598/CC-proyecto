@@ -4,7 +4,8 @@ WORKDIR app/test
 
 VOLUME app/test
 
-COPY src/ .
+COPY src/ ./src
+COPY build.sbt .
 
 RUN  apt-get update && apt-get install -y curl gnupg && \
   echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
