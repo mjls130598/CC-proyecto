@@ -8,6 +8,13 @@ class SharingNotes{
   var usuarios = new HashMap[String, Usuario]()
   var apuntes = new HashMap[String, Apunte]()
   var comentarios = new HashMap[String, Comentario]()
+}
+
+// Clase "estática" SharingNotes
+
+object SharingNotes{
+
+  private val sharing = new SharingNotes()
 
   // Variables para controlar los identificadores
 
@@ -17,42 +24,41 @@ class SharingNotes{
 
   // Método para añadir nuevos usuarios al programa
 
-  def aniadirUsuario(usuario : Usuario): Unit = usuarios(usuario.correo) = usuario
+  def aniadirUsuario(usuario : Usuario): Unit = sharing.usuarios(usuario.correo) = usuario
+
+  // Método para ver todos los usuarios guardados en el sistema
+
+  def getUsuarios: HashMap[String, Usuario] = sharing.usuarios
 
   // Método para añadir nuevas asignaturas al sistema
 
   def aniadirAsignatura(nombre : String, curso : String, carrera : String,
-     universidad : String, usuario : Usuario): Unit = {
+     universidad : String): Unit = {
 
-    // Sólo aquel usuario que sea el administrador del sistema puede insertar
-    // una nueva asignatura
+    idAsig += 1
 
-    if(usuario.getClass.getSimpleName == "Administrador"){
-
-      idAsig += 1
-
-      val id = "ASIG" + idAsig
-      val asignatura = new Asignatura(id, nombre, curso, carrera, universidad)
-      asignaturas(id) = asignatura
-    }
+    val id = "ASIG" + idAsig
+    val asignatura = new Asignatura(id, nombre, curso, carrera, universidad)
+    sharing.asignaturas(id) = asignatura
   }
 
   // Método para borrar una asignatura del sistema
 
-  def borrarAsignatura(id : String, usuario: Usuario): Unit = {
+  def borrarAsignatura(id : String): Unit = {
 
-    if(usuario.getClass.getSimpleName == "Administrador"){
+    // Primero se borra los apuntes de esa asignatura
 
-      // Primero se borra los apuntes de esa asignatura
+    val notes = buscarApuntes(sharing.asignaturas(id))
+    notes.map(n => borrarApunte(n.identificador))
 
-      val notes = buscarApuntes(asignaturas(id))
-      notes.map(n => borrarApunte(n.identificador, usuario))
-
-      // Por último, se borra la asignatura
-      asignaturas -= id
-    }
+    // Por último, se borra la asignatura
+    sharing.asignaturas -= id
 
   }
+
+  // Método para ver todas las asignaturas guardadas
+
+  def getAsignaturas : HashMap[String, Asignatura] = sharing.asignaturas
 
   // Método para añadir nuevos apuntes
 
@@ -70,28 +76,23 @@ class SharingNotes{
       val ubicacion = "./" + asig.identificador + "/" + nombre
 
       val apunte = new Apunte (id, ubicacion, nom, asig, us)
-      apuntes(id) = apunte
+      sharing.apuntes(id) = apunte
     }
   }
 
   // Método para borrar un apunte
 
-  def borrarApunte(id: String, usuario: Usuario) : Unit = {
+  def borrarApunte(id: String) : Unit = {
 
-    // Sólo puede borrar apuntes el administrador del sistema
+    // Antes de borrar el apunte, se borran los comentarios que se hayan
+    // realizado sobre él
 
-    if(usuario.getClass.getSimpleName == "Administrador"){
+    val coments = buscarComentarios(sharing.apuntes(id))
+    coments.map(c => borrarComentario(c.identificador))
 
-      // Antes de borrar el apunte, se borran los comentarios que se hayan
-      // realizado sobre él
+    // Por último se borra el apunte
 
-      val coments = buscarComentarios(apuntes(id))
-      coments.map(c => borrarComentario(c.identificador, usuario))
-
-      // Por último se borra el apunte
-
-      apuntes -= id
-    }
+    sharing.apuntes -= id
   }
 
   // Método para buscar apuntes de una asignatura
@@ -102,9 +103,13 @@ class SharingNotes{
 
     def apunteAsignatura(x: Apunte) = if(x.asignatura == asignatura) List(x) else List()
 
-    val notes = apuntes.values.toList
+    val notes = sharing.apuntes.values.toList
     return notes.flatMap(x => apunteAsignatura(x))
   }
+
+  // Método para ver todos los apuntes del sistema
+
+  def getApuntes : HashMap[String, Apunte] = sharing.apuntes
 
   // Método para añadir nuevos comentarios
 
@@ -114,17 +119,12 @@ class SharingNotes{
 
     val id = "COM" + idCom
     val comentario = new Comentario(id, coment, usuario, apunte)
-    comentarios(id) = comentario
+    sharing.comentarios(id) = comentario
   }
 
   // Método para borrar un comentario
 
-  def borrarComentario(id: String, usuario: Usuario): Unit ={
-
-    // Sólo el administrador puede borrar comentarios
-
-     if(usuario.getClass.getSimpleName == "Administrador") comentarios -= id
-   }
+  def borrarComentario(id: String): Unit = sharing.comentarios -= id
 
   // Método para buscar comentarios de un apunte
 
@@ -134,7 +134,11 @@ class SharingNotes{
 
     def comentarioApunte(x: Comentario) = if(x.apunte == apunte) List(x) else List()
 
-    val coments = comentarios.values.toList
+    val coments = sharing.comentarios.values.toList
     return coments.flatMap(x => comentarioApunte(x))
   }
+
+  // Método para obtener todos los comentarios guardados en el sistema
+
+  def getComentarios: HashMap[String, Comentario] = sharing.comentarios
 }
