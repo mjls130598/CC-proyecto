@@ -7,6 +7,9 @@ import org.apache.tika.metadata._
 import org.apache.tika.mime._
 import org.apache.tika.io._
 import org.apache.tika.Tika
+import java.util.Calendar
+import scala.annotation.tailrec
+import scala.util.Random
 
 class SharingNotes{
 
@@ -14,6 +17,18 @@ class SharingNotes{
   var usuarios = new HashMap[String, Usuario]()
   var apuntes = new HashMap[String, Apunte]()
   var comentarios = new HashMap[String, Comentario]()
+}
+
+// Objeto que genera una cadena aleatoria
+object RANStream {
+  val randomAlphaNumIterator = Random.alphanumeric.iterator
+
+  @tailrec
+  def getRandomString(length: Int, acc: String = ""): String = {
+    require(length >= 0, message = "length needs to be non-negative")
+    if (length == 0) acc
+    else getRandomString(length - 1, randomAlphaNumIterator.next().toString)
+  }
 }
 
 // Clase "estática" SharingNotes
@@ -24,9 +39,19 @@ object SharingNotes{
 
   // Variables para controlar los identificadores
 
-  var idAsig = 0
-  var idApun = 0
-  var idCom = 0
+  val keyAsignatura = "ASIG"
+  var keyApunte = "APUN"
+  var keyComentario = "COM"
+
+  // Método para generar identificadores únicos
+
+  private def generateUiid(key: String): String = {
+    val longTime = Calendar.getInstance().get(Calendar.MILLISECOND)
+    val hexTime = longTime.toHexString
+    val s = key + "_" + hexTime + "_" + RANStream.getRandomString(20)
+
+    return s
+  }
 
   // Método para añadir nuevos usuarios al programa
 
@@ -41,9 +66,12 @@ object SharingNotes{
   def aniadirAsignatura(nombre : String, curso : String, carrera : String,
      universidad : String): Unit = {
 
-    idAsig += 1
+    var id = ""
 
-    val id = "ASIG" + idAsig
+    do {
+      id = generateUiid(keyAsignatura)
+    } while (sharing.asignaturas.keys.exists(_ == id) || id == "")
+
     val asignatura = new Asignatura(id, nombre, curso, carrera, universidad)
     sharing.asignaturas(id) = asignatura
   }
@@ -72,7 +100,8 @@ object SharingNotes{
 
     val nombre = url.split("/ | \\\\").last
 
-    // Método para saber si es un PDF
+    // Función para saber si es un PDF
+
     def esPDF(file: File) = {
       val input = TikaInputStream.get(file)
       val pdfContent = "%PDF-1.4\n%\\E2\\E3\\CF\\D3" // i.e. base64 decoded
@@ -84,9 +113,12 @@ object SharingNotes{
 
     if(esPDF(new File(url))){
 
-      idApun += 1
+      var id = ""
 
-      val id = "APUN" + idApun
+      do {
+        id = generateUiid(keyApunte)
+      } while (sharing.asignaturas.keys.exists(_ == id) || id == "")
+
       val ubicacion = "./" + asig.identificador + "/" + nombre
 
       val apunte = new Apunte (id, ubicacion, nom, asig, us)
@@ -129,9 +161,12 @@ object SharingNotes{
 
   def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): Unit = {
 
-    idCom += 1
+    var id = ""
 
-    val id = "COM" + idCom
+    do {
+      id = generateUiid(keyComentario)
+    } while (sharing.asignaturas.keys.exists(_ == id) || id == "")
+
     val comentario = new Comentario(id, coment, usuario, apunte)
     sharing.comentarios(id) = comentario
   }
