@@ -1,6 +1,12 @@
 package SharingNotes
 
 import scala.collection.mutable.HashMap
+import java.io.File
+import org.apache.tika.detect._
+import org.apache.tika.metadata._
+import org.apache.tika.mime._
+import org.apache.tika.io._
+import org.apache.tika.Tika
 
 class SharingNotes{
 
@@ -66,9 +72,17 @@ object SharingNotes{
 
     val nombre = url.split("/ | \\\\").last
 
+    // Método para saber si es un PDF
+    def esPDF(file: File) = {
+      val input = TikaInputStream.get(file)
+      val pdfContent = "%PDF-1.4\n%\\E2\\E3\\CF\\D3" // i.e. base64 decoded
+      val tika = new Tika()
+      tika.detect(input) == tika.detect(pdfContent.getBytes)
+    }
+
     // Sólo se admiten archivos PDF
 
-    if(nombre.split("\\.").last == "pdf"){
+    if(esPDF(new File(url))){
 
       idApun += 1
 

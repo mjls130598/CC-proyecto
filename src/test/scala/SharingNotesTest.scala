@@ -20,7 +20,7 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido una asignatura correctamente
 
-  admin.aniadirAsignatura("CC", "1º", "MUII", "Granada")
+  admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
 
   test("Nueva asignatura"){
     assertResult(1){
@@ -31,7 +31,8 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido un nuevo apunte
 
-  usuario.aniadirApunte("CC.pdf", "Apunte de CC", SharingNotes.getAsignaturas("ASIG1"))
+  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema1_Definiciones.pdf",
+    "Tema 1: Definiciones", SharingNotes.getAsignaturas("ASIG1"))
 
   test("Nuevo apunte"){
     assert(SharingNotes.getApuntes.keys.exists(_ == "APUN1"))
@@ -40,7 +41,8 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido el apunte correcto
 
-  usuario.aniadirApunte("CC.doc", "Apunte de CC", SharingNotes.getAsignaturas("ASIG1"))
+  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/TID/Prácticas/Práctica 1/Práctica 1.knar",
+    "Práctica 1", SharingNotes.getAsignaturas("ASIG1"))
 
   test("Insertar apunte con un formato distinto a PDF"){
     assert(!SharingNotes.getApuntes.keys.exists(_ == "APUN2"))
@@ -78,7 +80,8 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se eliminan los apuntes correctamente
 
-  usuario.aniadirApunte("Tema 2.pdf", "Tema 2 Test", SharingNotes.getAsignaturas("ASIG1"))
+  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema2_Preparacióndeproyectos.pdf",
+    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas("ASIG1"))
 
   admin.borrarApunte("APUN2")
 
@@ -89,7 +92,8 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se eliminan todos los comentarios sobre un apunte
 
-  usuario.aniadirApunte("Tema 1.pdf", "Tema 1 Arquitectura", SharingNotes.getAsignaturas("ASIG1"))
+  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema2_Preparacióndeproyectos.pdf",
+    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas("ASIG1"))
 
   usuario.aniadirComentario("Este es el cuarto comentario realizado", SharingNotes.getApuntes("APUN3"))
 
@@ -125,8 +129,10 @@ class SharingNotesTest extends FunSuite {
 
   admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
 
-  usuario.aniadirApunte("Tema 1.pdf", "Tema 1 Introducción", SharingNotes.getAsignaturas("ASIG3"))
-  usuario.aniadirApunte("Tema 2.pdf", "Tema 2 Preparación de datos", SharingNotes.getAsignaturas("ASIG3"))
+  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/TID/Teoría/Intro_TID.pdf",
+    "Tema 1 Introducción", SharingNotes.getAsignaturas("ASIG3"))
+  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/TID/Teoría/PreparacionDatos.pdf",
+    "Tema 2 Preparación de datos", SharingNotes.getAsignaturas("ASIG3"))
 
   admin.borrarAsignatura("ASIG3")
 
