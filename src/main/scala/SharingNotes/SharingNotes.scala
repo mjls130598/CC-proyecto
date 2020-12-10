@@ -10,7 +10,9 @@ import org.apache.tika.Tika
 import java.util.Calendar
 import scala.annotation.tailrec
 import scala.util.Random
-import java.io._
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.FileSystem
+import org.apache.hadoop.fs.Path
 
 class SharingNotes{
 
@@ -123,6 +125,14 @@ object SharingNotes{
       } while (sharing.asignaturas.keys.exists(_ == id) || id == "")
 
       val ubicacion = "./documentos/" + asig.identificador + "/" + nombre
+
+      // Guardar el fichero dado en la memoria del sistema
+
+      val hadoopConf = new Configuration()
+      val hdfs = FileSystem.get(hadoopConf)
+      val srcPath = new Path(url)
+      val destPath = new Path(ubicacion)
+      hdfs.copyFromLocalFile(srcPath, destPath)
 
       val apunte = new Apunte (id, ubicacion, nom, asig, us)
       sharing.apuntes(id) = apunte
