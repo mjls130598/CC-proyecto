@@ -1,17 +1,23 @@
-FROM ubuntu:18.04
+
+FROM  frolvlad/alpine-scala
+ENV SCALA_VERSION=2.13.3 \
+  SBT_VERSION=1.4.2
+
+RUN \
+  echo "$SCALA_VERSION $SBT_VERSION" && \
+  apk add --no-cache bash curl bc ca-certificates && \
+  update-ca-certificates && \
+  scala -version && \
+  scalac -version && \
+  curl -fsL https://github.com/sbt/sbt/releases/download/v$SBT_VERSION/sbt-$SBT_VERSION.tgz | tar xfz - -C /usr/local && \
+  $(mv /usr/local/sbt-launcher-packaging-$SBT_VERSION /usr/local/sbt || true) && \
+  ln -s /usr/local/sbt/bin/* /usr/local/bin/ && \
+  apk del curl
 
 WORKDIR app/test
 
-VOLUME app/test
-
 COPY src/ ./src
 COPY build.sbt .
-
-RUN  apt-get update && apt-get install -y curl gnupg && \
-  echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
-  curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | apt-key add && \
-  apt-get update && \
-  apt-get install -y sbt openjdk-11-jdk && \
-  apt-get remove -y curl gnupg
+COPY documentos_prueba/ ./documentos_prueba
 
 CMD sbt test

@@ -34,10 +34,6 @@ class SharingNotesTest extends FunSuite {
   val PGPI_T1 = usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
     "Tema 1: Definiciones", SharingNotes.getAsignaturas(PGPI_ID))
 
-  SharingNotes.getApuntes.foreach{
-    case (key, value) => println ("\t" + key + " -> " + value.nombre)
-  }
-
   test("Nuevo apunte"){
     assertResult(1){
       SharingNotes.getApuntes.size
