@@ -9,7 +9,7 @@ class Administrador extends Usuario("Administrador", "admin@admin.com", "x", "x"
   // Método para añadir una asignatura
 
   def aniadirAsignatura(nombre : String, curso : String, carrera : String,
-     universidad : String): Unit = SharingNotes.aniadirAsignatura(nombre, curso,
+     universidad : String): String = SharingNotes.aniadirAsignatura(nombre, curso,
        carrera, universidad)
 
   // Método para borrar una asignatura

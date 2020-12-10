@@ -13,8 +13,8 @@ class Usuario(nom: String, email: String, car: String, uni: String){
 
   // Método para añadir un apunte
 
-  def aniadirApunte(url: String, nom: String, asig: Asignatura): Unit =
-    SharingNotes.aniadirApunte(url, nom, asig, this)
+  def aniadirApunte(url: String, nom: String, asig: Asignatura): String =
+     SharingNotes.aniadirApunte(url, nom, asig, this)
 
   // Método para buscar los apuntes de una asignatura
 
@@ -23,7 +23,7 @@ class Usuario(nom: String, email: String, car: String, uni: String){
 
   // Método para añadir comentario
 
-  def aniadirComentario(coment: String, apunte: Apunte): Unit =
+  def aniadirComentario(coment: String, apunte: Apunte): String =
     SharingNotes.aniadirComentario(coment, apunte, this)
 
   // Método para buscar los comentarios de un apunte

@@ -20,7 +20,7 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido una asignatura correctamente
 
-  admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
+  val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
 
   test("Nueva asignatura"){
     assertResult(1){
@@ -31,8 +31,12 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido un nuevo apunte
 
-  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema1_Definiciones.pdf",
-    "Tema 1: Definiciones", SharingNotes.getAsignaturas.last._2)
+  val PGPI_T1 = usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+    "Tema 1: Definiciones", SharingNotes.getAsignaturas(PGPI_ID))
+
+  SharingNotes.getApuntes.foreach{
+    case (key, value) => println ("\t" + key + " -> " + value.nombre)
+  }
 
   test("Nuevo apunte"){
     assertResult(1){
@@ -43,8 +47,8 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido el apunte correcto
 
-  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/TID/Prácticas/Práctica 1/Práctica 1.knar",
-    "Práctica 1", SharingNotes.getAsignaturas.last._2)
+  usuario.aniadirApunte("./documentos_prueba/Práctica 1.knar",
+    "Práctica 1", SharingNotes.getAsignaturas(PGPI_ID))
 
   test("Insertar apunte con un formato distinto a PDF"){
     assertResult(1){
@@ -55,26 +59,24 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido un comentario correctamente
 
-  usuario.aniadirComentario("Esto es un comentario cualquiera", SharingNotes.getApuntes.last._2)
+  val PGPIT1_C1 = usuario.aniadirComentario("Esto es un comentario cualquiera", SharingNotes.getApuntes(PGPI_T1))
 
   test("Nuevo comentario"){
     assertResult(1){
       SharingNotes.getComentarios.size
     }
-    assert(SharingNotes.getComentarios.values.exists(_.apunte == SharingNotes.getApuntes.last._2))
+    assert(SharingNotes.getComentarios.values.exists(_.apunte == SharingNotes.getApuntes(PGPI_T1)))
     info("El nuevo comentario se ha insertado correctamente")
   }
 
   // Comprueba que se ha borrado el comentario anteriormente insertado correctamente
 
-  usuario.aniadirComentario("Esto es el tercer comentario", SharingNotes.getApuntes.last._2)
+  val PGPIT1_C2 = usuario.aniadirComentario("Esto es el tercer comentario", SharingNotes.getApuntes(PGPI_T1))
 
-  val ultimoComentarioID = SharingNotes.getComentarios.last._1
-
-  admin.borrarComentario(ultimoComentarioID)
+  admin.borrarComentario(PGPIT1_C2)
 
   test("Borrar un comentario"){
-    assert(!SharingNotes.getComentarios.keys.exists(_ == ultimoComentarioID))
+    assert(!SharingNotes.getComentarios.keys.exists(_ == PGPIT1_C2))
     info("El comentario se ha borrado correctamente")
   }
 
@@ -82,38 +84,34 @@ class SharingNotesTest extends FunSuite {
 
   test("Búsqueda de los comentarios de un apunte"){
     assertResult(1){
-      usuario.buscarComentarios(SharingNotes.getApuntes.last._2).size
+      usuario.buscarComentarios(SharingNotes.getApuntes(PGPI_T1)).size
     }
   }
 
   // Comprueba que se eliminan los apuntes correctamente
 
-  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema2_Preparacióndeproyectos.pdf",
-    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas.last._2)
+  var PGPI_T2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
+    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas(PGPI_ID))
 
-  val ultimoApunteID = SharingNotes.getApuntes.last._1
-
-  admin.borrarApunte(ultimoApunteID)
+  admin.borrarApunte(PGPI_T2)
 
   test("Borrar un apunte"){
-    assert(!SharingNotes.getApuntes.keys.exists(_ == ultimoApunteID))
+    assert(!SharingNotes.getApuntes.keys.exists(_ == PGPI_T2))
     info("El apunte se ha borrado correctamente")
   }
 
   // Comprueba que se eliminan todos los comentarios sobre un apunte
 
-  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema2_Preparacióndeproyectos.pdf",
-    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas.last._2)
+  PGPI_T2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
+    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas(PGPI_ID))
 
-  val ultimoApunteID2 = SharingNotes.getApuntes.last._1
+  val PGPIT2_C1 = usuario.aniadirComentario("Este es el cuarto comentario realizado", SharingNotes.getApuntes(PGPI_T2))
 
-  usuario.aniadirComentario("Este es el cuarto comentario realizado", SharingNotes.getApuntes(ultimoApunteID2))
-
-  admin.borrarApunte(ultimoApunteID2)
+  admin.borrarApunte(PGPI_T2)
 
   test("Borrar apunte y sus correspondientes comentarios"){
-    assert(!SharingNotes.getApuntes.keys.exists(_ == ultimoApunteID2))
-    assert(!SharingNotes.getComentarios.values.exists(_.apunte.identificador == ultimoApunteID2))
+    assert(!SharingNotes.getApuntes.keys.exists(_ == PGPI_T2))
+    assert(!SharingNotes.getComentarios.values.exists(_.apunte.identificador == PGPI_T2))
     info("No está en el sistema el apunte ni los comentarios realizados sobre él")
   }
 
@@ -121,41 +119,40 @@ class SharingNotesTest extends FunSuite {
 
   test("Búsqueda de los apuntes de una asignatura"){
     assertResult(1){
-      usuario.buscarApuntes(SharingNotes.getAsignaturas.last._2).size
+      usuario.buscarApuntes(SharingNotes.getAsignaturas(PGPI_ID)).size
     }
   }
 
   // Comprueba que se ha eliminado una asignatura correctamente
 
-  admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
+  var TID_ID = admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
 
-  val ultimaAsignaturaID = SharingNotes.getAsignaturas.last._1
-
-  admin.borrarAsignatura(ultimaAsignaturaID)
+  admin.borrarAsignatura(TID_ID)
 
   test("Asignatura borrada correctamente"){
-    assert(!SharingNotes.getAsignaturas.keys.exists(_ == ultimaAsignaturaID))
+    assert(!SharingNotes.getAsignaturas.keys.exists(_ == TID_ID))
     info("La asignatura no se encuentra almacenada en el sistema")
   }
 
   // Comprueba que se ha eliminado los apuntes de una asignatura cuando
   // se elimina ésta
 
-  admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
+  TID_ID = admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
 
-  val ultimaAsignaturaID2 = SharingNotes.getAsignaturas.last._1
+  val TID_T1 = usuario.aniadirApunte("./documentos_prueba/Intro_TID.pdf",
+    "Tema 1 Introducción", SharingNotes.getAsignaturas(TID_ID))
+  val TID_T2 = usuario.aniadirApunte("./documentos_prueba/PreparacionDatos.pdf",
+    "Tema 2 Preparación de datos", SharingNotes.getAsignaturas(TID_ID))
 
-  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/TID/Teoría/Intro_TID.pdf",
-    "Tema 1 Introducción", SharingNotes.getAsignaturas(ultimaAsignaturaID2))
-  usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/TID/Teoría/PreparacionDatos.pdf",
-    "Tema 2 Preparación de datos", SharingNotes.getAsignaturas(ultimaAsignaturaID2))
+  val TIDT1_C1 = usuario.aniadirComentario("Este es el cuarto comentario realizado",
+    SharingNotes.getApuntes(TID_T1))
 
-  admin.borrarAsignatura(ultimaAsignaturaID2)
+  admin.borrarAsignatura(TID_ID)
 
   test("Asignatura, apuntes y comentarios borrados correctamente"){
-    assert(!SharingNotes.getAsignaturas.keys.exists(_ == ultimaAsignaturaID2))
-    assert(!SharingNotes.getApuntes.values.exists(_.asignatura.identificador == ultimaAsignaturaID2))
-    assert(!SharingNotes.getComentarios.values.exists(_.apunte.asignatura.identificador == ultimaAsignaturaID2))
+    assert(!SharingNotes.getAsignaturas.keys.exists(_ == TID_ID))
+    assert(!SharingNotes.getApuntes.values.exists(_.asignatura.identificador == TID_ID))
+    assert(!SharingNotes.getComentarios.values.exists(_.apunte.asignatura.identificador == TID_ID))
     info("No se encuentra la asignatura, ni los apuntes sobre una asignatura ni " +
       "los comentarios realizados sobre cada un de los apuntes anteriores en el sistema")
   }

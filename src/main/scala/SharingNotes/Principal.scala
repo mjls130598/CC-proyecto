@@ -24,7 +24,7 @@ object Principal{
 
     // Añadir asignatura a la memoria del proyecto
 
-    admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
+    val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
 
     println("Asignaturas del sistema:")
 
@@ -38,8 +38,9 @@ object Principal{
 
     println("Apuntes de la asignatura de PGPI:")
 
-    usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema1_Definiciones.pdf",
-      "Tema 1: Definiciones", SharingNotes.getAsignaturas.last._2)
+    val PGPI_T1 = usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+      "Tema 1: Definiciones", SharingNotes.getAsignaturas(PGPI_ID))
+
     SharingNotes.getApuntes.foreach{
       case (key, value) => println ("\t" + key + " -> " + value.nombre)
     }
@@ -50,7 +51,7 @@ object Principal{
 
     println("Comentarios guardados:")
 
-    usuario.aniadirComentario("Esto es un comentario cualquiera", SharingNotes.getApuntes.last._2)
+    val PGPIT1_C1 = usuario.aniadirComentario("Esto es un comentario cualquiera", SharingNotes.getApuntes(PGPI_T1))
     SharingNotes.getComentarios.foreach{
       case (key, value) => println ("\t" + key + " -> " + value.comentario)
     }
@@ -61,19 +62,19 @@ object Principal{
 
     println("Número de comentarios sobre Tema 1: Definiciones después de borrar el último:")
 
-    admin.borrarComentario(SharingNotes.getComentarios.last._1)
+    admin.borrarComentario(PGPIT1_C1)
     println("\t" + SharingNotes.getComentarios.size)
 
     println("\n/*****************************************************/\n")
 
     // Buscar comentarios de un apunte
 
-    usuario.aniadirComentario("Esto es un comentario cualquiera", SharingNotes.getApuntes.last._2)
-    usuario.aniadirComentario("Esto es otro comentario cualquiera", SharingNotes.getApuntes.last._2)
+    val PGPIT1_C2 = usuario.aniadirComentario("Esto es un comentario cualquiera", SharingNotes.getApuntes(PGPI_T1))
+    val PGPIT1_C3 = usuario.aniadirComentario("Esto es otro comentario cualquiera", SharingNotes.getApuntes(PGPI_T1))
 
     println("Comentarios de Tema 1: Definiciones:")
 
-    val comentarios = SharingNotes.buscarComentarios(SharingNotes.getApuntes.last._2)
+    val comentarios = SharingNotes.buscarComentarios(SharingNotes.getApuntes(PGPI_T1))
     comentarios.foreach{
       case (coment) => println ("\t" + coment.identificador + " -> " + coment.comentario)
     }
@@ -84,7 +85,7 @@ object Principal{
 
     println("Comentarios resultantes después de borrar Tema 1: Definiciones:")
 
-    admin.borrarApunte(SharingNotes.getApuntes.last._1)
+    admin.borrarApunte(PGPI_T1)
     SharingNotes.getComentarios.foreach{
       case (key, value) => println ("\t" + key + " -> " + value.comentario)
     }
@@ -95,12 +96,12 @@ object Principal{
 
     println("Apuntes de la asignatura PGPI:")
 
-    usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema1_Definiciones.pdf",
-      "Tema 1: Definiciones", SharingNotes.getAsignaturas.last._2)
-    usuario.aniadirApunte("/media/mjesus/MJESUS/MÁSTER/PGPI/Teoría/Tema2_Preparacióndeproyectos.pdf",
-      "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas.last._2)
+    usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+      "Tema 1: Definiciones", SharingNotes.getAsignaturas(PGPI_ID))
+    usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
+      "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas(PGPI_ID))
 
-    val apuntes = SharingNotes.buscarApuntes(SharingNotes.getAsignaturas.last._2)
+    val apuntes = SharingNotes.buscarApuntes(SharingNotes.getAsignaturas(PGPI_ID))
     apuntes.foreach{
       case (apunte) => println("\t" + apunte.identificador + " -> " + apunte.nombre)
     }
@@ -109,7 +110,7 @@ object Principal{
 
     // Borrar una asignatura de la memoria del proyecto
 
-    admin.borrarAsignatura(SharingNotes.getAsignaturas.last._1)
+    admin.borrarAsignatura(PGPI_ID)
 
     println("Apuntes después de borrar la asignatura PGPI:")
 

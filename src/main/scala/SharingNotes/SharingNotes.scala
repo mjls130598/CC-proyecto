@@ -10,6 +10,7 @@ import org.apache.tika.Tika
 import java.util.Calendar
 import scala.annotation.tailrec
 import scala.util.Random
+import java.io._
 
 class SharingNotes{
 
@@ -64,7 +65,7 @@ object SharingNotes{
   // Método para añadir nuevas asignaturas al sistema
 
   def aniadirAsignatura(nombre : String, curso : String, carrera : String,
-     universidad : String): Unit = {
+     universidad : String): String = {
 
     var id = ""
 
@@ -74,6 +75,8 @@ object SharingNotes{
 
     val asignatura = new Asignatura(id, nombre, curso, carrera, universidad)
     sharing.asignaturas(id) = asignatura
+
+    return id
   }
 
   // Método para borrar una asignatura del sistema
@@ -96,15 +99,15 @@ object SharingNotes{
 
   // Método para añadir nuevos apuntes
 
-  def aniadirApunte(url: String, nom: String, asig: Asignatura, us: Usuario): Unit = {
+  def aniadirApunte(url: String, nom: String, asig: Asignatura, us: Usuario): String = {
 
-    val nombre = url.split("/ | \\\\").last
+    val nombre = url.split("[/ | \\\\]+").last
 
     // Función para saber si es un PDF
 
     def esPDF(file: File) = {
       val input = TikaInputStream.get(file)
-      val pdfContent = "%PDF-1.4\n%\\E2\\E3\\CF\\D3" // i.e. base64 decoded
+      val pdfContent = "%PDF-1.4\n%\\E2\\E3\\CF\\D3"
       val tika = new Tika()
       tika.detect(input) == tika.detect(pdfContent.getBytes)
     }
@@ -119,11 +122,15 @@ object SharingNotes{
         id = generateUiid(keyApunte)
       } while (sharing.asignaturas.keys.exists(_ == id) || id == "")
 
-      val ubicacion = "./" + asig.identificador + "/" + nombre
+      val ubicacion = "./documentos/" + asig.identificador + "/" + nombre
 
       val apunte = new Apunte (id, ubicacion, nom, asig, us)
       sharing.apuntes(id) = apunte
+
+      return id
     }
+
+    return ""
   }
 
   // Método para borrar un apunte
@@ -159,7 +166,7 @@ object SharingNotes{
 
   // Método para añadir nuevos comentarios
 
-  def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): Unit = {
+  def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): String = {
 
     var id = ""
 
@@ -169,6 +176,8 @@ object SharingNotes{
 
     val comentario = new Comentario(id, coment, usuario, apunte)
     sharing.comentarios(id) = comentario
+
+    return id
   }
 
   // Método para borrar un comentario
