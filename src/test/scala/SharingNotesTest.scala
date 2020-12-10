@@ -43,7 +43,7 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido el apunte correcto
 
-  usuario.aniadirApunte("./documentos_prueba/Práctica 1.knar",
+  usuario.aniadirApunte("./documentos_prueba/plantilla.tex",
     "Práctica 1", SharingNotes.getAsignaturas(PGPI_ID))
 
   test("Insertar apunte con un formato distinto a PDF"){
