@@ -12,24 +12,21 @@ Por lo tanto, este proyecto se basa en crear una plataforma donde cualquier alum
 * El siguiente programa está escrito en el lenguaje de programación *Scala*.
 * El gestor de tareas y el marco de prueba que se va a utilizar es *sbt (Scala Build Tool)*.
 * La biblioteca que se va a usar para realizar los test es la bibliteca *ScalaTest*.
-* Para crear un contenedor se ha elegido utilizar *Docker* con su correspondiente [*Dockerfile*](https://github.com/mjls130598/SharingNotes/blob/master/Dockerfile) con *Ubuntu 18.04* como imagen base.
+* Para crear un contenedor se ha elegido utilizar *Docker* con su correspondiente [*Dockerfile*](https://github.com/mjls130598/SharingNotes/blob/master/Dockerfile) con *Alpine* como imagen base.
 
 ## Poner en marcha el proyecto
 
 1. Descargar este proyecto en el dispositivo:
   `git clone git@github.com:mjls130598/SharingNotes.git`
 
-2. Compilar el programa:
-  `sbt compile`
+2. Entrar al directorio del proyecto:
+  `cd SharingNotes`
 
-3. Ejecutar el programa:
-  `sbt run`
+2. Construir el contenedor:
+  `docker build -t mjls130598/sharingnotes .`
 
-4. Ejecutar los test del proyecto:
-  `sbt test`
-
-Si fuera necesario realizar una limpieza del proyecto:
-  `sbt clean`
+3. Ejecutar los test del programa que se encuentran dentro del contenedor:
+  `docker run --rm mjls130598/sharingnotes`
 
 ## Documentaciones
 

@@ -1,4 +1,3 @@
-
 FROM  frolvlad/alpine-scala
 ENV SCALA_VERSION=2.13.3 \
   SBT_VERSION=1.4.2

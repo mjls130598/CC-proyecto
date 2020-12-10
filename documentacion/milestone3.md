@@ -35,13 +35,33 @@ Las posibles imágenes base con las que se podría ejecutar este proyecto dentro
   * Los usuarios que se crean por defecto son root, bin, daemon, adm, lp, sync, shutdown, halt, mail, operator, games, ftp, nobody, dbus, systemd-coredump y systemd-resolve.
   * La última actualización se ejecutó hace tres meses.
 
-Entre las comentadas se ha elegido *Ubuntu* como imagen base del contenedor al ofrecer los recursos justos que se pueden necesitar para el proyecto.
+Entre las comentadas se ha elegido *Alpine* como imagen base del contenedor al ofrecer los recursos justos que se pueden necesitar para el proyecto y al tener el tamaño más pequeño de la imagen.
 
 ## Dockerfile
 
-Primero, se indica la imagen base que se va a usar, en este caso es Ubuntu 18.04.
+Primero, se indica la imagen base que se va a usar, en este caso es La última versión del *Alpine* para *Scala*.
 
-`FROM ubuntu:18.04`
+`FROM  frolvlad/alpine-scala`
+
+Después, se le indica las versiones de *Scala* y *SBT* se va a utilizar dentro del contenedor.
+
+`ENV SCALA_VERSION=2.13.3 \
+  SBT_VERSION=1.4.2`
+
+Seguidamente, se actualiza el sistema y se instala todo aquello necesario para instalar y ejecutar *sbt*. Una vez instalado *sbt* se borra aquellas herramientas que fueron necesarias para su instalación.
+
+```
+RUN \
+  echo "$SCALA_VERSION $SBT_VERSION" && \
+  apk add --no-cache bash curl bc ca-certificates && \
+  update-ca-certificates && \
+  scala -version && \
+  scalac -version && \
+  curl -fsL https://github.com/sbt/sbt/releases/download/v$SBT_VERSION/sbt-$SBT_VERSION.tgz | tar xfz - -C /usr/local && \
+  $(mv /usr/local/sbt-launcher-packaging-$SBT_VERSION /usr/local/sbt || true) && \
+  ln -s /usr/local/sbt/bin/* /usr/local/bin/ && \
+  apk del curl
+```
 
 A continuación, se indica que el directorio donde va a trabajar el contenedor es *sharing*.
 
@@ -53,17 +73,10 @@ Posteriormente, el directorio creado en el paso anterior se indica que va a ser 
 
 Después, se copia en el contenedor los archivos que forman parte del proyecto:
 
-`COPY src/SharingNotes .`
-
-Seguidamente, se actualiza el sistema y se instala todo aquello necesario para instalar y ejecutar *sbt*. Una vez instalado *sbt* se borra aquellas herramientas que fueron necesarias para su instalación.
-
 ```
-RUN  apt-get update && apt-get install -y curl gnupg && \
-  echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
-  curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | apt-key add && \
-  apt-get update && \
-  apt-get install -y sbt openjdk-11-jdk && \
-  apt-get remove -y curl gnupg
+COPY src/ ./src
+COPY build.sbt .
+COPY documentos_prueba/ ./documentos_prueba
 ```
 
 Por último, se ejecutan los tests del proyecto cuando se ejecute el contenedor.
