@@ -152,4 +152,8 @@ class SharingNotesTest extends FunSuite {
     info("No se encuentra la asignatura, ni los apuntes sobre una asignatura ni " +
       "los comentarios realizados sobre cada un de los apuntes anteriores en el sistema")
   }
+
+  test("Obtener el texto del PDF Intro_TID.pdf"){
+    assert(ExtraeTexto.textoPDF("./documentos_prueba/Intro_TID.pdf").length > 0)
+  }
 }
