@@ -130,6 +130,11 @@ object SharingNotes{
 
       val hadoopConf = new Configuration()
       val hdfs = FileSystem.get(hadoopConf)
+
+      // Para que no se guarden los ficheros que utiliza Hadoop para realizar una copia exacta
+      hdfs.setWriteChecksum(false)
+      hdfs.setVerifyChecksum(false)
+      
       val srcPath = new Path(url)
       val destPath = new Path(ubicacion)
       hdfs.copyFromLocalFile(srcPath, destPath)
