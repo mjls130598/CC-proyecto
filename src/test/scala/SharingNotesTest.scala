@@ -1,5 +1,6 @@
 import SharingNotes._
 import org.scalatest.FunSuite
+import java.io.File
 
 class SharingNotesTest extends FunSuite {
 
@@ -93,6 +94,7 @@ class SharingNotesTest extends FunSuite {
 
   test("Borrar un apunte"){
     assert(!SharingNotes.getApuntes.keys.exists(_ == PGPI_T2))
+    assert(!new File("./documentos/" + PGPI_ID + "/Tema2_Preparacióndeproyectos.pdf").exists)
     info("El apunte se ha borrado correctamente")
   }
 

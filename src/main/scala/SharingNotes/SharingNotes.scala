@@ -134,7 +134,7 @@ object SharingNotes{
       // Para que no se guarden los ficheros que utiliza Hadoop para realizar una copia exacta
       hdfs.setWriteChecksum(false)
       hdfs.setVerifyChecksum(false)
-      
+
       val srcPath = new Path(url)
       val destPath = new Path(ubicacion)
       hdfs.copyFromLocalFile(srcPath, destPath)
@@ -157,6 +157,10 @@ object SharingNotes{
 
     val coments = buscarComentarios(sharing.apuntes(id))
     coments.map(c => borrarComentario(c.identificador))
+
+    // A continuación, se elimina su archivo de la memoria del sistema
+
+    new File(sharing.apuntes(id).ubicacion).delete()
 
     // Por último se borra el apunte
 
