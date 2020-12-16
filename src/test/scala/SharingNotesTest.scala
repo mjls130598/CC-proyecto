@@ -129,6 +129,7 @@ class SharingNotesTest extends FunSuite {
 
   test("Asignatura borrada correctamente"){
     assert(!SharingNotes.getAsignaturas.keys.exists(_ == TID_ID))
+    assert(!new File("./documentos/" + TID_ID).exists)
     info("La asignatura no se encuentra almacenada en el sistema")
   }
 

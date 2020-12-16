@@ -90,6 +90,10 @@ object SharingNotes{
     val notes = buscarApuntes(sharing.asignaturas(id))
     notes.map(n => borrarApunte(n.identificador))
 
+    // A continuación, se elimina su directorio de la memoria del sistema
+
+    new File("./documentos/" + id).delete()
+
     // Por último, se borra la asignatura
     sharing.asignaturas -= id
 
