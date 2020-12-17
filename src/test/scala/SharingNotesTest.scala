@@ -162,9 +162,10 @@ class SharingNotesTest extends FunSuite {
 
   var TID_ID = admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
 
-  admin.borrarAsignatura(TID_ID)
+  val asignaturaBorrada = admin.borrarAsignatura(TID_ID)
 
   test("Asignatura borrada correctamente"){
+    assert(asignaturaBorrada)
     assert(!SharingNotes.getAsignaturas.keys.exists(_ == TID_ID))
     assert(!new File("./documentos/" + TID_ID).exists)
     info("La asignatura no se encuentra almacenada en el sistema")

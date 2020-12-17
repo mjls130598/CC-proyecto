@@ -95,7 +95,7 @@ object SharingNotes{
 
   // Método para borrar una asignatura del sistema
 
-  def borrarAsignatura(id : String): Unit = {
+  def borrarAsignatura(id : String): Boolean = {
 
     // Primero se borra los apuntes de esa asignatura
 
@@ -109,6 +109,7 @@ object SharingNotes{
     // Por último, se borra la asignatura
     sharing.asignaturas -= id
 
+    return true
   }
 
   // Método para ver todas las asignaturas guardadas
