@@ -106,9 +106,10 @@ class SharingNotesTest extends FunSuite {
 
   val PGPIT1_C2 = usuario.aniadirComentario("Esto es el tercer comentario", SharingNotes.getApuntes(PGPI_T1))
 
-  admin.borrarComentario(PGPIT1_C2)
+  val comentarioBorrado = admin.borrarComentario(PGPIT1_C2)
 
   test("Borrar un comentario"){
+    assert(comentarioBorrado)
     assert(!SharingNotes.getComentarios.keys.exists(_ == PGPIT1_C2))
     info("El comentario se ha borrado correctamente")
   }

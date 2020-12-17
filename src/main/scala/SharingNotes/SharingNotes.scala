@@ -230,7 +230,12 @@ object SharingNotes{
 
   // Método para borrar un comentario
 
-  def borrarComentario(id: String): Unit = sharing.comentarios -= id
+  def borrarComentario(id: String): Boolean = {
+
+    sharing.comentarios -= id
+
+    return true
+  }
 
   // Método para buscar comentarios de un apunte
 
