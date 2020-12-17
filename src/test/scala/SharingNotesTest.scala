@@ -70,6 +70,16 @@ class SharingNotesTest extends FunSuite {
     info("No se ha insertado, sólo se añaden PDFs")
   }
 
+  // Comprueba que se ha añadido un apunte en una asignatura que existe
+
+  test("No insertar apunte de una asignatura que no existe"){
+    assertThrows[java.lang.Exception]{
+      usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+        "Tema 1: Definiciones", new Asignatura("1234", "Una asignatura", "1º", "Ingeniería", "Granada"))
+    }
+    info("No se ha insertado, sólo se añaden PDFs")
+  }
+
   // Comprueba que se ha añadido un comentario correctamente
 
   val PGPIT1_C1 = usuario.aniadirComentario("Esto es un comentario cualquiera", SharingNotes.getApuntes(PGPI_T1))
