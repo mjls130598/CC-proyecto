@@ -172,7 +172,7 @@ object SharingNotes{
 
   // Método para borrar un apunte
 
-  def borrarApunte(id: String) : Unit = {
+  def borrarApunte(id: String) : Boolean = {
 
     // Antes de borrar el apunte, se borran los comentarios que se hayan
     // realizado sobre él
@@ -187,6 +187,8 @@ object SharingNotes{
     // Por último se borra el apunte
 
     sharing.apuntes -= id
+
+    return true
   }
 
   // Método para buscar apuntes de una asignatura

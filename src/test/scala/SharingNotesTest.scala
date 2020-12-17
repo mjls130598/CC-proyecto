@@ -126,9 +126,10 @@ class SharingNotesTest extends FunSuite {
   var PGPI_T2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
     "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas(PGPI_ID))
 
-  admin.borrarApunte(PGPI_T2)
+  val apunteBorrado = admin.borrarApunte(PGPI_T2)
 
   test("Borrar un apunte"){
+    assert(apunteBorrado)
     assert(!SharingNotes.getApuntes.keys.exists(_ == PGPI_T2))
     assert(!new File("./documentos/" + PGPI_ID + "/Tema2_Preparacióndeproyectos.pdf").exists)
     info("El apunte se ha borrado correctamente")
