@@ -61,6 +61,8 @@ object SharingNotes{
 
   def aniadirUsuario(usuario : Usuario): Boolean = {
 
+    // Si el correo no existe y se ha escrito correctamente
+
     if (!sharing.usuarios.keys.exists(_ == usuario.correo) && EmailAddress.isValid(usuario.correo)){
 
       sharing.usuarios(usuario.correo) = usuario
@@ -117,49 +119,55 @@ object SharingNotes{
 
   def aniadirApunte(url: String, nom: String, asig: Asignatura, us: Usuario): String = {
 
-    val nombre = url.split("[/ | \\\\]+").last
+    if (sharing.asignaturas.values.exists(_ == asig)){
 
-    // Función para saber si es un PDF
+      val nombre = url.split("[/ | \\\\]+").last
 
-    def esPDF(file: File) = {
-      val input = TikaInputStream.get(file)
-      val pdfContent = "%PDF-1.4\n%\\E2\\E3\\CF\\D3"
-      val tika = new Tika()
-      tika.detect(input) == tika.detect(pdfContent.getBytes)
+      // Función para saber si es un PDF
+
+      def esPDF(file: File) = {
+        val input = TikaInputStream.get(file)
+        val pdfContent = "%PDF-1.4\n%\\E2\\E3\\CF\\D3"
+        val tika = new Tika()
+        tika.detect(input) == tika.detect(pdfContent.getBytes)
+      }
+
+      // Sólo se admiten archivos PDF
+
+      if(esPDF(new File(url))){
+
+        var id = ""
+
+        do {
+          id = generateUiid(keyApunte)
+        } while (sharing.apuntes.keys.exists(_ == id) || id == "")
+
+        val ubicacion = "./documentos/" + asig.identificador + "/" + nombre
+
+        // Guardar el fichero dado en la memoria del sistema
+
+        val hadoopConf = new Configuration()
+        val hdfs = FileSystem.get(hadoopConf)
+
+        // Para que no se guarden los ficheros que utiliza Hadoop para realizar una copia exacta
+        hdfs.setWriteChecksum(false)
+        hdfs.setVerifyChecksum(false)
+
+        val srcPath = new Path(url)
+        val destPath = new Path(ubicacion)
+        hdfs.copyFromLocalFile(srcPath, destPath)
+
+        val apunte = new Apunte (id, ubicacion, nom, asig, us)
+        sharing.apuntes(id) = apunte
+
+        return id
+      }
+
+      throw new Exception("El archivo dado no es un PDF")
+
     }
 
-    // Sólo se admiten archivos PDF
-
-    if(esPDF(new File(url))){
-
-      var id = ""
-
-      do {
-        id = generateUiid(keyApunte)
-      } while (sharing.apuntes.keys.exists(_ == id) || id == "")
-
-      val ubicacion = "./documentos/" + asig.identificador + "/" + nombre
-
-      // Guardar el fichero dado en la memoria del sistema
-
-      val hadoopConf = new Configuration()
-      val hdfs = FileSystem.get(hadoopConf)
-
-      // Para que no se guarden los ficheros que utiliza Hadoop para realizar una copia exacta
-      hdfs.setWriteChecksum(false)
-      hdfs.setVerifyChecksum(false)
-
-      val srcPath = new Path(url)
-      val destPath = new Path(ubicacion)
-      hdfs.copyFromLocalFile(srcPath, destPath)
-
-      val apunte = new Apunte (id, ubicacion, nom, asig, us)
-      sharing.apuntes(id) = apunte
-
-      return id
-    }
-
-    return ""
+    throw new Exception("No existe esa asignatura en el sistema")
   }
 
   // Método para borrar un apunte

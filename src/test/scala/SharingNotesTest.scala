@@ -20,25 +20,20 @@ class SharingNotesTest extends FunSuite {
     info("El nuevo usuario se ha insertado correctamente")
   }
 
-  SharingNotes.aniadirUsuario(usuario)
-
   // Comprueba que no se añaden dos veces un mismo correo en el sistema
 
   test("Tercer usuario con la misma cuenta de correo que el primero no se guarda"){
-    assertResult(2){
-      SharingNotes.getUsuarios.size
+    assertThrows[java.lang.Exception]{
+      SharingNotes.aniadirUsuario(usuario)
     }
   }
-
-  val usuario2 = new Usuario("María Jesús", "mjls1 30598 @gmail.com", "MUII", "Granada")
-
-    SharingNotes.aniadirUsuario(usuario2)
 
   // Comprueba que no se añade una dirección de correo correcta
 
   test("Usuario con dirección de correo errónea no guardado"){
-    assertResult(2){
-      SharingNotes.getUsuarios.size
+    assertThrows[java.lang.Exception]{
+      val usuario2 = new Usuario("María Jesús", "mjls1 30598 @gmail.com", "MUII", "Granada")
+      SharingNotes.aniadirUsuario(usuario2)
     }
   }
 
@@ -67,12 +62,10 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido el apunte correcto
 
-  usuario.aniadirApunte("./documentos_prueba/plantilla.tex",
-    "Práctica 1", SharingNotes.getAsignaturas(PGPI_ID))
-
   test("Insertar apunte con un formato distinto a PDF"){
-    assertResult(1){
-      SharingNotes.getApuntes.size
+    assertThrows[java.lang.Exception]{
+      usuario.aniadirApunte("./documentos_prueba/plantilla.tex",
+        "Práctica 1", SharingNotes.getAsignaturas(PGPI_ID))
     }
     info("No se ha insertado, sólo se añaden PDFs")
   }
