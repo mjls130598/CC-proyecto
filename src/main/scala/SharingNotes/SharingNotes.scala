@@ -13,6 +13,7 @@ import scala.util.Random
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.Path
+import uk.gov.hmrc.emailaddress._
 
 class SharingNotes{
 
@@ -58,7 +59,16 @@ object SharingNotes{
 
   // Método para añadir nuevos usuarios al programa
 
-  def aniadirUsuario(usuario : Usuario): Unit = sharing.usuarios(usuario.correo) = usuario
+  def aniadirUsuario(usuario : Usuario): Boolean = {
+
+    if (!sharing.usuarios.keys.exists(_ == usuario.correo) && EmailAddress.isValid(usuario.correo)){
+
+      sharing.usuarios(usuario.correo) = usuario
+      return true
+    }
+
+    throw new Exception("Dirección de correo incorrecta o ya utilizada")
+  }
 
   // Método para ver todos los usuarios guardados en el sistema
 
@@ -126,7 +136,7 @@ object SharingNotes{
 
       do {
         id = generateUiid(keyApunte)
-      } while (sharing.asignaturas.keys.exists(_ == id) || id == "")
+      } while (sharing.apuntes.keys.exists(_ == id) || id == "")
 
       val ubicacion = "./documentos/" + asig.identificador + "/" + nombre
 
@@ -195,7 +205,7 @@ object SharingNotes{
 
     do {
       id = generateUiid(keyComentario)
-    } while (sharing.asignaturas.keys.exists(_ == id) || id == "")
+    } while (sharing.comentarios.keys.exists(_ == id) || id == "")
 
     val comentario = new Comentario(id, coment, usuario, apunte)
     sharing.comentarios(id) = comentario

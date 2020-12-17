@@ -1,4 +1,4 @@
-package SharingNotes
+package Buscador
 
 import java.io._
 import org.apache.tika.parser.pdf.PDFParser

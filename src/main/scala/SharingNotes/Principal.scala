@@ -1,5 +1,7 @@
 package SharingNotes
 
+import Buscador._
+
 object Principal{
 
   def main(args: Array[String]): Unit = {
