@@ -209,16 +209,20 @@ object SharingNotes{
 
   def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): String = {
 
-    var id = ""
+    if(sharing.apuntes.values.exists(_ == apunte)){
+      var id = ""
 
-    do {
-      id = generateUiid(keyComentario)
-    } while (sharing.comentarios.keys.exists(_ == id) || id == "")
+      do {
+        id = generateUiid(keyComentario)
+      } while (sharing.comentarios.keys.exists(_ == id) || id == "")
 
-    val comentario = new Comentario(id, coment, usuario, apunte)
-    sharing.comentarios(id) = comentario
+      val comentario = new Comentario(id, coment, usuario, apunte)
+      sharing.comentarios(id) = comentario
 
-    return id
+      return id
+    }
+
+    throw new Exception("El apunte sobre el que se quiere comentar no existe")
   }
 
   // Método para borrar un comentario

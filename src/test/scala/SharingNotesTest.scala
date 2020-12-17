@@ -82,6 +82,16 @@ class SharingNotesTest extends FunSuite {
     info("El nuevo comentario se ha insertado correctamente")
   }
 
+  // Comprueba que el comentario sobre un apunte no existente no funciona
+
+  test("Nuevo comentario sobre un apunte desconocido"){
+    assertThrows[java.lang.Exception]{
+      SharingNotes.aniadirComentario("Esto es un comentario cualquiera",
+        new Apunte ("1234", "aqui", "Algún apunte", SharingNotes.getAsignaturas(PGPI_ID), usuario),
+        usuario)
+    }
+  }
+
   // Comprueba que se ha borrado el comentario anteriormente insertado correctamente
 
   val PGPIT1_C2 = usuario.aniadirComentario("Esto es el tercer comentario", SharingNotes.getApuntes(PGPI_T1))
