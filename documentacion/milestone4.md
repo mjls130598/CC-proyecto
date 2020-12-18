@@ -18,7 +18,7 @@ language: scala
 # Se indican las versiones que se quieren comprobar
 scala:
   - 2.12.12
-  - 2.10.7
+  - 2.11.12
 
 # Se dicen la versión de Java que debe utilizar
 jdk:
