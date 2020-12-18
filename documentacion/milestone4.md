@@ -20,6 +20,14 @@
 
  * Una vez comprobado que ese archivo es un PDF, se guardan dentro del sistema. Para guardarlo se añadió como dependencia del proyecto varias dependencias de *Hadoop* que realiza una copia exacta del fichero dado.
 
- * Se cambió la manera de crear nuevos identificadores. Se realizó de la misma manera que una página encontrada dentro de GitHub de [sarveshseri](https://gist.github.com/sarveshseri/f188a1a52ff966c63ea4).
+ * Se cambió la manera de crear nuevos identificadores. Se realizó de la misma manera que una página encontrada dentro de GitHub de [sarveshseri](https://gist.github.com/sarveshseri/f188a1a52ff966c63ea4). Se cambió los métodos encargados de crear elementos del sistema indicando que, una vez creado, se debe devolver el identificador creado para ese elemento.
 
  * Por último, se cambió la imagen base de Docker a *Alpine* puesto que, en comparación con otras probadas como *Ubuntu* y *Debian-Slim*, es la que menos tamaño ocupa para este proyecto.
+
+* Después de realizar el ejercicio en la clase de prácticas del 16/12, se corrigieron cada una de las historias de usuario cuyos issues tienen la etiqueta [user-stories](https://github.com/mjls130598/SharingNotes/labels/user-stories). Además, se creó un [glosario](https://github.com/mjls130598/SharingNotes/issues/62) para que se entendieran las distintas terminologías. A continuación se arregló el código para que cumplieran las condiciones de satisfacción de cada una de las historias:
+
+ * Comprobar que el correo electrónico dado no existe en el sistema y que está escrito correctamente. Para esta última comprobación se utilizó el código de la página de [*Scaladex*](https://index.scala-lang.org/hmrc/emailaddress/emailaddress/2.1.0?target=_2.12) que tiene una clase que comprueba la forma del correo dado. Como no se encontró ninguna otra manera que utilizara la versión de *Scala 2.13*, se decidió cambiar la versión de *Scala* a la 2.12. Corresponde al issue número [58](https://github.com/mjls130598/SharingNotes/issues/58).
+
+ * Cuando se borra un elemento, devolver true si se ha realizado correctamente. Estos cambios se ven en los issues [63](https://github.com/mjls130598/SharingNotes/issues/63), [64](https://github.com/mjls130598/SharingNotes/issues/64) y [65](https://github.com/mjls130598/SharingNotes/issues/65).
+
+ * En aquellos casos que se produce un error, devolver una excepción al usuario, por ejemplo cuando se quiere insertar el apunte de una asignatura desconocida. Los issues correspondientes son [60](https://github.com/mjls130598/SharingNotes/issues/60) y [61](https://github.com/mjls130598/SharingNotes/issues/61).
