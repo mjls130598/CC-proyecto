@@ -31,3 +31,15 @@
  * Cuando se borra un elemento, devolver true si se ha realizado correctamente. Estos cambios se ven en los issues [63](https://github.com/mjls130598/SharingNotes/issues/63), [64](https://github.com/mjls130598/SharingNotes/issues/64) y [65](https://github.com/mjls130598/SharingNotes/issues/65).
 
  * En aquellos casos que se produce un error, devolver una excepción al usuario, por ejemplo cuando se quiere insertar el apunte de una asignatura desconocida. Los issues correspondientes son [60](https://github.com/mjls130598/SharingNotes/issues/60) y [61](https://github.com/mjls130598/SharingNotes/issues/61).
+
+* Se ha avanzado en algunos aspectos del proyecto que aún no se ha podido realizar:
+
+ * Cuando se borre una asignatura, se borre su carpeta correspondiente dentro de la memoria del sistema. Los cambios realizados se ven el [issue 56](https://github.com/mjls130598/SharingNotes/issues/56).
+
+ * Cuando se borre un apunte, se borre el archivo de ese apunte. Los commits relacionados con lo anterior se encuentran en el [issue 55](https://github.com/mjls130598/SharingNotes/issues/55).
+
+ * Antes de comenzar con las búsquedas, se han tenido que realizar las siguientes tareas:
+
+   * Abrir y leer PDFs. Utilizando la biblioteca de *Tika*, se obtuvo el texto que contiene un PDF. Se puede ver los cambios realizados en este [enlace](https://github.com/mjls130598/SharingNotes/issues/52).
+
+   * Indexar los PDFs guardados. Para indexar los documentos se ha tenido que instalar como una dependencia la biblioteca *Lucene 8.7.0*. Antes de indexar, se ha configurado el índice que se va a crear indicando los analizadores que se va a usar, la medida de similitud, qué campos se van a indexar y qué campos van a ser las facetas (filtros).
