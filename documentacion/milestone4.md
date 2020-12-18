@@ -31,7 +31,7 @@ before-script: sbt ++$TRAVIS_SCALA_VERSION compile test:compile
 script:
 ```
 
-Se utiliza las versiones 2.12.12 y 2.10.7 de Scala porque son dos versiones con las que la biblioteca *EmailAddress* (la que se encarga de comprobar si un string dado tiene la estructura de un correo electrónico) puede trabajar. Nos centramos en la biblioteca anterior puesto que es la única que aún no es compatible con la última versión de *Scala*.
+Se utiliza las versiones 2.12.12 y 2.11.12 de Scala porque son dos versiones con las que la biblioteca *EmailAddress* (la que se encarga de comprobar si un string dado tiene la estructura de un correo electrónico) puede trabajar. Nos centramos en la biblioteca anterior puesto que es la única que aún no es compatible con la última versión de *Scala*.
 
 En cuanto al apartado *script*, no se le dice nada porque por defecto hace sbt ++$TRAVIS_SCALA_VERSION test.
 
