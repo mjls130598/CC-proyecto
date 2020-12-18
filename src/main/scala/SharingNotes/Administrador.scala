@@ -14,13 +14,13 @@ class Administrador extends Usuario("Administrador", "admin@admin.com", "x", "x"
 
   // Método para borrar una asignatura
 
-  def borrarAsignatura(id : String): Unit = SharingNotes.borrarAsignatura(id)
+  def borrarAsignatura(id : String): Boolean = SharingNotes.borrarAsignatura(id)
 
   // Método para borrar un apunte
 
-  def borrarApunte(id : String): Unit = SharingNotes.borrarApunte(id)
+  def borrarApunte(id : String): Boolean = SharingNotes.borrarApunte(id)
 
   // Método para borrar un comentario
 
-  def borrarComentario(id : String): Unit = SharingNotes.borrarComentario(id)
+  def borrarComentario(id : String): Boolean = SharingNotes.borrarComentario(id)
 }
