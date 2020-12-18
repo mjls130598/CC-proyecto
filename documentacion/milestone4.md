@@ -37,6 +37,11 @@ En cuanto al apartado *script*, no se le dice nada porque por defecto hace sbt +
 
 La información sacada para ejecutar *Travis* con el gestor de tareas *SBT* proviene de la página web oficial de [*Travis*](https://docs.travis-ci.com/user/languages/scala/) que indica como debería hacerse y algunos ejemplos al final de la página.
 
+Cuando se intenta ejecutar *Travis* con esta versión de [*build.sbt*](https://github.com/mjls130598/SharingNotes/blob/d6dd8bce1a04d463919a13c83b5ae0b65680bc94/build.sbt), se produce el siguiente error:
+`Switch failed: no subprojects list "2.11.12" (or compatible version) in crossScalaVersions setting.`
+
+Por lo que se añade *crossScalaVersions* para que pueda ejecutar en ambas versiones dentro de *build.sbt* de la siguiente manera: `crossScalaVersions := List("2.12.12", "2.11.12")`. Esto se ha sacado de la página oficial de [*SBT*](https://www.scala-sbt.org/1.x/docs/Cross-Build.html).
+
 ## Avance del proyecto
 
 * Antes de seguir con las actividades relacionadas con el milestone 4, se arreglaron algunos aspectos de los dos últimos milestones anteriores. Los issues correspondientes a estos arreglos se encuentran en el milestone ["Arreglos del milestone 2 y 3"](https://github.com/mjls130598/SharingNotes/milestone/12?closed=1) que se realizaron:

@@ -98,15 +98,13 @@ class Indice {
         // Se añade al directorio donde se guardan las facetas y el índice
 
     		writer.addDocument(fconfig.build(taxoWriter, doc))
-
-        // Se guardan los cambios y se cierran los encargados de la indexación
-
-        writer.commit();
-    		writer.close();
-    		taxoWriter.close();
       }
     }
 
+    // Se guardan los cambios y se cierran los encargados de la indexación
 
+    writer.commit();
+    writer.close();
+    taxoWriter.close();
   }
 }

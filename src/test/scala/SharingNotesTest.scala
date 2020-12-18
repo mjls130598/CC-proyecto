@@ -123,7 +123,7 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se eliminan los apuntes correctamente
 
-  var PGPI_T2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
+  val PGPI_T2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
     "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas(PGPI_ID))
 
   val apunteBorrado = admin.borrarApunte(PGPI_T2)
@@ -137,16 +137,16 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se eliminan todos los comentarios sobre un apunte
 
-  PGPI_T2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
+  val PGPI_T2_2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
     "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas(PGPI_ID))
 
-  val PGPIT2_C1 = usuario.aniadirComentario("Este es el cuarto comentario realizado", SharingNotes.getApuntes(PGPI_T2))
+  val PGPIT2_C1 = usuario.aniadirComentario("Este es el cuarto comentario realizado", SharingNotes.getApuntes(PGPI_T2_2))
 
-  admin.borrarApunte(PGPI_T2)
+  admin.borrarApunte(PGPI_T2_2)
 
   test("Borrar apunte y sus correspondientes comentarios"){
-    assert(!SharingNotes.getApuntes.keys.exists(_ == PGPI_T2))
-    assert(!SharingNotes.getComentarios.values.exists(_.apunte.identificador == PGPI_T2))
+    assert(!SharingNotes.getApuntes.keys.exists(_ == PGPI_T2_2))
+    assert(!SharingNotes.getComentarios.values.exists(_.apunte.identificador == PGPI_T2_2))
     info("No está en el sistema el apunte ni los comentarios realizados sobre él")
   }
 
@@ -160,7 +160,7 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha eliminado una asignatura correctamente
 
-  var TID_ID = admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
+  val TID_ID = admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
 
   val asignaturaBorrada = admin.borrarAsignatura(TID_ID)
 
@@ -174,22 +174,22 @@ class SharingNotesTest extends FunSuite {
   // Comprueba que se ha eliminado los apuntes de una asignatura cuando
   // se elimina ésta
 
-  TID_ID = admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
+  val TID_ID2 = admin.aniadirAsignatura("TID", "1º", "MUII", "Granada")
 
   val TID_T1 = usuario.aniadirApunte("./documentos_prueba/Intro_TID.pdf",
-    "Tema 1 Introducción", SharingNotes.getAsignaturas(TID_ID))
+    "Tema 1 Introducción", SharingNotes.getAsignaturas(TID_ID2))
   val TID_T2 = usuario.aniadirApunte("./documentos_prueba/PreparacionDatos.pdf",
-    "Tema 2 Preparación de datos", SharingNotes.getAsignaturas(TID_ID))
+    "Tema 2 Preparación de datos", SharingNotes.getAsignaturas(TID_ID2))
 
   val TIDT1_C1 = usuario.aniadirComentario("Este es el cuarto comentario realizado",
     SharingNotes.getApuntes(TID_T1))
 
-  admin.borrarAsignatura(TID_ID)
+  admin.borrarAsignatura(TID_ID2)
 
   test("Asignatura, apuntes y comentarios borrados correctamente"){
-    assert(!SharingNotes.getAsignaturas.keys.exists(_ == TID_ID))
-    assert(!SharingNotes.getApuntes.values.exists(_.asignatura.identificador == TID_ID))
-    assert(!SharingNotes.getComentarios.values.exists(_.apunte.asignatura.identificador == TID_ID))
+    assert(!SharingNotes.getAsignaturas.keys.exists(_ == TID_ID2))
+    assert(!SharingNotes.getApuntes.values.exists(_.asignatura.identificador == TID_ID2))
+    assert(!SharingNotes.getComentarios.values.exists(_.apunte.asignatura.identificador == TID_ID2))
     info("No se encuentra la asignatura, ni los apuntes sobre una asignatura ni " +
       "los comentarios realizados sobre cada un de los apuntes anteriores en el sistema")
   }
