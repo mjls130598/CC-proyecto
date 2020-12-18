@@ -42,4 +42,4 @@
 
     * Abrir y leer PDFs. Utilizando la biblioteca de *Tika*, se obtuvo el texto que contiene un PDF. Se puede ver los cambios realizados en este [enlace](https://github.com/mjls130598/SharingNotes/issues/52).
 
-    * Indexar los PDFs guardados. Para indexar los documentos se ha tenido que instalar como una dependencia la biblioteca *Lucene 8.7.0*. Antes de indexar, se ha configurado el índice que se va a crear indicando los analizadores que se va a usar, la medida de similitud, qué campos se van a indexar y qué campos van a ser las facetas (filtros).
+    * Indexar los PDFs guardados. Para indexar los documentos se ha tenido que instalar como una dependencia la biblioteca *Lucene 8.7.0*. Antes de indexar, se ha configurado el índice que se va a crear indicando los analizadores que se va a usar, la medida de similitud, qué campos se van a indexar y qué campos van a ser las facetas (filtros). Se encuentra en el issue [66](https://github.com/mjls130598/SharingNotes/issues/66).
