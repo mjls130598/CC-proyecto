@@ -4,6 +4,10 @@ usuario: src/main/scala/SharingNotes/Usuario.scala
 asignatura: src/main/scala/SharingNotes/Asignatura.scala
 comentario: src/main/scala/SharingNotes/Comentario.scala
 apunte: src/main/scala/SharingNotes/Apunte.scala
+extrae_texto: src/main/scala/Buscador/ExtraeTexto.scala
+indice: src/main/scala/Buscador/Indice.scala
 main: src/main/scala/SharingNotes/Principal.scala
-test: src/test/scala/SharingNotesTest.scala
+test:
+  - src/test/scala/SharingNotesTest.scala
+  - src/test/scala/BuscadorTest.scala
 fichero_tareas: build.sbt

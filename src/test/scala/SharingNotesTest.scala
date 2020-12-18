@@ -1,7 +1,6 @@
 import SharingNotes._
 import org.scalatest.FunSuite
 import java.io.File
-import Buscador._
 
 class SharingNotesTest extends FunSuite {
 
@@ -193,9 +192,5 @@ class SharingNotesTest extends FunSuite {
     assert(!SharingNotes.getComentarios.values.exists(_.apunte.asignatura.identificador == TID_ID))
     info("No se encuentra la asignatura, ni los apuntes sobre una asignatura ni " +
       "los comentarios realizados sobre cada un de los apuntes anteriores en el sistema")
-  }
-
-  test("Obtener el texto del PDF Intro_TID.pdf"){
-    assert(ExtraeTexto.textoPDF("./documentos_prueba/Intro_TID.pdf").length > 0)
   }
 }
