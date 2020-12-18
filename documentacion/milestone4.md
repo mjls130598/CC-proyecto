@@ -58,7 +58,7 @@ De las tres comentadas, se decidió realizar con *Circle-CI*.
 
 Primero se autoriza a *Circle-CI* acceder a nuestra cuenta de GitHub como se realiza en la siguiente imagen:
 
-![Autorización a Circle-CI](./imagenes/milestone3/autorizacion-circle.png "Autorización a Circle-CI")
+![Autorización a Circle-CI](./imagenes/milestone4/autorizacion-circle.png "Autorización a Circle-CI")
 
 Una vez autorizado, se crea una carpeta oculta llamada *.circleci* y dentro de ella debe estar el archivo *config.yml* que contiene la configuración para este sistema de integración continua utilizando *Docker*, en este caso:
 
