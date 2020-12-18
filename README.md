@@ -39,7 +39,7 @@ Si se prefiere ejecutar con el gestor de tareas *SBT* en vez de con *Docker*, se
 ## Milestone 4
 
 * [Travis](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone4.md#travis-ci)
-* [Otro sistema de integración continua](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone4.md#avance-del-proyecto)
+* [Otro sistema de integración continua](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone4.md#otros-sistemas-de-integraci%C3%B3n-continua)
 * [Avance del proyecto.](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone4.md#avance-del-proyecto)
 
 ## Documentaciones
