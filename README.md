@@ -22,20 +22,24 @@ Por lo tanto, este proyecto se basa en crear una plataforma donde cualquier alum
 2. Entrar al directorio del proyecto:
   `cd SharingNotes`
 
-2. Construir el contenedor:
+3. Construir el contenedor:
   `docker build -t mjls130598/sharingnotes .`
 
-3. Ejecutar los test del programa que se encuentran dentro del contenedor:
+4. Ejecutar los test del programa que se encuentran dentro del contenedor:
   `docker run --rm mjls130598/sharingnotes`
+
+Si se prefiere ejecutar con el gestor de tareas *SBT* en vez de con *Docker*, se realizan los dos primeros pasos anteriores y, a continuación:
+
+3. Ejecutar el proyecto:
+  `sbt run`
+
+4. Ejecutar los distintos tests de este repositorio:
+  `sbt test`
+
+## Milestone 4
+
+El archivo con las explicaciones realizadas para este milestone se encuentra en este [enlace](https://github.com/mjls130598/SharingNotes/tree/master/documentacion/milestone4.md).
 
 ## Documentaciones
 
-La documentación de este proyecto se encuentra en varios archivos dentro del [directorio documentación](https://github.com/mjls130598/SharingNotes/tree/master/documentacion).
-
-La información que estaba escrita en este mismo fichero para el milestone 0 se encuentra en el siguiente [archivo](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone0.md).
-
-La explicación de las actividades realizadas para el milestone 1 está en [milestone1.md](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone1.md).
-
-La documentación sobre las tareas realizadas en el milestone 2 se encuentra dentro del directorio [documentación](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone2.md).
-
-Con respecto a la explicación de las distintas tareas ejecutadas en el milestone 3 se encuentra en este [archivo](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone3.md) dentro del directorio de documentación.
+La documentación de los distintos milestones de este proyecto se encuentra en varios archivos dentro del [directorio documentación](https://github.com/mjls130598/SharingNotes/tree/master/documentacion).
