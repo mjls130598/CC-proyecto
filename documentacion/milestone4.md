@@ -58,6 +58,8 @@ De las tres comentadas, se decidió realizar con *Circle-CI*.
 
 Primero se autoriza a *Circle-CI* acceder a nuestra cuenta de GitHub como se realiza en la siguiente imagen:
 
+![Autorización a Circle-CI](./imagenes/milestone3/autorizacion-circle.png "Autorización a Circle-CI")
+
 Una vez autorizado, se crea una carpeta oculta llamada *.circleci* y dentro de ella debe estar el archivo *config.yml* que contiene la configuración para este sistema de integración continua utilizando *Docker*, en este caso:
 
 ```
@@ -76,6 +78,12 @@ jobs:
 ```
 
 La información sacada para realizar esta configuración es de una de las páginas oficiales de [*Circle-CI*](https://circleci.com/docs/2.0/building-docker-images/).
+
+Por defecto, *Circle-CI* se ejecuta cuando haya modificaciones en el repositorio de GitHub.
+
+Se puede ver que se realiza correctamente cuando hay un tic verde al lado del último commit y, si se pincha sobre él, debería salir una pestaña como la de la siguiente imagen:
+
+![Tests superados](./imagenes/milestone4/test-pasados.png "Tests superados")
 
 ## Avance del proyecto
 
