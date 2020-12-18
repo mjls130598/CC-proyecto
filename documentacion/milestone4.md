@@ -1,5 +1,42 @@
 # Actividades relacionadas con Milestone 4
 
+Todas las tareas realizadas para este milestone se encuentran en [este enlace](https://github.com/mjls130598/SharingNotes/milestone/11) que dirige a los distintos issues creados.
+
+## Travis CI
+
+Para darse en alta en *Travis* con la cuenta de GitHub y activar este repositorio dentro de él, se ha realizado de la misma manera que en uno de los [ejercicios de integración continua](https://github.com/mjls130598/CC-ejercicios/blob/master/ej_tema2.md#ejercicio-5). La única diferencia es que se realiza con travis.com en vez de travis.org.
+
+A continuación, se crea el fichero *.travis.yml* para que comience a ejecutar los test, que tiene la siguiente estructura:
+
+```
+# Se dice que no trabaje con el superusuario
+sudo:false
+
+# Se indica en lenguaje que se va a utilizar
+language: scala
+
+# Se indican las versiones que se quieren comprobar
+scala:
+  - 2.12.12
+  - 2.10.7
+
+# Se dicen la versión de Java que debe utilizar
+jdk:
+  - openjdk11
+
+# Antes de ejecutar los test, que compile el proyecto
+before-script: sbt ++$TRAVIS_SCALA_VERSION compile test:compile
+
+# Ejecute los tests
+script:
+```
+
+Se utiliza las versiones 2.12.12 y 2.10.7 de Scala porque son dos versiones con las que la biblioteca *EmailAddress* (la que se encarga de comprobar si un string dado tiene la estructura de un correo electrónico) puede trabajar. Nos centramos en la biblioteca anterior puesto que es la única que aún no es compatible con la última versión de *Scala*.
+
+En cuanto al apartado *script*, no se le dice nada porque por defecto hace sbt ++$TRAVIS_SCALA_VERSION test.
+
+La información sacada para ejecutar *Travis* con el gestor de tareas *SBT* proviene de la página web oficial de [*Travis*](https://docs.travis-ci.com/user/languages/scala/) que indica como debería hacerse y algunos ejemplos al final de la página.
+
 ## Avance del proyecto
 
 * Antes de seguir con las actividades relacionadas con el milestone 4, se arreglaron algunos aspectos de los dos últimos milestones anteriores. Los issues correspondientes a estos arreglos se encuentran en el milestone ["Arreglos del milestone 2 y 3"](https://github.com/mjls130598/SharingNotes/milestone/12?closed=1) que se realizaron:

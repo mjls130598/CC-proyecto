@@ -1,6 +1,6 @@
 name := "SharingNotes"
 scalaVersion := "2.12.12"
-libraryDependencies += "org.scalatest" % "scalatest_2.12" % "3.1.1" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % Test
 libraryDependencies += "org.apache.tika" % "tika-core" % "1.24"
 libraryDependencies += "org.apache.tika" % "tika-parsers" % "1.24"
 libraryDependencies += "org.apache.hadoop" % "hadoop-common" % "2.6.0"

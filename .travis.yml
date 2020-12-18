@@ -1,0 +1,14 @@
+sudo: false
+
+language: scala
+scala:
+  - 2.12.12
+  - 2.10.7
+
+jdk:
+  - openjdk8
+  - openjdk11
+
+before-script: sbt ++$TRAVIS_SCALA_VERSION compile test:compile
+
+script:
