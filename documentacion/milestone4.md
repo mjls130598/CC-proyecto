@@ -42,6 +42,41 @@ Cuando se intenta ejecutar *Travis* con esta versión de [*build.sbt*](https://g
 
 Por lo que se añade *crossScalaVersions* para que pueda ejecutar en ambas versiones dentro de *build.sbt* de la siguiente manera: `crossScalaVersions := List("2.12.12", "2.11.12")`. Esto se ha sacado de la página oficial de [*SBT*](https://www.scala-sbt.org/1.x/docs/Cross-Build.html).
 
+## Otros sistemas de integración continua
+
+A continuación, se va a realizar integración continua con el contenedor *Docker* creado en el milestone anterior. Para ello, primero elegimos el sistema con el que se va a realizas.
+
+Algunos de los sistemas de integración continua que hay, además de *Travis*, son los siguientes:
+
+* *Jenkins*: Conocido por ser el más seguro y elaborado, aunque no trabaja con los workflow de Docker. Puede trabajar con cualquier tipo de repositorios, e incluso, sin asociación a un repositorio.
+
+* *Circle-CI*: abierto y ligero. Como Travis, funciona atado a un repositorio de git (ya sea GitHub, Gitlab u otro gestor de versiones) y la herramienta de configuración se encuentra en formato yaml.
+
+* *Shippable*: es una plataforma de automaticación DevOps que incluye CI. Ayuda a automatizar implementaciones en entornos sucesivos, a administrar lanzamientos con versiones semánticas y puertas de aprobación, a automatizar el aprovisionamiento de infraestructura, a ver y administrar pipelines en toda su organización y a realizar una serie de otras actividades de DevOps.
+
+De las tres comentadas, se decidió realizar con *Circle-CI*.
+
+Primero se autoriza a *Circle-CI* acceder a nuestra cuenta de GitHub como se realiza en la siguiente imagen:
+
+Una vez autorizado, se crea una carpeta oculta llamada *.circleci* y dentro de ella debe estar el archivo *config.yml* que contiene la configuración para este sistema de integración continua utilizando *Docker*, en este caso:
+
+```
+version: 2
+jobs:
+ build:
+   machine: true
+   steps:
+     - checkout
+
+     # Crea el contenedor      
+     - run: docker build -t mjls130598/sharingnotes .
+
+     # Ejecuta el contenedor
+     - run: docker run --rm mjls130598/sharingnotes
+```
+
+La información sacada para realizar esta configuración es de una de las páginas oficiales de [*Circle-CI*](https://circleci.com/docs/2.0/building-docker-images/).
+
 ## Avance del proyecto
 
 * Antes de seguir con las actividades relacionadas con el milestone 4, se arreglaron algunos aspectos de los dos últimos milestones anteriores. Los issues correspondientes a estos arreglos se encuentran en el milestone ["Arreglos del milestone 2 y 3"](https://github.com/mjls130598/SharingNotes/milestone/12?closed=1) que se realizaron:

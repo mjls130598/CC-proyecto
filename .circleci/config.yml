@@ -1,0 +1,8 @@
+version: 2
+jobs:
+ build:
+   machine: true
+   steps:
+     - checkout
+     - run: docker build -t mjls130598/sharingnotes .
+     - run: docker run --rm mjls130598/sharingnotes
