@@ -9,5 +9,3 @@ jdk:
   - openjdk11
 
 before-script: sbt ++$TRAVIS_SCALA_VERSION compile test:compile
-
-script:
