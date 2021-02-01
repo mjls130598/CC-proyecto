@@ -21,6 +21,8 @@ import org.apache.lucene.index.IndexWriterConfig
 import java.nio.file.Paths
 import org.apache.lucene.analysis.miscellaneous.PerFieldAnalyzerWrapper
 
+import org.slf4j.LoggerFactory
+
 class Indice {
 
   // CONFIGURACIÓN DEL ÍNDICE
@@ -66,6 +68,10 @@ class Indice {
   val taxoWriter = new DirectoryTaxonomyWriter (taxoDir)
   var fconfig : FacetsConfig = new FacetsConfig()
 
+  // Variable para poder escribir los mensajes de log
+
+  private val logger = LoggerFactory.getLogger(getClass.getSimpleName)
+
   // Indexación de documentos
 
   def indexarDocumentos : Unit = {
@@ -100,6 +106,8 @@ class Indice {
     		writer.addDocument(fconfig.build(taxoWriter, doc))
       }
     }
+
+    logger.info("Creado índice y facetas")
 
     // Se guardan los cambios y se cierran los encargados de la indexación
 
