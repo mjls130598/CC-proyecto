@@ -15,6 +15,8 @@ import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.Path
 import uk.gov.hmrc.emailaddress._
 
+import org.slf4j.LoggerFactory
+
 class SharingNotes{
 
   var asignaturas = new HashMap[String, Asignatura]()
@@ -41,11 +43,15 @@ object SharingNotes{
 
   private val sharing = new SharingNotes()
 
+  // Variable para poder escribir los mensajes de log
+
+  private val logger = LoggerFactory.getLogger(getClass.getSimpleName)
+
   // Variables para controlar los identificadores
 
-  val keyAsignatura = "ASIG"
-  var keyApunte = "APUN"
-  var keyComentario = "COM"
+  private val keyAsignatura = "ASIG"
+  private val keyApunte = "APUN"
+  private val keyComentario = "COM"
 
   // Método para generar identificadores únicos
 
@@ -66,9 +72,12 @@ object SharingNotes{
     if (!sharing.usuarios.keys.exists(_ == usuario.correo) && EmailAddress.isValid(usuario.correo)){
 
       sharing.usuarios(usuario.correo) = usuario
+      logger.info("Usuario creado y añadido al sistema")
+
       return true
     }
 
+    logger.error("Dirección de correo incorrecta o ya utilizada")
     throw new Exception("Dirección de correo incorrecta o ya utilizada")
   }
 
@@ -90,6 +99,8 @@ object SharingNotes{
     val asignatura = new Asignatura(id, nombre, curso, carrera, universidad)
     sharing.asignaturas(id) = asignatura
 
+    logger.info("Asignatura creada e insertada en el sistema")
+
     return id
   }
 
@@ -108,6 +119,8 @@ object SharingNotes{
 
     // Por último, se borra la asignatura
     sharing.asignaturas -= id
+
+    logger.info("Borrada la asignatura {}", id)
 
     return true
   }
@@ -161,12 +174,18 @@ object SharingNotes{
         val apunte = new Apunte (id, ubicacion, nom, asig, us)
         sharing.apuntes(id) = apunte
 
+        logger.info("Apunte guardado correctamente")
+
         return id
       }
 
+      logger.error("El archivo {} no es un PDF", url)
+      
       throw new Exception("El archivo dado no es un PDF")
 
     }
+
+    logger.error("No existe la asignatura {} en el sistema", asig.identificador)
 
     throw new Exception("No existe esa asignatura en el sistema")
   }
@@ -188,6 +207,8 @@ object SharingNotes{
     // Por último se borra el apunte
 
     sharing.apuntes -= id
+
+    logger.info("Borrado apunte {}", id)
 
     return true
   }
@@ -222,8 +243,12 @@ object SharingNotes{
       val comentario = new Comentario(id, coment, usuario, apunte)
       sharing.comentarios(id) = comentario
 
+      logger.info("Comentario guardado correctamente en el sistema")
+
       return id
     }
+
+    logger.error("Apunte {} no existe dentro del sistema", apunte.identificador)
 
     throw new Exception("El apunte sobre el que se quiere comentar no existe")
   }
@@ -233,6 +258,8 @@ object SharingNotes{
   def borrarComentario(id: String): Boolean = {
 
     sharing.comentarios -= id
+
+    logger.info("Borrado correctamente el comentario {}", id)
 
     return true
   }

@@ -18,3 +18,5 @@ libraryDependencies += "uk.gov.hmrc" %% "emailaddress" % "3.5.0"
 libraryDependencies += "org.apache.lucene" % "lucene-core" % "8.7.0"
 libraryDependencies += "org.apache.lucene" % "lucene-analyzers-common" % "8.7.0"
 libraryDependencies += "org.apache.lucene" % "lucene-facet" % "8.7.0"
+
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3"  

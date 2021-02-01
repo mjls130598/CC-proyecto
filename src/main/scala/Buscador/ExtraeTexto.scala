@@ -16,8 +16,8 @@ object ExtraeTexto{
     val handler: ContentHandler = new BodyContentHandler()
     val metadata: Metadata = new Metadata()
     val context: ParseContext = new ParseContext()
-    metadata.set("org.apache.tika.parser.pdf.sortbyposition", "true");
-    metadata.set("org.apache.tika.parser.pdf.enableAutoSpace", "true");
+    metadata.set("org.apache.tika.parser.pdf.sortbyposition", "true")
+    metadata.set("org.apache.tika.parser.pdf.enableAutoSpace", "true")
     pdf.parse(stream, handler, metadata, context)
 
     stream.close()
