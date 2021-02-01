@@ -1,6 +1,6 @@
 # Actividades relacionadas con el Milestone 5
 
-# Biblioteca Log
+## Biblioteca Log
 
 Para crear un documento en el que se reflejen las acciones realizadas sobre esta aplicación y los posibles errores que haya podido ocurrir sobre ella.
 
