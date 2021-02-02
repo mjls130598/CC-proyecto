@@ -17,3 +17,15 @@ Nos podemos encontrar con las siguientes bibliotecas que pueden utilizar la inte
 * [*Log4j2*](https://logging.apache.org/log4j/2.x/): su objetivo es mejorar *Log4J*, incluyendo algunas de las mejoras incluidas en *Logback* y evitando problemas de *Log4j* y *Logback*. También permite la evaluación diferida de declaraciones de registro basadas en expresiones lambda, ofrece registradores asíncronos para sistemas de baja latencia y proporciona un modo libre de basura para evitar cualquier latencia causada por las operaciones del recolector de basura. Todas estas características hacen que sea el más avanzado y el más rápido de los anteriores marcos de registro. Por problemas diversos a la hora de emplear esta biblioteca, no se ha podido subir una versión con ella.
 
 Se ha preferido seguir utilizando *Logback* al ser más sencillo de utilizarlo.
+
+## Configuración distribuida
+
+Como se ha podido ver en la teoría de *Configuración de microservicios*, hay varias opciones para realizar la configuración distribuida:
+
+* *etcd*
+* *Zookeper*
+* *Consul*
+
+Se puede ver en este archivo donde se han realizado los [ejercicios relacionados con este tema](https://github.com/mjls130598/CC-ejercicios/blob/master/ej_tema7.md) en los que se han utilizado la primera y última configuración con el lenguaje de programación que se está construyendo el proyecto.
+
+Por la simplicidad a la hora de utilizarla en cualquier proyecto *Scala*, se ha decidido utilizar *etcd* usando la biblioteca [*etcd4s*](https://github.com/mingchuno/etcd4s).
