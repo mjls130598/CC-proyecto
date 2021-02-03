@@ -1,4 +1,4 @@
-package SharingNotes
+package models.SharingNotes
 
 import scala.collection.mutable.HashMap
 import java.io.File
@@ -17,7 +17,7 @@ import uk.gov.hmrc.emailaddress._
 
 import org.slf4j.LoggerFactory
 
-class SharingNotes{
+class SharingNotes(){
 
   var asignaturas = new HashMap[String, Asignatura]()
   var usuarios = new HashMap[String, Usuario]()
@@ -26,6 +26,7 @@ class SharingNotes{
 }
 
 // Objeto que genera una cadena aleatoria
+
 object RANStream {
   val randomAlphaNumIterator = Random.alphanumeric.iterator
 
@@ -62,6 +63,30 @@ object SharingNotes{
 
     return s
   }
+
+  // Datos de ejemplo para poder trabajar con ellos a través de la API
+
+  val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
+  val admin = new Administrador()
+
+  aniadirUsuario(usuario)
+  aniadirUsuario(admin)
+
+  val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
+
+  val PGPI_T1 = usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+    "Tema 1: Definiciones", getAsignaturas(PGPI_ID))
+
+  usuario.aniadirComentario("Esto es un comentario cualquiera", getApuntes(PGPI_T1))
+  
+  usuario.aniadirComentario("Esto es un comentario de cualquier persona", getApuntes(PGPI_T1))
+  usuario.aniadirComentario("Esto es otro comentario cualquiera", getApuntes(PGPI_T1))
+
+  usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+    "Tema 1: Definiciones", getAsignaturas(PGPI_ID))
+  usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
+    "Tema 2: Preparación de proyectos", getAsignaturas(PGPI_ID))
+
 
   // Método para añadir nuevos usuarios al programa
 

@@ -1,4 +1,4 @@
-package SharingNotes
+package models.SharingNotes
 
 object Principal{
 

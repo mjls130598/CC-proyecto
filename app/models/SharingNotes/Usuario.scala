@@ -1,6 +1,8 @@
-package SharingNotes
+package models.SharingNotes
 
-class Usuario(nom: String, email: String, car: String, uni: String){
+import play.api.libs.json.Json
+
+case class Usuario(nom: String, email: String, car: String, uni: String){
 
   val nombre: String = nom
   val correo: String = email
@@ -31,4 +33,9 @@ class Usuario(nom: String, email: String, car: String, uni: String){
   def buscarComentarios(apunte : Apunte): List[Comentario] =
     SharingNotes.buscarComentarios(apunte)
 
+}
+
+object Usuario {
+
+  implicit val usuarioFormat = Json.format[Usuario]
 }

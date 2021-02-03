@@ -1,4 +1,4 @@
-package SharingNotes
+package models.SharingNotes
 
 class Administrador extends Usuario("Administrador", "admin@admin.com", "x", "x") {
 

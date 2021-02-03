@@ -1,4 +1,4 @@
-package Buscador
+package models.Buscador
 
 import java.io._
 import org.apache.tika.parser.pdf.PDFParser

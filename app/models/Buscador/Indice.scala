@@ -1,6 +1,6 @@
-package Buscador
+package models.Buscador
 
-import SharingNotes._
+import models.SharingNotes._
 import java.util._
 import org.apache.lucene.index.IndexWriter
 import org.apache.lucene.facet.taxonomy.directory.DirectoryTaxonomyWriter

@@ -1,5 +1,5 @@
 import org.scalatest.FunSuite
-import Buscador._
+import models.Buscador._
 import java.io.File
 
 class BuscadorTest extends FunSuite {

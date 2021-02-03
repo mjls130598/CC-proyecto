@@ -6,6 +6,15 @@ En estos momentos, al ser la gran mayoría de las clases virtuales, es difícil 
 
 Por lo tanto, este proyecto se basa en crear una plataforma donde cualquier alumno pueda subir sus apuntes para que los vean el resto, visualizar aquellos que necesite, buscar aquel apunte que necesita acceder, compartirlo por alguna red social o realizar comentarios sobre un apunte en concreto.
 
+## Milestone 5
+
+Las rubricas realizadas para este milestone se encuentra documentadas en los siguientes enlaces:
+
+* [Biblioteca de logs](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#biblioteca-log).
+* [Configuración distribuida](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#configuraci%C3%B3n-distribuida).
+* [API](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#api).
+* [Microservicio](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#framework-microservicio).
+
 ## Herramientas y tecnologías escogidas
 
 * La arquitectura de este proyecto está basada en una arquitectura microservicios.
@@ -13,6 +22,7 @@ Por lo tanto, este proyecto se basa en crear una plataforma donde cualquier alum
 * El gestor de tareas y el marco de prueba que se va a utilizar es *sbt (Scala Build Tool)*.
 * La biblioteca que se va a usar para realizar los test es la bibliteca *ScalaTest*.
 * Para crear un contenedor se ha elegido utilizar *Docker* con su correspondiente [*Dockerfile*](https://github.com/mjls130598/SharingNotes/blob/master/Dockerfile) con *Alpine* como imagen base.
+* El framework que se encarga del manejo de los distintos microservicios es *Play Framework*.
 
 ## Poner en marcha el proyecto
 
@@ -35,12 +45,6 @@ Si se prefiere ejecutar con el gestor de tareas *SBT* en vez de con *Docker*, se
 
 4. Ejecutar los distintos tests de este repositorio:
   `sbt test`
-
-## Milestone 4
-
-* [Travis](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone4.md#travis-ci)
-* [Otro sistema de integración continua](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone4.md#otros-sistemas-de-integraci%C3%B3n-continua)
-* [Avance del proyecto.](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone4.md#avance-del-proyecto)
 
 ## Documentaciones
 

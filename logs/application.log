@@ -1,0 +1,18 @@
+2021-02-03 20:44:40 [34mINFO [0;39m [36mplay.api.http.EnabledFilters[0;39m [35m[0;39m Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+
+2021-02-03 20:44:40 [34mINFO [0;39m [36mplay.api.Play[0;39m [35m[0;39m Application started (Dev) (no global state)
+2021-02-03 20:44:41 [31mWARN [0;39m [36morg.apache.tika.parsers.PDFParser[0;39m [35m[0;39m J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2021-02-03 20:44:41 [31mWARN [0;39m [36morg.apache.tika.parser.SQLite3Parser[0;39m [35m[0;39m org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2021-02-03 20:44:42 [31mWARN [0;39m [36mo.a.hadoop.util.NativeCodeLoader[0;39m [35m[0;39m Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2021-02-03 20:44:55 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Stopping Akka HTTP server...
+2021-02-03 20:44:55 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2021-02-03 20:44:55 [34mINFO [0;39m [36mplay.core.server.AkkaHttpServer[0;39m [35m[0;39m Running provided shutdown stop hooks
