@@ -51,7 +51,11 @@ Después de realizar esto, hubo problemas con las versiones de las dependencias 
 
 ## API
 
+Las siguientes rutas que se han creado son las siguientes:
 
+* **Apunte**:
+
+    * *GET /apunte*: se devolverán todos los apuntes guardados en el sistema o aquellos que cumplan con los filtros o consultas dadas. Corresponde a las historias de usuario [HU11](https://github.com/mjls130598/SharingNotes/issues/30) y [HU4](https://github.com/mjls130598/SharingNotes/issues/14).
 
 ## Biblioteca Log
 

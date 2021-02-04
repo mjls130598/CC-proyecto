@@ -54,6 +54,27 @@ object SharingNotes{
   private val keyApunte = "APUN"
   private val keyComentario = "COM"
 
+  def valoresIniciales: Unit = {
+    val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
+    val admin = new Administrador()
+
+    aniadirUsuario(usuario)
+    aniadirUsuario(admin)
+
+    val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
+
+    val PGPI_T1 = usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+      "Tema 1: Definiciones", getAsignaturas(PGPI_ID))
+
+    val PGPIT1_C2 = usuario.aniadirComentario("Esto es un comentario cualquiera", getApuntes(PGPI_T1))
+    val PGPIT1_C3 = usuario.aniadirComentario("Esto es otro comentario cualquiera", getApuntes(PGPI_T1))
+
+    usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+      "Tema 1: Definiciones", getAsignaturas(PGPI_ID))
+    usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
+      "Tema 2: Preparación de proyectos", getAsignaturas(PGPI_ID))
+  }
+
   // Método para generar identificadores únicos
 
   private def generateUiid(key: String): String = {
