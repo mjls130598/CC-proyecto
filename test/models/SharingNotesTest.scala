@@ -9,6 +9,9 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha insertado los dos usuarios anteriores al sistema
 
+  SharingNotes.aniadirUsuario(usuario)
+  SharingNotes.aniadirUsuario(admin)
+
   test("Nuevos usuarios") {
     assertResult(2){
       SharingNotes.getUsuarios.size
@@ -35,14 +38,19 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido una asignatura correctamente
 
+  val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
+
   test("Nueva asignatura"){
-    assertResult(3){
+    assertResult(1){
       SharingNotes.getAsignaturas.size
     }
     info("La nueva asignatura se ha insertado correctamente")
   }
 
   // Comprueba que se ha añadido un nuevo apunte
+
+  val PGPI_T1 = usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+    "Tema 1: Definiciones", SharingNotes.getAsignaturas(PGPI_ID))
 
   test("Nuevo apunte"){
     assertResult(1){
@@ -56,7 +64,7 @@ class SharingNotesTest extends FunSuite {
   test("Insertar apunte con un formato distinto a PDF"){
     assertThrows[java.lang.Exception]{
       usuario.aniadirApunte("./documentos_prueba/plantilla.tex",
-        "Práctica 1", SharingNotes.getAsignaturas.last._2)
+        "Práctica 1", SharingNotes.getAsignaturas(PGPI_ID))
     }
     info("No se ha insertado, sólo se añaden PDFs")
   }
@@ -73,11 +81,13 @@ class SharingNotesTest extends FunSuite {
 
   // Comprueba que se ha añadido un comentario correctamente
 
+  val PGPIT1_C1 = usuario.aniadirComentario("Esto es un comentario cualquiera", SharingNotes.getApuntes(PGPI_T1))
+
   test("Nuevo comentario"){
-    assertResult(4){
+    assertResult(1){
       SharingNotes.getComentarios.size
     }
-    assert(SharingNotes.getComentarios.values.exists(_.apunte == SharingNotes.getApuntes.last._2))
+    assert(SharingNotes.getComentarios.values.exists(_.apunte == SharingNotes.getApuntes(PGPI_T1)))
     info("El nuevo comentario se ha insertado correctamente")
   }
 
@@ -86,14 +96,14 @@ class SharingNotesTest extends FunSuite {
   test("Nuevo comentario sobre un apunte desconocido"){
     assertThrows[java.lang.Exception]{
       SharingNotes.aniadirComentario("Esto es un comentario cualquiera",
-        new Apunte ("1234", "aqui", "Algún apunte", SharingNotes.getAsignaturas.last._2, usuario),
+        new Apunte ("1234", "aqui", "Algún apunte", SharingNotes.getAsignaturas(PGPI_ID), usuario),
         usuario)
     }
   }
 
   // Comprueba que se ha borrado el comentario anteriormente insertado correctamente
 
-  val PGPIT1_C2 = usuario.aniadirComentario("Esto es el tercer comentario", SharingNotes.getApuntes.last._2)
+  val PGPIT1_C2 = usuario.aniadirComentario("Esto es el tercer comentario", SharingNotes.getApuntes(PGPI_T1))
 
   val comentarioBorrado = admin.borrarComentario(PGPIT1_C2)
 
@@ -107,30 +117,30 @@ class SharingNotesTest extends FunSuite {
 
   test("Búsqueda de los comentarios de un apunte"){
     assertResult(1){
-      usuario.buscarComentarios(SharingNotes.getApuntes.last._2).size
+      usuario.buscarComentarios(SharingNotes.getApuntes(PGPI_T1)).size
     }
   }
 
   // Comprueba que se eliminan los apuntes correctamente
 
   val PGPI_T2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
-    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas.last._2)
+    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas(PGPI_ID))
 
   val apunteBorrado = admin.borrarApunte(PGPI_T2)
 
   test("Borrar un apunte"){
     assert(apunteBorrado)
     assert(!SharingNotes.getApuntes.keys.exists(_ == PGPI_T2))
-    assert(!new File("./documentos/" + SharingNotes.getAsignaturas.last._1 + "/Tema2_Preparacióndeproyectos.pdf").exists)
+    assert(!new File("./documentos/" + PGPI_ID + "/Tema2_Preparacióndeproyectos.pdf").exists)
     info("El apunte se ha borrado correctamente")
   }
 
   // Comprueba que se eliminan todos los comentarios sobre un apunte
 
   val PGPI_T2_2 = usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
-    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas.last._2)
+    "Tema 2: Preparación de proyectos", SharingNotes.getAsignaturas(PGPI_ID))
 
-  val PGPIT2_C1 = usuario.aniadirComentario("Este es el cuarto comentario realizado", SharingNotes.getApuntes.last._2)
+  val PGPIT2_C1 = usuario.aniadirComentario("Este es el cuarto comentario realizado", SharingNotes.getApuntes(PGPI_T2_2))
 
   admin.borrarApunte(PGPI_T2_2)
 
@@ -143,8 +153,8 @@ class SharingNotesTest extends FunSuite {
   // Comprueba que se encuentran los apuntes de una asignatura
 
   test("Búsqueda de los apuntes de una asignatura"){
-    assertResult(3){
-      usuario.buscarApuntes(SharingNotes.getAsignaturas.last._2).size
+    assertResult(1){
+      usuario.buscarApuntes(SharingNotes.getAsignaturas(PGPI_ID)).size
     }
   }
 

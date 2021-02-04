@@ -6,7 +6,7 @@ comentario: app/models/SharingNotes/Comentario.scala
 apunte: app/models/SharingNotes/Apunte.scala
 extrae_texto: app/models/Buscador/ExtraeTexto.scala
 indice: app/models/Buscador/Indice.scala
-main: app/models//SharingNotes/Principal.scala
+main: app/models/SharingNotes/Principal.scala
 test:
   - test/models/SharingNotesTest.scala
   - test/models/BuscadorTest.scala

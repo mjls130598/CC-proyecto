@@ -45,6 +45,10 @@ Para *Scala* se ofrecen múltiples frameworks para construir una web API. Alguno
 
 Se ha decidido utilizar **Play Framework** porque parece más sencillo de manejar en este proyecto, aunque haya que cambiar la estructura del proyecto para adaptarse a este framework. Además, tiene implementado la configuración de logs con *logback*.
 
+Cuando se subió la nueva estructura del proyecto a GitHub, ocurrieron problemas con este framework en *Travis* con que no sabía lo que era *PlayScala*. Por lo que a partir de este momento se decidió subir la carpeta *project* puesto que contiene información de configuración de los distintos plugins que debe manejar *sbt*.
+
+Después de realizar esto, hubo problemas con las versiones de las dependencias y de los plugins dependiendo de la versión de *Scala* utilizada. Por lo que se modificó plugins.sbt y build.sbt con las versiones en las que ambas versiones funcionara correctamente.
+
 ## API
 
 

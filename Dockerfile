@@ -15,7 +15,9 @@ RUN \
 
 WORKDIR app/test
 
-COPY src/ ./src
+COPY app/ ./app
+COPY test/ ./test
+COPY project/ ./project
 COPY build.sbt .
 COPY documentos_prueba/ ./documentos_prueba
 

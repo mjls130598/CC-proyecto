@@ -5,20 +5,18 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.12.3"
+scalaVersion := "2.12.12"
 
 crossScalaVersions := List("2.12.12", "2.11.12")
 
 libraryDependencies += guice
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
+libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "sharingnotes.controllers._"
 
 // Adds additional packages into conf/routes
 // play.sbt.routes.RoutesKeys.routesImport += "sharingnotes.binders._"
-
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % Test
 
 libraryDependencies += "org.apache.tika" % "tika-core" % "1.24"
 libraryDependencies += "org.apache.tika" % "tika-parsers" % "1.24"
