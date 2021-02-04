@@ -15,20 +15,20 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
 
   "ApunteController GET" should {
 
-    "render the index page from a new instance of controller" in {
-      val controller = new HomeController(stubControllerComponents())
-      val home = controller.index().apply(FakeRequest(GET, "/apunte"))
+    val controller = new ApunteController(stubControllerComponents())
+
+    "Comprueba que devuelve todos los apuntes" in {
+      val home = controller.apuntes(None, None, None, None, None).apply(FakeRequest(GET, "/apunte"))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("application/json")
     }
 
-    "render the index page from a new instance of controller" in {
-      val controller = new HomeController(stubControllerComponents())
-      val home = controller.index().apply(FakeRequest(GET, "/apunte?universidad=Granada"))
+    "Comprueba que devuelve los apuntes de una universidad" in {
+      val home = controller.apuntes(Some("Granada"), None, None, None, None).apply(FakeRequest(GET, "/apunte"))
 
       status(home) mustBe OK
-      contentType(home) mustBe Some("text/html")
+      contentType(home) mustBe Some("text/plain")
 
     }
   }

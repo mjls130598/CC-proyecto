@@ -9,8 +9,6 @@ import models.SharingNotes._
 
 @Singleton
 class ApunteController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
-
-  SharingNotes.valoresIniciales
   
   def apuntes(universidad: Option[String], carrera: Option[String],
     asignatura: Option[String], apunte: Option[String], curso: Option[String]) = Action { implicit request: Request[AnyContent] =>
@@ -24,4 +22,5 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
     else
       Ok("Aún nada")
   }
+
 }
