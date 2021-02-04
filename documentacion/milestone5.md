@@ -59,6 +59,8 @@ Las siguientes rutas que se han creado son las siguientes:
     
     * *GET /asignatura/:idAsignatura*: se devolverán todos los apuntes guardados en el sistema de una asignatura dada. Esta ruta corresponde a la historia de usuario [HU10](https://github.com/mjls130598/SharingNotes/issues/24).
 
+    * *GET /apunte/:id*: se devuelve los datos relacionados del apunte con el identificador dado.
+
 ## Biblioteca Log
 
 Para crear un documento en el que se reflejen las acciones realizadas sobre esta aplicación y los posibles errores que haya podido ocurrir sobre ella.

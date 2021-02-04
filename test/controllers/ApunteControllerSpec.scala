@@ -40,5 +40,27 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
       status(home) mustBe OK
       contentType(home) mustBe Some("application/json")
     }
+
+    "Comprueba que devuelve un error al consultar los apuntes de una asignatura" in {
+
+      val home = controller.apuntesAsignatura("ASIG1234").apply(FakeRequest(GET, "/asignatura"))
+
+      status(home) mustBe NOT_FOUND
+    }
+
+    "Comprueba que devuelve un apunte dado" in {
+        
+      val home = controller.apunte(SharingNotes.getApuntes.last._1).apply(FakeRequest(GET, "/apunte"))
+
+      status(home) mustBe OK
+      contentType(home) mustBe Some("application/json")
+    }
+
+    "Comprueba que devuelve un error al consultar un apunte que no existe" in {
+
+      val home = controller.apunte("APUN1234").apply(FakeRequest(GET, "/apunte"))
+
+      status(home) mustBe NOT_FOUND
+    }
   }
 }

@@ -19,10 +19,10 @@ import org.slf4j.LoggerFactory
 
 class SharingNotes(){
 
-  var asignaturas = new HashMap[String, Asignatura]()
-  var usuarios = new HashMap[String, Usuario]()
-  var apuntes = new HashMap[String, Apunte]()
-  var comentarios = new HashMap[String, Comentario]()
+  var asignaturas = new HashMap[String, Asignatura]() { override def default(key:String) = null }
+  var usuarios = new HashMap[String, Usuario]() { override def default(key:String) = null }
+  var apuntes = new HashMap[String, Apunte]() { override def default(key:String) = null }
+  var comentarios = new HashMap[String, Comentario]() { override def default(key:String) = null }
 }
 
 // Objeto que genera una cadena aleatoria
@@ -55,6 +55,7 @@ object SharingNotes{
   private val keyComentario = "COM"
 
   def valoresIniciales: Unit = {
+
     val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
     val admin = new Administrador()
 
@@ -121,7 +122,7 @@ object SharingNotes{
     val asignatura = new Asignatura(id, nombre, curso, carrera, universidad)
     sharing.asignaturas(id) = asignatura
 
-    logger.info("Asignatura creada e insertada en el sistema")
+    logger.info("Asignatura {} creada e insertada en el sistema", id)
 
     return id
   }
@@ -196,7 +197,7 @@ object SharingNotes{
         val apunte = new Apunte (id, ubicacion, nom, asig, us)
         sharing.apuntes(id) = apunte
 
-        logger.info("Apunte guardado correctamente")
+        logger.info("Apunte {} guardado correctamente", id)
 
         return id
       }
@@ -265,7 +266,7 @@ object SharingNotes{
       val comentario = new Comentario(id, coment, usuario, apunte)
       sharing.comentarios(id) = comentario
 
-      logger.info("Comentario guardado correctamente en el sistema")
+      logger.info("Comentario {} guardado correctamente en el sistema", id)
 
       return id
     }

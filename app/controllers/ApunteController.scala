@@ -9,7 +9,7 @@ import models.SharingNotes._
 
 @Singleton
 class ApunteController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
-  
+
   def apuntes(universidad: Option[String], carrera: Option[String],
     asignatura: Option[String], apunte: Option[String], curso: Option[String]) = Action { implicit request: Request[AnyContent] =>
     
@@ -34,4 +34,15 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
       NotFound
   }
 
+  def apunte (id: String) = Action { implicit request: Request[AnyContent] =>
+  
+    val apunte = SharingNotes.getApuntes(id)
+
+    if(apunte != null)
+      Ok(Json.toJson(apunte))
+
+    else
+      NotFound
+
+  }
 }
