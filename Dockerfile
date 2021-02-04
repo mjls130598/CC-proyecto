@@ -16,6 +16,7 @@ RUN \
 WORKDIR app/test
 
 COPY app/ ./app
+COPY conf/ ./conf
 COPY test/ ./test
 COPY project/ ./project
 COPY build.sbt .
