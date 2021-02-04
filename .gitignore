@@ -1,7 +1,13 @@
 # Temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
-project/
-target/
 documentos/
 facetas/
 indice/
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID

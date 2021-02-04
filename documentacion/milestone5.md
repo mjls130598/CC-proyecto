@@ -29,7 +29,7 @@ Para *Scala* se ofrecen múltiples frameworks para construir una web API. Alguno
         * Está estructurado más para ser una implementación mínima que permite una mayor implementación e iteración del desarrollo.
         * No se considera una solución de pila completa.
 
-    * Intentando implementar este framework en este proyecto, se encontró un error relacionado con *JSON*. Por lo que se ha investigado, puede que sea por alguna de las dependencias anteriores que necesita el sistema para funcionar junto a aquellas que necesita el framework *Finch*. El error es el siguiente `Caused by: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.9.6 requires Jackson Databind version >= 2.9.0 and < 2.10.0`.
+    Intentando implementar este framework en este proyecto, se encontró un error relacionado con *JSON*. Por lo que se ha investigado, puede que sea por alguna de las dependencias anteriores que necesita el sistema para funcionar junto a aquellas que necesita el framework *Finch*. El error es el siguiente `Caused by: com.fasterxml.jackson.databind.JsonMappingException: Scala module 2.9.6 requires Jackson Databind version >= 2.9.0 and < 2.10.0`.
 
 * **Akka HTTP**: es una implementación de Akka altamente modular y extremadamente poderosa para Scala. No es un marco web, sino un conjunto de herramientas más general para proporcionar y consumir servicios basados ​​en HTTP. Si bien la interacción con un navegador, por supuesto, también está dentro del alcance, no es el enfoque principal de Akka HTTP.
 
@@ -41,9 +41,13 @@ Para *Scala* se ofrecen múltiples frameworks para construir una web API. Alguno
         * Akka HTTP es más lento que otras implementaciones en esta lista y, como tal, si bien escala de manera eficiente, ya está comenzando detrás del paquete, por así decirlo.
         * Lightbend es una gran organización, pero quedarse atascado en un solo proveedor puede ser preocupante para muchas organizaciones. El bloqueo del proveedor puede ser costoso y difícil de romper, por lo que debe tenerse en cuenta antes de adoptar la solución.
 
-    * Se ha probado la aplicación de ejemplo que ofrece este framework y parece ser más complejo que los otros dos a la hora de unir las diversas funcionalidades creadas para este proyecto con este framework. E incluso se ha encontrado problemas a la hora de ejecutar el ejemplo comentado anteriormente.
+    Se ha probado la aplicación de ejemplo que ofrece este framework y parece ser más complejo que los otros dos a la hora de unir las diversas funcionalidades creadas para este proyecto con este framework. E incluso se ha encontrado problemas a la hora de ejecutar el ejemplo comentado anteriormente.
 
 Se ha decidido utilizar **Play Framework** porque parece más sencillo de manejar en este proyecto, aunque haya que cambiar la estructura del proyecto para adaptarse a este framework. Además, tiene implementado la configuración de logs con *logback*.
+
+## API
+
+
 
 ## Biblioteca Log
 

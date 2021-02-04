@@ -1,13 +1,14 @@
 lenguaje: scala
-entidad: src/main/scala/SharingNotes/SharingNotes.scala
-usuario: src/main/scala/SharingNotes/Usuario.scala
-asignatura: src/main/scala/SharingNotes/Asignatura.scala
-comentario: src/main/scala/SharingNotes/Comentario.scala
-apunte: src/main/scala/SharingNotes/Apunte.scala
-extrae_texto: src/main/scala/Buscador/ExtraeTexto.scala
-indice: src/main/scala/Buscador/Indice.scala
-main: src/main/scala/SharingNotes/Principal.scala
+entidad: app/models/SharingNotes/SharingNotes.scala
+usuario: app/models/SharingNotes/Usuario.scala
+asignatura: app/models/SharingNotes/Asignatura.scala
+comentario: app/models/SharingNotes/Comentario.scala
+apunte: app/models/SharingNotes/Apunte.scala
+extrae_texto: app/models/Buscador/ExtraeTexto.scala
+indice: app/models/Buscador/Indice.scala
+main: app/models//SharingNotes/Principal.scala
 test:
-  - src/test/scala/SharingNotesTest.scala
-  - src/test/scala/BuscadorTest.scala
+  - test/models/SharingNotesTest.scala
+  - test/models/BuscadorTest.scala
+  - test/controllers/HomeControllerSpec.scala
 fichero_tareas: build.sbt
