@@ -56,6 +56,8 @@ Las siguientes rutas que se han creado son las siguientes:
 * **Apunte**:
 
     * *GET /apunte*: se devolverán todos los apuntes guardados en el sistema o aquellos que cumplan con los filtros o consultas dadas. Corresponde a las historias de usuario [HU11](https://github.com/mjls130598/SharingNotes/issues/30) y [HU4](https://github.com/mjls130598/SharingNotes/issues/14).
+    
+    * *GET /asignatura/:idAsignatura*: se devolverán todos los apuntes guardados en el sistema de una asignatura dada. Esta ruta corresponde a la historia de usuario [HU10](https://github.com/mjls130598/SharingNotes/issues/24).
 
 ## Biblioteca Log
 

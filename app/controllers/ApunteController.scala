@@ -23,4 +23,15 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
       Ok("Aún nada")
   }
 
+  def apuntesAsignatura (id: String) = Action { implicit request: Request[AnyContent] =>
+  
+    val apuntes = SharingNotes.buscarApuntes(SharingNotes.getAsignaturas(id))
+
+    if(apuntes.nonEmpty)
+      Ok(Json.toJson(apuntes))
+    
+    else
+      NotFound
+  }
+
 }

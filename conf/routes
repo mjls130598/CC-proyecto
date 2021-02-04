@@ -6,3 +6,5 @@
 # APUNTES
 
 GET     /apunte                               controllers.ApunteController.apuntes(universidad: Option[String], carrera: Option[String], asignatura: Option[String], apunte: Option[String], curso: Option[String])
+
+GET     /asignatura/:idAsignatura              controllers.ApunteController.apuntesAsignatura(idAsignatura)
