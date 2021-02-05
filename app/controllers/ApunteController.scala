@@ -49,15 +49,30 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
   }
 
   def addApunte = Action { implicit request: Request[AnyContent] =>
-        val json = request.body.asJson.get
+    val json = request.body.asJson.get
 
-        val url = (json \ "url").as[String]
-        val nombre = (json \ "nombre").as[String]
-        val asignatura = SharingNotes.getAsignaturas((json \ "asignatura").as[String])
-        val usuario = SharingNotes.getUsuarios((json \ "usuario").as[String])
+    val url = (json \ "url").as[String]
+    val nombre = (json \ "nombre").as[String]
+    val asignatura = SharingNotes.getAsignaturas((json \ "asignatura").as[String])
+    val usuario = SharingNotes.getUsuarios((json \ "usuario").as[String])
 
-        usuario.aniadirApunte(url, nombre, asignatura)
+    usuario.aniadirApunte(url, nombre, asignatura)
 
-        Ok("Guardado correctamente")
+    Ok("Guardado correctamente")
+  }
+
+  def deleteApunte(id : String) = Action { implicit request: Request[AnyContent] =>
+
+    val apunte = SharingNotes.getApuntes(id)
+
+    if(apunte != null){
+
+      SharingNotes.borrarApunte(id)
+
+      Ok("Apunte borrado correctamente")
     }
+
+    else 
+      NotFound("Apunte no encontrado")
+  }
 }

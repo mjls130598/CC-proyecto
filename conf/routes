@@ -12,3 +12,5 @@ GET     /asignatura/:idAsignatura              controllers.ApunteController.apun
 GET     /apunte/:id                            controllers.ApunteController.apunte(id) 
 
 POST    /apunte                                controllers.ApunteController.addApunte
+
+DELETE  /apunte/:id                            controllers.ApunteController.deleteApunte(id)

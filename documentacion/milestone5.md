@@ -63,6 +63,8 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *POST /apunte*: donde se insertará un nuevo apunte al sistema. Corresponde a la historia de usuario [HU2](https://github.com/mjls130598/SharingNotes/issues/12). Para poder enviar ficheros a través de este URL se ha tenido que cambiar la versión de *SBT* puesto que con la última daba el siguiente error: `class xsbti.BasicVirtualFileRef cannot be cast to class java.io.File`.
 
+    * *DELETE /apunte*: donde se eliminará un apunte dado de la memoria del sistema. Esta URL corresponde a la historia de usuario [HU6](https://github.com/mjls130598/SharingNotes/issues/16).
+
 ## Biblioteca Log
 
 Para crear un documento en el que se reflejen las acciones realizadas sobre esta aplicación y los posibles errores que haya podido ocurrir sobre ella.

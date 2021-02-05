@@ -81,5 +81,17 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
 
       status(home) mustBe OK
     }
+
+    "Comprueba que se ha eliminado un apunte" in {
+      val home = controller.deleteApunte(PGPI_T1).apply(FakeRequest(DELETE, "/apunte"))
+
+      status(home) mustBe OK
+    }
+
+    "Comprueba que no se ha eliminado un apunte que no existe" in {
+      val home = controller.deleteApunte("APUN1234").apply(FakeRequest(DELETE, "/apunte"))
+
+      status(home) mustBe NOT_FOUND
+    }
   }
 }

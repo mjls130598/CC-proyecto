@@ -7,8 +7,9 @@ apunte: app/models/SharingNotes/Apunte.scala
 extrae_texto: app/models/Buscador/ExtraeTexto.scala
 indice: app/models/Buscador/Indice.scala
 main: app/models/SharingNotes/Principal.scala
+apunte_controller: app/controllers/ApunteController.scala
 test:
   - test/models/SharingNotesTest.scala
   - test/models/BuscadorTest.scala
-  - test/controllers/HomeControllerSpec.scala
+  - test/controllers/ApunteControllerSpec.scala
 fichero_tareas: build.sbt
