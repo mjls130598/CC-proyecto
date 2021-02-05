@@ -54,9 +54,7 @@ object SharingNotes{
   private val keyApunte = "APUN"
   private val keyComentario = "COM"
 
-  def valoresIniciales: Unit = {
-
-    val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
+    /*val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
     val admin = new Administrador()
 
     aniadirUsuario(usuario)
@@ -73,8 +71,7 @@ object SharingNotes{
     usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
       "Tema 1: Definiciones", getAsignaturas(PGPI_ID))
     usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
-      "Tema 2: Preparación de proyectos", getAsignaturas(PGPI_ID))
-  }
+      "Tema 2: Preparación de proyectos", getAsignaturas(PGPI_ID))*/
 
   // Método para generar identificadores únicos
 
@@ -156,7 +153,7 @@ object SharingNotes{
 
   def aniadirApunte(url: String, nom: String, asig: Asignatura, us: Usuario): String = {
 
-    if (sharing.asignaturas.values.exists(_ == asig)){
+    if (sharing.asignaturas.values.exists(_ == asig) && asig != null){
 
       val nombre = url.split("[/ | \\\\]+").last
 
@@ -208,7 +205,7 @@ object SharingNotes{
 
     }
 
-    logger.error("No existe la asignatura {} en el sistema", asig.identificador)
+    logger.error("No existe la asignatura en el sistema")
 
     throw new Exception("No existe esa asignatura en el sistema")
   }

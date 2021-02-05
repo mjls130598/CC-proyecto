@@ -4,6 +4,7 @@ documentos/
 facetas/
 indice/
 logs/
+tmp/
 target
 /.idea
 /.idea_modules
