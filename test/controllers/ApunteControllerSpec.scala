@@ -18,6 +18,14 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
 
   "ApunteController GET" should {
 
+    SharingNotes.resetearBD
+
+    val admin = new Administrador()
+    val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
+    val PGPI_T1 = admin.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
+    "Tema 1: Definiciones", SharingNotes.getAsignaturas(PGPI_ID))
+    SharingNotes.aniadirUsuario(admin)
+
     val controller = new ApunteController(stubControllerComponents())
 
     "Comprueba que devuelve todos los apuntes" in {
@@ -36,7 +44,7 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
     }
 
     "Comprueba que devuelve todos los apuntes de una asignatura" in {
-      val home = controller.apuntesAsignatura(SharingNotes.getAsignaturas.last._1).apply(FakeRequest(GET, "/asignatura"))
+      val home = controller.apuntesAsignatura(PGPI_ID).apply(FakeRequest(GET, "/asignatura"))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("application/json")
@@ -51,7 +59,7 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
 
     "Comprueba que devuelve un apunte dado" in {
         
-      val home = controller.apunte(SharingNotes.getApuntes.last._1).apply(FakeRequest(GET, "/apunte"))
+      val home = controller.apunte(PGPI_T1).apply(FakeRequest(GET, "/apunte"))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("application/json")
@@ -67,7 +75,7 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
     "Comprueba que guarda un apunte dado" in {
         
       val home = controller.addApunte().apply(FakeRequest(POST, "/apunte").withJsonBody(
-        Json.parse(s"""{"asignatura":"${SharingNotes.getAsignaturas.last._1}", "usuario": "mjls130598@gmail.com",
+        Json.parse(s"""{"asignatura":"$PGPI_ID", "usuario": "admin@admin.com",
           "url":"./documentos_prueba/Intro_TID.pdf", "nombre":"Intro"}""")
       ))
 

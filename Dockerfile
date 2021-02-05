@@ -1,6 +1,6 @@
 FROM  frolvlad/alpine-scala
 ENV SCALA_VERSION=2.13.3 \
-  SBT_VERSION=1.4.2
+  SBT_VERSION=1.3.11
 
 RUN \
   echo "$SCALA_VERSION $SBT_VERSION" && \

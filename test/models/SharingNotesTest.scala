@@ -4,6 +4,8 @@ import java.io.File
 
 class SharingNotesTest extends FunSuite {
 
+  SharingNotes.resetearBD
+
   val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
   val admin = new Administrador()
 

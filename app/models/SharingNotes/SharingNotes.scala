@@ -42,7 +42,7 @@ object RANStream {
 
 object SharingNotes{
 
-  private val sharing = new SharingNotes()
+  private var sharing = new SharingNotes()
 
   // Variable para poder escribir los mensajes de log
 
@@ -53,6 +53,8 @@ object SharingNotes{
   private val keyAsignatura = "ASIG"
   private val keyApunte = "APUN"
   private val keyComentario = "COM"
+
+  def resetearBD : Unit = sharing = new SharingNotes()
 
     /*val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
     val admin = new Administrador()
