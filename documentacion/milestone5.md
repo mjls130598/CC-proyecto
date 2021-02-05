@@ -66,6 +66,8 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *POST /comentario*: inserta en la memoria dle sistema un nuevo comentario sobre uno de los apuntes del sistema. Esta ruta corresponde a la historia de usuario [HU3](https://github.com/mjls130598/SharingNotes/issues/13).
 
+    * *DELETE /comentario/:id/:usuario*: elimina un comentario dado del sistema. El encargado de eliminarlo es el administrador del sistema. La historia correspondiente a esta URL es [HU7](https://github.com/mjls130598/SharingNotes/issues/17).
+
 ## Configuración distribuida
 
 Como se ha podido ver en la teoría de *Configuración de microservicios*, hay varias opciones para realizar la configuración distribuida:

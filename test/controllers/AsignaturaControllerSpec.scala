@@ -54,7 +54,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       status(home) mustBe UNAUTHORIZED
     }
 
-    "Comprueba que se ha eliminado un apunte" in {
+    "Comprueba que se ha eliminado una asignatura" in {
       val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1,
         admin.correo).apply(FakeRequest(DELETE, "/asignatura"))
 

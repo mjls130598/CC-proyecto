@@ -33,4 +33,26 @@ class ComentarioController @Inject()(val controllerComponents: ControllerCompone
 
         Created("Comentario guardado correctamente")
     }
+
+    def deleteComentario(id : String, usuario: String) = Action { implicit request: Request[AnyContent] =>
+
+    if(usuario != "admin@admin.com")
+      Unauthorized("No puedes borrar un comentario")
+
+    else{
+      
+      val comentario = SharingNotes.getComentarios(id)
+
+      if(comentario != null){
+
+        SharingNotes.borrarComentario(id)
+
+        Ok("Comentario borrado correctamente")
+      }
+
+      else 
+        NotFound("Comentario no encontrado")
+
+    }
+  }
 }

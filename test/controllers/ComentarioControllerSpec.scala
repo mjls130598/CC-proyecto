@@ -47,6 +47,20 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
       status(home) mustBe CREATED
     }
+
+    "Comprueba que un usuario común no borra un comentario" in {
+      val home = controller.deleteComentario(PGPI_C1,
+        usuario.correo).apply(FakeRequest(DELETE, "/comentario"))
+
+      status(home) mustBe UNAUTHORIZED
+    }
+
+    "Comprueba que se ha eliminado un comentario" in {
+      val home = controller.deleteComentario(PGPI_C1,
+        admin.correo).apply(FakeRequest(DELETE, "/comentario"))
+
+      status(home) mustBe OK
+    }
     
   }
 }

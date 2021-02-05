@@ -35,7 +35,7 @@ class AsignaturaController @Inject()(val controllerComponents: ControllerCompone
   def deleteAsignatura(id : String, usuario: String) = Action { implicit request: Request[AnyContent] =>
 
     if(usuario != "admin@admin.com")
-      Unauthorized("No puedes borrar un apunte")
+      Unauthorized("No puedes borrar una asignatura")
 
     else{
       

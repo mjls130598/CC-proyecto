@@ -26,3 +26,5 @@ DELETE  /asignatura/:id/:usuario               controllers.AsignaturaController.
 GET     /comentario/:idApunte                  controllers.ComentarioController.comentariosApunte(idApunte)
 
 POST    /comentario                            controllers.ComentarioController.addComentario
+
+DELETE  /comentario/:id/:usuario               controllers.ComentarioController.deleteComentario(id, usuario)
