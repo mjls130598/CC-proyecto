@@ -65,6 +65,10 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *DELETE /apunte*: donde se eliminará un apunte dado de la memoria del sistema. Esta URL corresponde a la historia de usuario [HU6](https://github.com/mjls130598/SharingNotes/issues/16).
 
+* **Asignatura**:
+
+    * *POST /asignatura*: se añade al sistema una nueva asignatura dada. Esta URL corresponde a la historia de usuario [HU8](https://github.com/mjls130598/SharingNotes/issues/18).
+
 ## Biblioteca Log
 
 Para crear un documento en el que se reflejen las acciones realizadas sobre esta aplicación y los posibles errores que haya podido ocurrir sobre ella.
