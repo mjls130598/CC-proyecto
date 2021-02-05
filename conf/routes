@@ -24,3 +24,5 @@ DELETE  /asignatura/:id/:usuario               controllers.AsignaturaController.
 # COMENTARIO
 
 GET     /comentario/:idApunte                  controllers.ComentarioController.comentariosApunte(idApunte)
+
+POST    /comentario                            controllers.ComentarioController.addComentario

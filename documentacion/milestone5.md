@@ -64,6 +64,8 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *GET /comentario/:idApunte*: devuelve todos los comentarios realizados sobre un apunte dado. La historia de usuario correspondiente a esta URL es [HU12](https://github.com/mjls130598/SharingNotes/issues/31).
 
+    * *POST /comentario*: inserta en la memoria dle sistema un nuevo comentario sobre uno de los apuntes del sistema. Esta ruta corresponde a la historia de usuario [HU3](https://github.com/mjls130598/SharingNotes/issues/13).
+
 ## Configuración distribuida
 
 Como se ha podido ver en la teoría de *Configuración de microservicios*, hay varias opciones para realizar la configuración distribuida:

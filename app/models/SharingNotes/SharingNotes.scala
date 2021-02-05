@@ -255,7 +255,7 @@ object SharingNotes{
 
   def aniadirComentario(coment: String, apunte: Apunte, usuario: Usuario): String = {
 
-    if(sharing.apuntes.values.exists(_ == apunte)){
+    if(sharing.apuntes.values.exists(_ == apunte) && apunte != null){
       var id = ""
 
       do {

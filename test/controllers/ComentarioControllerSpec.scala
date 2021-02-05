@@ -31,11 +31,21 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     val controller = new ComentarioController(stubControllerComponents())
 
-    "Comprueba que devuelve todos los apuntes" in {
+    "Comprueba que devuelve todos los comentarios" in {
       val home = controller.comentariosApunte(PGPI_T1).apply(FakeRequest(GET, "/comentario"))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("application/json")
+    }
+
+    "Comprueba que guarda un comentario sobre un apunte dado" in {
+        
+      val home = controller.addComentario().apply(FakeRequest(POST, "/comentario").withJsonBody(
+        Json.parse(s"""{"apunte":"$PGPI_T1", "usuario": "${usuario.correo}",
+          "comentario":"El segundo comentario sobre este apunte"}""")
+      ))
+
+      status(home) mustBe CREATED
     }
     
   }
