@@ -52,11 +52,13 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *POST /apunte*: donde se insertará un nuevo apunte al sistema. Corresponde a la historia de usuario [HU2](https://github.com/mjls130598/SharingNotes/issues/12). Para poder enviar ficheros a través de este URL se ha tenido que cambiar la versión de *SBT* puesto que con la última daba el siguiente error: `class xsbti.BasicVirtualFileRef cannot be cast to class java.io.File`.
 
-    * *DELETE /apunte*: donde se eliminará un apunte dado de la memoria del sistema. Esta URL corresponde a la historia de usuario [HU6](https://github.com/mjls130598/SharingNotes/issues/16).
+    * *DELETE /apunte/:id/:usuario*: donde se eliminará un apunte dado de la memoria del sistema si el usuario es el administrador. Esta URL corresponde a la historia de usuario [HU6](https://github.com/mjls130598/SharingNotes/issues/16).
 
 * **Asignatura**:
 
     * *POST /asignatura*: se añade al sistema una nueva asignatura dada. Esta URL corresponde a la historia de usuario [HU8](https://github.com/mjls130598/SharingNotes/issues/18).
+
+    * *DELETE /asignatura/:id/:usuario*: borra una asignatura dada de la memoria del sistema si el usuario es el administrador. Su historia de usuario correspondiente es [HU9](https://github.com/mjls130598/SharingNotes/issues/19).
 
 ## Configuración distribuida
 

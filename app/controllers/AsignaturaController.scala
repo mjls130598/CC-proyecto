@@ -31,4 +31,26 @@ class AsignaturaController @Inject()(val controllerComponents: ControllerCompone
         Created("Guardado correctamente")
     }
   }
+
+  def deleteAsignatura(id : String, usuario: String) = Action { implicit request: Request[AnyContent] =>
+
+    if(usuario != "admin@admin.com")
+      Unauthorized("No puedes borrar un apunte")
+
+    else{
+      
+      val asignatura = SharingNotes.getAsignaturas(id)
+
+      if(asignatura != null){
+
+        SharingNotes.borrarAsignatura(id)
+
+        Ok("Asignatura borrada correctamente")
+      }
+
+      else 
+        NotFound("Asignatura no encontrada")
+
+    }
+  }
 }

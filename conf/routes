@@ -18,3 +18,5 @@ DELETE  /apunte/:id/:usuario                   controllers.ApunteController.dele
 # ASIGNATURA
 
 POST    /asignatura                            controllers.AsignaturaController.addAsignatura
+
+DELETE  /asignatura/:id/:usuario               controllers.AsignaturaController.deleteAsignatura(id, usuario)
