@@ -16,15 +16,17 @@ import models.SharingNotes._
  */
 class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
 
-  "ApunteController GET" should {
+  "ApunteController" should {
 
     SharingNotes.resetearBD
 
     val admin = new Administrador()
+    val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
     val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
     val PGPI_T1 = admin.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
     "Tema 1: Definiciones", SharingNotes.getAsignaturas(PGPI_ID))
     SharingNotes.aniadirUsuario(admin)
+    SharingNotes.aniadirUsuario(usuario)
 
     val controller = new ApunteController(stubControllerComponents())
 
@@ -75,21 +77,27 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
     "Comprueba que guarda un apunte dado" in {
         
       val home = controller.addApunte().apply(FakeRequest(POST, "/apunte").withJsonBody(
-        Json.parse(s"""{"asignatura":"$PGPI_ID", "usuario": "admin@admin.com",
+        Json.parse(s"""{"asignatura":"$PGPI_ID", "usuario": "${usuario.correo}",
           "url":"./documentos_prueba/Intro_TID.pdf", "nombre":"Intro"}""")
       ))
 
-      status(home) mustBe OK
+      status(home) mustBe CREATED
+    }
+
+    "Comprueba que un usuario común no borra un apunte" in {
+      val home = controller.deleteApunte(PGPI_T1, usuario.correo).apply(FakeRequest(DELETE, "/apunte"))
+
+      status(home) mustBe UNAUTHORIZED
     }
 
     "Comprueba que se ha eliminado un apunte" in {
-      val home = controller.deleteApunte(PGPI_T1).apply(FakeRequest(DELETE, "/apunte"))
+      val home = controller.deleteApunte(PGPI_T1, admin.correo).apply(FakeRequest(DELETE, "/apunte"))
 
       status(home) mustBe OK
     }
 
     "Comprueba que no se ha eliminado un apunte que no existe" in {
-      val home = controller.deleteApunte("APUN1234").apply(FakeRequest(DELETE, "/apunte"))
+      val home = controller.deleteApunte("APUN1234", admin.correo).apply(FakeRequest(DELETE, "/apunte"))
 
       status(home) mustBe NOT_FOUND
     }
