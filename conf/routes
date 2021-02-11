@@ -32,3 +32,5 @@ DELETE  /comentario/:id/:usuario               controllers.ComentarioController.
 # USUARIO
 
 POST    /login                                 controllers.UsuarioController.login
+
+POST    /signup                                controllers.UsuarioController.signup

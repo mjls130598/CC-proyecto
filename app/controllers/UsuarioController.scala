@@ -22,4 +22,18 @@ class UsuarioController @Inject()(val controllerComponents: ControllerComponents
         else 
             NotFound("Usuario incorrecto")
     }
+
+    def signup() = Action { implicit request: Request[AnyContent] =>
+
+        val json = request.body.asJson.get
+
+        val correo = (json \ "correo").as[String]
+        val nombre = (json \ "nombre").as[String]
+        val carrera = (json \ "carrera").as[String]
+        val universidad = (json  \ "universidad").as[String]
+
+        SharingNotes.aniadirUsuario(new Usuario(nombre, correo, carrera, universidad))
+
+        Created("Usuario registrado").withSession("usuario" -> correo)
+    }
 }

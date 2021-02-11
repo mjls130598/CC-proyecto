@@ -72,6 +72,8 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *POST /login*: se encarga de iniciar sesión de un usuario ya registrado pasándole la dirección de correo con la que esté registrada la cuenta. Corresponde a la historia de usuario [HU1](https://github.com/mjls130598/SharingNotes/issues/10).
 
+    * *POST /signup*: registra un nuevo usuario en el sistema. La historia de usuario correspondiente a esta URL es [HU1](https://github.com/mjls130598/SharingNotes/issues/10).
+
 ## Configuración distribuida
 
 Como se ha podido ver en la teoría de *Configuración de microservicios*, hay varias opciones para realizar la configuración distribuida:

@@ -37,5 +37,13 @@ class UsuarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inject
 
             status(home) mustBe NOT_FOUND
         }
+
+        "Comprueba que una persona se puede registrar correctamente" in {
+            val home = controller.signup().apply(FakeRequest(POST, "/signup").withJsonBody(
+                Json.parse(s"""{"correo": "esteesuncorreo@email.com", "nombre":"María",
+                "carrera":"Ingeniería Informática", "universidad":"Universidad de Granada"}""")))
+
+            status(home) mustBe CREATED
+        }
     }
 }
