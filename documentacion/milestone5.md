@@ -68,6 +68,10 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *DELETE /comentario/:id/:usuario*: elimina un comentario dado del sistema. El encargado de eliminarlo es el administrador del sistema. La historia correspondiente a esta URL es [HU7](https://github.com/mjls130598/SharingNotes/issues/17).
 
+* **Usuario**:
+
+    * *POST /login*: se encarga de iniciar sesión de un usuario ya registrado pasándole la dirección de correo con la que esté registrada la cuenta. Corresponde a la historia de usuario [HU1](https://github.com/mjls130598/SharingNotes/issues/10).
+
 ## Configuración distribuida
 
 Como se ha podido ver en la teoría de *Configuración de microservicios*, hay varias opciones para realizar la configuración distribuida:
