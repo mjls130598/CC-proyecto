@@ -58,7 +58,7 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *POST /asignatura*: se añade al sistema una nueva asignatura dada. Esta URL corresponde a la historia de usuario [HU8](https://github.com/mjls130598/SharingNotes/issues/18).
 
-    * *DELETE /asignatura/:id/:usuario*: borra una asignatura dada de la memoria del sistema si el usuario es el administrador. Su historia de usuario correspondiente es [HU9](https://github.com/mjls130598/SharingNotes/issues/19).
+    * *DELETE /asignatura/:id/*: borra una asignatura dada de la memoria del sistema si el usuario es el administrador. Su historia de usuario correspondiente es [HU9](https://github.com/mjls130598/SharingNotes/issues/19).
 
 * **Comentario**:
 

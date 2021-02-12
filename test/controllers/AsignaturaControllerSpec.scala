@@ -47,18 +47,32 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
         status(home) mustBe UNAUTHORIZED
     }
 
+    "Comprueba que un usuario no registrado no borra una asignatura" in {
+      val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1).
+      apply(FakeRequest(DELETE, "/asignatura"))
+
+      status(home) mustBe UNAUTHORIZED
+    }
+
     "Comprueba que un usuario común no borra una asignatura" in {
-      val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1,
-        usuario.correo).apply(FakeRequest(DELETE, "/asignatura"))
+      val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1).
+      apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> usuario.correo))
 
       status(home) mustBe UNAUTHORIZED
     }
 
     "Comprueba que se ha eliminado una asignatura" in {
-      val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1,
-        admin.correo).apply(FakeRequest(DELETE, "/asignatura"))
+      val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1).
+      apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> admin.correo))
 
       status(home) mustBe OK
+    }
+
+    "Comprueba que no se ha eliminado una asignatura que no existe" in {
+      val home = controller.deleteAsignatura("ASIG1234").
+      apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> admin.correo))
+
+      status(home) mustBe NOT_FOUND
     }
 
   }

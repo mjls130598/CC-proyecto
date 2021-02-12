@@ -32,25 +32,32 @@ class AsignaturaController @Inject()(val controllerComponents: ControllerCompone
     }
   }
 
-  def deleteAsignatura(id : String, usuario: String) = Action { implicit request: Request[AnyContent] =>
+  def deleteAsignatura(id : String) = Action { implicit request: Request[AnyContent] =>
 
-    if(usuario != "admin@admin.com")
-      Unauthorized("No puedes borrar una asignatura")
+    request.session.get("usuario").map { usuario =>
+    
+      if(usuario != "admin@admin.com")
+        Unauthorized("No puedes borrar una asignatura")
 
-    else{
-      
-      val asignatura = SharingNotes.getAsignaturas(id)
+      else{
+        
+        val asignatura = SharingNotes.getAsignaturas(id)
 
-      if(asignatura != null){
+        if(asignatura != null){
 
-        SharingNotes.borrarAsignatura(id)
+          SharingNotes.borrarAsignatura(id)
 
-        Ok("Asignatura borrada correctamente")
+          Ok("Asignatura borrada correctamente")
+        }
+
+        else 
+          NotFound("Asignatura no encontrada")
+
       }
-
-      else 
-        NotFound("Asignatura no encontrada")
-
     }
+    .getOrElse {
+      Unauthorized("No puedes borrar una asignatura")
+    }
+    
   }
 }
