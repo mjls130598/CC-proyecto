@@ -84,20 +84,29 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
       status(home) mustBe CREATED
     }
 
+    "Comprueba que un usuario no registrado no borra un apunte" in {
+      val home = controller.deleteApunte(PGPI_T1).apply(FakeRequest(DELETE, "/apunte"))
+
+      status(home) mustBe UNAUTHORIZED
+    }
+
     "Comprueba que un usuario común no borra un apunte" in {
-      val home = controller.deleteApunte(PGPI_T1, usuario.correo).apply(FakeRequest(DELETE, "/apunte"))
+      val home = controller.deleteApunte(PGPI_T1).apply(FakeRequest(DELETE, "/apunte").
+      withSession("usuario" -> usuario.correo))
 
       status(home) mustBe UNAUTHORIZED
     }
 
     "Comprueba que se ha eliminado un apunte" in {
-      val home = controller.deleteApunte(PGPI_T1, admin.correo).apply(FakeRequest(DELETE, "/apunte"))
+      val home = controller.deleteApunte(PGPI_T1).apply(FakeRequest(DELETE, "/apunte").
+      withSession("usuario" -> admin.correo))
 
       status(home) mustBe OK
     }
 
     "Comprueba que no se ha eliminado un apunte que no existe" in {
-      val home = controller.deleteApunte("APUN1234", admin.correo).apply(FakeRequest(DELETE, "/apunte"))
+      val home = controller.deleteApunte("APUN1234").apply(FakeRequest(DELETE, "/apunte").
+      withSession("usuario" -> admin.correo))
 
       status(home) mustBe NOT_FOUND
     }

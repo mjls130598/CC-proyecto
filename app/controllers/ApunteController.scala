@@ -61,25 +61,33 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
     Created("Apunte guardado correctamente")
   }
 
-  def deleteApunte(id : String, usuario: String) = Action { implicit request: Request[AnyContent] =>
+  def deleteApunte(id : String) = Action { implicit request: Request[AnyContent] =>
 
-    if(usuario != "admin@admin.com")
-      Unauthorized("No puedes borrar un apunte")
+    request.session.get("usuario").map { correo =>
+    
+      if(correo != "admin@admin.com")
+        Unauthorized("No puedes borrar un apunte")
 
-    else{
-      
-      val apunte = SharingNotes.getApuntes(id)
+      else{
+        
+        val apunte = SharingNotes.getApuntes(id)
 
-      if(apunte != null){
+        if(apunte != null){
 
-        SharingNotes.borrarApunte(id)
+          SharingNotes.borrarApunte(id)
 
-        Ok("Apunte borrado correctamente")
+          Ok("Apunte borrado correctamente")
+        }
+
+        else 
+          NotFound("Apunte no encontrado")
+
       }
-
-      else 
-        NotFound("Apunte no encontrado")
-
     }
+    .getOrElse {
+      Unauthorized("No puedes borrar un apunte")
+    }
+
+    
   }
 }

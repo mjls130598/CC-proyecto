@@ -13,7 +13,7 @@ GET     /apunte/:id                            controllers.ApunteController.apun
 
 POST    /apunte                                controllers.ApunteController.addApunte
 
-DELETE  /apunte/:id/:usuario                   controllers.ApunteController.deleteApunte(id, usuario)
+DELETE  /apunte/:id/                           controllers.ApunteController.deleteApunte(id)
 
 # ASIGNATURA
 
