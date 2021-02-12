@@ -18,17 +18,23 @@ class AsignaturaController @Inject()(val controllerComponents: ControllerCompone
     val curso = (json \ "curso").as[String]
     val universidad = (json \ "universidad").as[String]
     val carrera = (json \ "carrera").as[String]
-    val usuario = (json \ "usuario").as[String]
 
-    if (usuario != "admin@admin.com")
-        Unauthorized("No tienes permiso")
+    request.session.get("usuario").map { usuario =>
+    
+      if(usuario != "admin@admin.com")
+        Unauthorized("No puedes borrar una asignatura")
 
-    else {
+      else{
 
         val user = new Administrador()
         user.aniadirAsignatura(nombre, curso, carrera, universidad)
 
         Created("Guardado correctamente")
+
+      }
+    }
+    .getOrElse {
+      Unauthorized("No puedes guardar una asignatura")
     }
   }
 

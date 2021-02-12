@@ -29,19 +29,31 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que guarda una asignatura dada" in {
         
-        val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").withJsonBody(
-        Json.parse(s"""{"nombre":"CC", "usuario": "${admin.correo}",
-            "universidad":"Universidad de Granada", "carrera":"MUII", "curso": "1º"}""")
+        val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura")
+        .withSession("usuario" -> admin.correo).withJsonBody(
+        Json.parse(s"""{"nombre":"CC", "universidad":"Universidad de Granada",
+        "carrera":"MUII", "curso": "1º"}""")
         ))
 
         status(home) mustBe CREATED
     }
 
-    "Comprueba que un usuario común no añadir una asignatura" in {
+    "Comprueba que un usuario común no añade una asignatura" in {
+
+        val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").
+        withSession("usuario" -> usuario.correo).withJsonBody(
+        Json.parse(s"""{"nombre":"CC","universidad":"Universidad de Granada", "carrera":"MUII",
+        "curso": "1º"}""")
+        ))
+
+        status(home) mustBe UNAUTHORIZED
+    }
+
+    "Comprueba que un usuario no registrado no añade una asignatura" in {
 
         val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").withJsonBody(
-        Json.parse(s"""{"nombre":"CC", "usuario": "${usuario.correo}",
-            "universidad":"Universidad de Granada", "carrera":"MUII", "curso": "1º"}""")
+        Json.parse(s"""{"nombre":"CC","universidad":"Universidad de Granada", "carrera":"MUII",
+        "curso": "1º"}""")
         ))
 
         status(home) mustBe UNAUTHORIZED

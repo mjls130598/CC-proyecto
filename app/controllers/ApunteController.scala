@@ -65,7 +65,7 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
 
     }
     .getOrElse {
-      Unauthorized("No puedes borrar un apunte")
+      Unauthorized("No puedes guardar un apunte")
     }
   }
 
