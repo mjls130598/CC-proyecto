@@ -54,11 +54,19 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
     val url = (json \ "url").as[String]
     val nombre = (json \ "nombre").as[String]
     val asignatura = SharingNotes.getAsignaturas((json \ "asignatura").as[String])
-    val usuario = SharingNotes.getUsuarios((json \ "usuario").as[String])
+    
+    request.session.get("usuario").map { correo =>
 
-    usuario.aniadirApunte(url, nombre, asignatura)
+      val usuario = SharingNotes.getUsuarios(correo)
+    
+      usuario.aniadirApunte(url, nombre, asignatura)
 
-    Created("Apunte guardado correctamente")
+      Created("Apunte guardado correctamente")
+
+    }
+    .getOrElse {
+      Unauthorized("No puedes borrar un apunte")
+    }
   }
 
   def deleteApunte(id : String) = Action { implicit request: Request[AnyContent] =>

@@ -74,12 +74,21 @@ class ApunteControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
       status(home) mustBe NOT_FOUND
     }
 
-    "Comprueba que guarda un apunte dado" in {
+    "Comprueba que un usuario no registrado no puede guardar un apunte dado" in {
         
       val home = controller.addApunte().apply(FakeRequest(POST, "/apunte").withJsonBody(
-        Json.parse(s"""{"asignatura":"$PGPI_ID", "usuario": "${usuario.correo}",
-          "url":"./documentos_prueba/Intro_TID.pdf", "nombre":"Intro"}""")
+        Json.parse(s"""{"asignatura":"$PGPI_ID", "url":"./documentos_prueba/Intro_TID.pdf",
+        "nombre":"Intro"}""")
       ))
+
+      status(home) mustBe UNAUTHORIZED
+    }
+
+    "Comprueba que guarda un apunte dado" in {
+        
+      val home = controller.addApunte().apply(FakeRequest(POST, "/apunte").withSession("usuario" -> usuario.correo)
+      .withJsonBody(Json.parse(s"""{"asignatura":"$PGPI_ID", "url":"./documentos_prueba/Intro_TID.pdf",
+        "nombre":"Intro"}""")))
 
       status(home) mustBe CREATED
     }
