@@ -40,12 +40,21 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que guarda un comentario sobre un apunte dado" in {
         
-      val home = controller.addComentario().apply(FakeRequest(POST, "/comentario").withJsonBody(
-        Json.parse(s"""{"apunte":"$PGPI_T1", "usuario": "${usuario.correo}",
-          "comentario":"El segundo comentario sobre este apunte"}""")
+      val home = controller.addComentario().apply(FakeRequest(POST, "/comentario").withSession("usuario" -> usuario.correo)
+      .withJsonBody(
+        Json.parse(s"""{"apunte":"$PGPI_T1","comentario":"El segundo comentario sobre este apunte"}""")
       ))
 
       status(home) mustBe CREATED
+    }
+
+    "Comprueba que no se guarda un comentario sobre un apunte dado de un usuario no registrado" in {
+        
+      val home = controller.addComentario().apply(FakeRequest(POST, "/comentario").withJsonBody(
+        Json.parse(s"""{"apunte":"$PGPI_T1","comentario":"El segundo comentario sobre este apunte"}""")
+      ))
+
+      status(home) mustBe UNAUTHORIZED
     }
 
     "Comprueba que un usuario común no borra un comentario" in {
