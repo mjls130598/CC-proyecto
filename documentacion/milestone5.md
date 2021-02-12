@@ -42,7 +42,7 @@ Después de realizar esto, hubo problemas con las versiones de las dependencias 
 
 Las siguientes rutas que se han creado son las siguientes:
 
-* **Apunte**:
+* [**Apunte**](https://github.com/mjls130598/SharingNotes/blob/master/app/controllers/ApunteController.scala):
 
     * *GET /apunte*: se devolverán todos los apuntes guardados en el sistema o aquellos que cumplan con los filtros o consultas dadas. Corresponde a las historias de usuario [HU11](https://github.com/mjls130598/SharingNotes/issues/30) y [HU4](https://github.com/mjls130598/SharingNotes/issues/14).
     
@@ -54,13 +54,17 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *DELETE /apunte/:id*: donde se eliminará un apunte dado de la memoria del sistema si el usuario es el administrador. Esta URL corresponde a la historia de usuario [HU6](https://github.com/mjls130598/SharingNotes/issues/16).
 
-* **Asignatura**:
+    Los tests correspondientes a este microservicio se encuentran en el fichero [*ApunteContellerSpec.scala*](https://github.com/mjls130598/SharingNotes/blob/master/test/controllers/ApunteControllerSpec.scala).
+
+* [**Asignatura**](https://github.com/mjls130598/SharingNotes/blob/master/app/controllers/AsignaturaController.scala):
 
     * *POST /asignatura*: se añade al sistema una nueva asignatura dada. Esta URL corresponde a la historia de usuario [HU8](https://github.com/mjls130598/SharingNotes/issues/18).
 
     * *DELETE /asignatura/:id/*: borra una asignatura dada de la memoria del sistema si el usuario es el administrador. Su historia de usuario correspondiente es [HU9](https://github.com/mjls130598/SharingNotes/issues/19).
 
-* **Comentario**:
+    En el archivo [*AsignaturaControllerSpec.scala*](https://github.com/mjls130598/SharingNotes/blob/master/test/controllers/AsignaturaControllerSpec.scala) se encuentran los tests relacionados con estas rutas.
+
+* [**Comentario**](https://github.com/mjls130598/SharingNotes/blob/master/app/controllers/ComentarioController.scala):
 
     * *GET /comentario/:idApunte*: devuelve todos los comentarios realizados sobre un apunte dado. La historia de usuario correspondiente a esta URL es [HU12](https://github.com/mjls130598/SharingNotes/issues/31).
 
@@ -68,11 +72,28 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *DELETE /comentario/:id/*: elimina un comentario dado del sistema. El encargado de eliminarlo es el administrador del sistema. La historia correspondiente a esta URL es [HU7](https://github.com/mjls130598/SharingNotes/issues/17).
 
-* **Usuario**:
+    Los tests que comprueban el correcto funcionamiento de las tres rutas anteriores se encuentran en el fichero [*ComentarioControllerSpec.scala*](https://github.com/mjls130598/SharingNotes/blob/master/test/controllers/ComentarioControllerSpec.scala).
+
+* [**Usuario**](https://github.com/mjls130598/SharingNotes/blob/master/app/controllers/UsuarioController.scala):
 
     * *POST /login*: se encarga de iniciar sesión de un usuario ya registrado pasándole la dirección de correo con la que esté registrada la cuenta. Corresponde a la historia de usuario [HU1](https://github.com/mjls130598/SharingNotes/issues/10).
 
     * *POST /signup*: registra un nuevo usuario en el sistema. La historia de usuario correspondiente a esta URL es [HU1](https://github.com/mjls130598/SharingNotes/issues/10).
+
+    Los tests correspondientes a estas URLs están almacenados en el archivo [*UsuarioControllerSpec.scala*](https://github.com/mjls130598/SharingNotes/blob/master/test/controllers/UsuarioControllerSpec.scala).
+
+Los métodos HTTP utilizados son:
+
+* **POST**: para crear un nuevo elemento.
+* **GET**: para obtener un elemento del sistema.
+* **DELETE**: para eliminar un elemento.
+
+Las distintas respuestas utilizadas para las distintas URLs son las siguientes:
+
+* **OK (200)**: cuando existe ese elemento o se ha realizado un borrado correctamente.
+* **CREATED (201)**: cuando se ha creado un nuevo elemento correctamente.
+* **NOT FOUND (404)**: cuando el elemento que se pide no existe en el sistema.
+* **UNATHORIZED (401)**: cuando el usuario que pide la petición no está autorizado.
 
 ## Configuración distribuida
 
