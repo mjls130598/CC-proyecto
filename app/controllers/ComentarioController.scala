@@ -41,25 +41,32 @@ class ComentarioController @Inject()(val controllerComponents: ControllerCompone
       } 
     }
 
-    def deleteComentario(id : String, usuario: String) = Action { implicit request: Request[AnyContent] =>
+    def deleteComentario(id : String) = Action { implicit request: Request[AnyContent] =>
 
-      if(usuario != "admin@admin.com")
-        Unauthorized("No puedes borrar un comentario")
+      request.session.get("usuario").map { usuario =>
 
-      else{
-        
-        val comentario = SharingNotes.getComentarios(id)
+        if(usuario != "admin@admin.com")
+          Unauthorized("No puedes borrar un comentario")
 
-        if(comentario != null){
+        else{
+          
+          val comentario = SharingNotes.getComentarios(id)
 
-          SharingNotes.borrarComentario(id)
+          if(comentario != null){
 
-          Ok("Comentario borrado correctamente")
+            SharingNotes.borrarComentario(id)
+
+            Ok("Comentario borrado correctamente")
+          }
+
+          else 
+            NotFound("Comentario no encontrado")
+
         }
-
-        else 
-          NotFound("Comentario no encontrado")
-
       }
+      .getOrElse {
+        Unauthorized("No puedes borrar un comentario")
+      } 
+      
     }
 }

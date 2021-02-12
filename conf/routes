@@ -27,7 +27,7 @@ GET     /comentario/:idApunte                  controllers.ComentarioController.
 
 POST    /comentario                            controllers.ComentarioController.addComentario
 
-DELETE  /comentario/:id/:usuario               controllers.ComentarioController.deleteComentario(id, usuario)
+DELETE  /comentario/:id/                       controllers.ComentarioController.deleteComentario(id)
 
 # USUARIO
 

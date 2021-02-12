@@ -58,18 +58,30 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
     }
 
     "Comprueba que un usuario común no borra un comentario" in {
-      val home = controller.deleteComentario(PGPI_C1,
-        usuario.correo).apply(FakeRequest(DELETE, "/comentario"))
+      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentario").
+      withSession("usuario" -> usuario.correo))
 
       status(home) mustBe UNAUTHORIZED
     }
 
+    "Comprueba que un usuario no registrado no borra un comentario" in {
+      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentario"))
+
+      status(home) mustBe UNAUTHORIZED
+    }
+
+    "Comprueba que un comentario que no existe no se borrar" in {
+      val home = controller.deleteComentario("COM1234").apply(FakeRequest(DELETE, "/comentario").
+      withSession("usuario" -> admin.correo))
+
+      status(home) mustBe NOT_FOUND
+    }
+
     "Comprueba que se ha eliminado un comentario" in {
-      val home = controller.deleteComentario(PGPI_C1,
-        admin.correo).apply(FakeRequest(DELETE, "/comentario"))
+      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentario").
+      withSession("usuario" -> admin.correo))
 
       status(home) mustBe OK
     }
-    
   }
 }
