@@ -46,6 +46,7 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       ))
 
       status(home) mustBe CREATED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que no se guarda un comentario sobre un apunte dado de un usuario no registrado" in {
@@ -55,6 +56,7 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       ))
 
       status(home) mustBe UNAUTHORIZED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que un usuario común no borra un comentario" in {
@@ -62,12 +64,14 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       withSession("usuario" -> usuario.correo))
 
       status(home) mustBe UNAUTHORIZED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que un usuario no registrado no borra un comentario" in {
       val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentario"))
 
       status(home) mustBe UNAUTHORIZED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que un comentario que no existe no se borrar" in {
@@ -75,6 +79,7 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       withSession("usuario" -> admin.correo))
 
       status(home) mustBe NOT_FOUND
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que se ha eliminado un comentario" in {
@@ -82,6 +87,7 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       withSession("usuario" -> admin.correo))
 
       status(home) mustBe OK
+      contentType(home) mustBe Some("application/json")
     }
   }
 }

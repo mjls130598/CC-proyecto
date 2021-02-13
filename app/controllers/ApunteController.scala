@@ -44,7 +44,7 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
       Ok(Json.toJson(apunte))
 
     else
-      NotFound
+      NotFound(Json.toJson("Apunte no encontrado"))
 
   }
 

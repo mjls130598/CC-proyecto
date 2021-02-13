@@ -29,34 +29,37 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que guarda una asignatura dada" in {
         
-        val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura")
-        .withSession("usuario" -> admin.correo).withJsonBody(
-        Json.parse(s"""{"nombre":"CC", "universidad":"Universidad de Granada",
-        "carrera":"MUII", "curso": "1º"}""")
-        ))
+      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura")
+      .withSession("usuario" -> admin.correo).withJsonBody(
+      Json.parse(s"""{"nombre":"CC", "universidad":"Universidad de Granada",
+      "carrera":"MUII", "curso": "1º"}""")
+      ))
 
-        status(home) mustBe CREATED
+      status(home) mustBe CREATED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que un usuario común no añade una asignatura" in {
 
-        val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").
-        withSession("usuario" -> usuario.correo).withJsonBody(
-        Json.parse(s"""{"nombre":"CC","universidad":"Universidad de Granada", "carrera":"MUII",
-        "curso": "1º"}""")
-        ))
+      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").
+      withSession("usuario" -> usuario.correo).withJsonBody(
+      Json.parse(s"""{"nombre":"CC","universidad":"Universidad de Granada", "carrera":"MUII",
+      "curso": "1º"}""")
+      ))
 
-        status(home) mustBe UNAUTHORIZED
+      status(home) mustBe UNAUTHORIZED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que un usuario no registrado no añade una asignatura" in {
 
-        val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").withJsonBody(
-        Json.parse(s"""{"nombre":"CC","universidad":"Universidad de Granada", "carrera":"MUII",
-        "curso": "1º"}""")
-        ))
+      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").withJsonBody(
+      Json.parse(s"""{"nombre":"CC","universidad":"Universidad de Granada", "carrera":"MUII",
+      "curso": "1º"}""")
+      ))
 
-        status(home) mustBe UNAUTHORIZED
+      status(home) mustBe UNAUTHORIZED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que un usuario no registrado no borra una asignatura" in {
@@ -64,6 +67,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       apply(FakeRequest(DELETE, "/asignatura"))
 
       status(home) mustBe UNAUTHORIZED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que un usuario común no borra una asignatura" in {
@@ -71,6 +75,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> usuario.correo))
 
       status(home) mustBe UNAUTHORIZED
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que se ha eliminado una asignatura" in {
@@ -78,6 +83,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> admin.correo))
 
       status(home) mustBe OK
+      contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que no se ha eliminado una asignatura que no existe" in {
@@ -85,6 +91,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
       apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> admin.correo))
 
       status(home) mustBe NOT_FOUND
+      contentType(home) mustBe Some("application/json")
     }
 
   }

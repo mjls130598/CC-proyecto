@@ -29,6 +29,7 @@ class UsuarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inject
                 Json.parse(s"""{"usuario": "${usuario.correo}"}""")))
 
             status(home) mustBe OK
+            contentType(home) mustBe Some("application/json")
         }
 
         "Comprueba que no inicia sesión un usuario que no existe" in {
@@ -36,6 +37,7 @@ class UsuarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inject
                 Json.parse(s"""{"usuario": "esteesuncorreo@email.com"}""")))
 
             status(home) mustBe NOT_FOUND
+            contentType(home) mustBe Some("application/json")
         }
 
         "Comprueba que una persona se puede registrar correctamente" in {
@@ -44,6 +46,7 @@ class UsuarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inject
                 "carrera":"Ingeniería Informática", "universidad":"Universidad de Granada"}""")))
 
             status(home) mustBe CREATED
+            contentType(home) mustBe Some("application/json")
         }
     }
 }
