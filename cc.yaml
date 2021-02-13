@@ -1,15 +1,23 @@
 lenguaje: scala
-entidad: app/models/SharingNotes/SharingNotes.scala
-usuario: app/models/SharingNotes/Usuario.scala
-asignatura: app/models/SharingNotes/Asignatura.scala
-comentario: app/models/SharingNotes/Comentario.scala
-apunte: app/models/SharingNotes/Apunte.scala
-extrae_texto: app/models/Buscador/ExtraeTexto.scala
-indice: app/models/Buscador/Indice.scala
-main: app/models/SharingNotes/Principal.scala
-apunte_controller: app/controllers/ApunteController.scala
+entidad: 
+  - app/models/SharingNotes/SharingNotes.scala
+  - app/models/SharingNotes/Usuario.scala
+  - app/models/SharingNotes/Asignatura.scala
+  - app/models/SharingNotes/Comentario.scala
+  - app/models/SharingNotes/Apunte.scala
+  - app/models/Buscador/ExtraeTexto.scala
+  - app/models/Buscador/Indice.scala
+  - app/models/SharingNotes/Principal.scala
+  - app/controllers/ApunteController.scala
+  - app/controllers/AsignaturaController.scala
+  - app/controllers/ComentarioController.scala
+  - app/controllers/UsuarioController.scala
 test:
   - test/models/SharingNotesTest.scala
   - test/models/BuscadorTest.scala
   - test/controllers/ApunteControllerSpec.scala
+  - test/controllers/AsignaturaControllerSpec.scala
+  - test/controllers/ComentarioControllerSpec.scala
+  - test/controllers/UsuarioControllerSpec.scala
 fichero_tareas: build.sbt
+make: make

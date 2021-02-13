@@ -22,7 +22,7 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
     }
 
     else
-      Ok("Aún nada")
+      Ok(Json.toJson("Aún nada"))
   }
 
   def apuntesAsignatura (id: String) = Action { implicit request: Request[AnyContent] =>
@@ -33,7 +33,7 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
       Ok(Json.toJson(apuntes))
     
     else
-      NotFound
+      NotFound(Json.toJson("Asignatura no encontrada"))
   }
 
   def apunte (id: String) = Action { implicit request: Request[AnyContent] =>
@@ -61,11 +61,11 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
     
       usuario.aniadirApunte(url, nombre, asignatura)
 
-      Created("Apunte guardado correctamente")
+      Created(Json.toJson("Apunte guardado correctamente"))
 
     }
     .getOrElse {
-      Unauthorized("No puedes guardar un apunte")
+      Unauthorized(Json.toJson("No puedes guardar un apunte"))
     }
   }
 
@@ -74,7 +74,7 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
     request.session.get("usuario").map { correo =>
     
       if(correo != "admin@admin.com")
-        Unauthorized("No puedes borrar un apunte")
+        Unauthorized(Json.toJson("No puedes borrar un apunte"))
 
       else{
         
@@ -84,16 +84,16 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
 
           SharingNotes.borrarApunte(id)
 
-          Ok("Apunte borrado correctamente")
+          Ok(Json.toJson("Apunte borrado correctamente"))
         }
 
         else 
-          NotFound("Apunte no encontrado")
+          NotFound(Json.toJson("Apunte no encontrado"))
 
       }
     }
     .getOrElse {
-      Unauthorized("No puedes borrar un apunte")
+      Unauthorized(Json.toJson("No puedes borrar un apunte"))
     }    
   }
 }

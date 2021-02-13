@@ -17,10 +17,10 @@ class UsuarioController @Inject()(val controllerComponents: ControllerComponents
         val usuario = (json \ "usuario").as[String]
 
         if(SharingNotes.getUsuarios(usuario) != null)
-            Ok("Iniciado sesión correctamente").withSession("usuario" -> usuario)
+            Ok(Json.toJson("Iniciado sesión correctamente")).withSession("usuario" -> usuario)
 
         else 
-            NotFound("Usuario incorrecto")
+            NotFound(Json.toJson("Usuario incorrecto"))
     }
 
     def signup() = Action { implicit request: Request[AnyContent] =>
@@ -34,6 +34,6 @@ class UsuarioController @Inject()(val controllerComponents: ControllerComponents
 
         SharingNotes.aniadirUsuario(new Usuario(nombre, correo, carrera, universidad))
 
-        Created("Usuario registrado").withSession("usuario" -> correo)
+        Created(Json.toJson("Usuario registrado")).withSession("usuario" -> correo)
     }
 }

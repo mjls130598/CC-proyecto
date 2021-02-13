@@ -18,7 +18,7 @@ class ComentarioController @Inject()(val controllerComponents: ControllerCompone
         Ok(Json.toJson(comentarios))
       
       else
-        NotFound
+        NotFound(Json.toJson("Apunte no encontrado"))
     }
 
     def addComentario = Action { implicit request: Request[AnyContent] =>
@@ -34,10 +34,10 @@ class ComentarioController @Inject()(val controllerComponents: ControllerCompone
 
         usuario.aniadirComentario(comentario, apunte)
 
-        Created("Comentario guardado correctamente")
+        Created(Json.toJson("Comentario guardado correctamente"))
       }
       .getOrElse {
-        Unauthorized("No puedes añadir un comentario")
+        Unauthorized(Json.toJson("No puedes añadir un comentario"))
       } 
     }
 
@@ -46,7 +46,7 @@ class ComentarioController @Inject()(val controllerComponents: ControllerCompone
       request.session.get("usuario").map { usuario =>
 
         if(usuario != "admin@admin.com")
-          Unauthorized("No puedes borrar un comentario")
+          Unauthorized(Json.toJson("No puedes borrar un comentario"))
 
         else{
           
@@ -56,16 +56,16 @@ class ComentarioController @Inject()(val controllerComponents: ControllerCompone
 
             SharingNotes.borrarComentario(id)
 
-            Ok("Comentario borrado correctamente")
+            Ok(Json.toJson("Comentario borrado correctamente"))
           }
 
           else 
-            NotFound("Comentario no encontrado")
+            NotFound(Json.toJson("Comentario no encontrado"))
 
         }
       }
       .getOrElse {
-        Unauthorized("No puedes borrar un comentario")
+        Unauthorized(Json.toJson("No puedes borrar un comentario"))
       } 
       
     }

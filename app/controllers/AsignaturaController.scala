@@ -22,19 +22,19 @@ class AsignaturaController @Inject()(val controllerComponents: ControllerCompone
     request.session.get("usuario").map { usuario =>
     
       if(usuario != "admin@admin.com")
-        Unauthorized("No puedes borrar una asignatura")
+        Unauthorized(Json.toJson("No puedes borrar una asignatura"))
 
       else{
 
         val user = new Administrador()
         user.aniadirAsignatura(nombre, curso, carrera, universidad)
 
-        Created("Guardado correctamente")
+        Created(Json.toJson("Guardado correctamente"))
 
       }
     }
     .getOrElse {
-      Unauthorized("No puedes guardar una asignatura")
+      Unauthorized(Json.toJson("No puedes guardar una asignatura"))
     }
   }
 
@@ -43,7 +43,7 @@ class AsignaturaController @Inject()(val controllerComponents: ControllerCompone
     request.session.get("usuario").map { usuario =>
     
       if(usuario != "admin@admin.com")
-        Unauthorized("No puedes borrar una asignatura")
+        Unauthorized(Json.toJson("No puedes borrar una asignatura"))
 
       else{
         
@@ -53,16 +53,16 @@ class AsignaturaController @Inject()(val controllerComponents: ControllerCompone
 
           SharingNotes.borrarAsignatura(id)
 
-          Ok("Asignatura borrada correctamente")
+          Ok(Json.toJson("Asignatura borrada correctamente"))
         }
 
         else 
-          NotFound("Asignatura no encontrada")
+          NotFound(Json.toJson("Asignatura no encontrada"))
 
       }
     }
     .getOrElse {
-      Unauthorized("No puedes borrar una asignatura")
+      Unauthorized(Json.toJson("No puedes borrar una asignatura"))
     }
     
   }
