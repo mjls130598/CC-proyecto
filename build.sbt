@@ -12,6 +12,9 @@ crossScalaVersions := List("2.12.12", "2.11.12")
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test
 
+resolvers += "jitpack" at "https://jitpack.io"
+libraryDependencies += "com.github.play-rconf" %% "play-rconf-etcd" % "release~20.05"
+
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "sharingnotes.controllers._"
 
@@ -32,7 +35,3 @@ libraryDependencies += "org.apache.lucene" % "lucene-core" % "8.7.0"
 libraryDependencies += "org.apache.lucene" % "lucene-analyzers-common" % "8.7.0"
 libraryDependencies += "org.apache.lucene" % "lucene-facet" % "8.7.0"
 libraryDependencies += "org.apache.lucene" % "lucene-queryparser" % "8.7.0"
-
-resolvers += "jitpack" at "https://jitpack.io"
-libraryDependencies += "com.github.play-rconf" % "play-rconf" % "release~19.09"
-libraryDependencies += "com.github.play-rconf" % "play-rconf-etcd" % "release~20.05"
