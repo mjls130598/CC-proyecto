@@ -115,7 +115,7 @@ Los pasos que se han seguido para su implementación se encuentra en el README d
 
 En este milestone se ha centrado en desarrollar el buscador para este proyecto en el cual se devuelve los apuntes resultado de una consulta dada por el usuario y resultado de los distintos filtrados que haya querido realizar.
 
-El archivo correspondiente a este "buscador" se encuentra en [*Buscador.scala*](https://github.com/mjls130598/SharingNotes/blob/master/app/models/Buscador.scala) y cuyos tests están indicados en [*BuscadorTest.scala*](https://github.com/mjls130598/SharingNotes/blob/master/test/models/BuscadorTest.scala). Esta funcionalidad corresponde a las siguientes historias de usuario:
+El archivo correspondiente a este "buscador" se encuentra en [*Buscador.scala*](https://github.com/mjls130598/SharingNotes/blob/master/app/models/Buscador/Buscador.scala) y cuyos tests están indicados en [*BuscadorTest.scala*](https://github.com/mjls130598/SharingNotes/blob/master/test/models/BuscadorTest.scala). Esta funcionalidad corresponde a las siguientes historias de usuario:
 
 * [[HU3] Como estudiante, necesito poder dejar algún comentario sobre un apunte.](https://github.com/mjls130598/SharingNotes/issues/14)
 * [[HU11] Como estudiante, quiero filtrar la búsqueda de apuntes por universidad, carrera, curso y asignatura](https://github.com/mjls130598/SharingNotes/issues/30).
