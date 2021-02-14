@@ -31,6 +31,7 @@ libraryDependencies += "uk.gov.hmrc" %% "emailaddress" % "3.5.0"
 libraryDependencies += "org.apache.lucene" % "lucene-core" % "8.7.0"
 libraryDependencies += "org.apache.lucene" % "lucene-analyzers-common" % "8.7.0"
 libraryDependencies += "org.apache.lucene" % "lucene-facet" % "8.7.0"
+libraryDependencies += "org.apache.lucene" % "lucene-queryparser" % "8.7.0"
 
 resolvers += "jitpack" at "https://jitpack.io"
 libraryDependencies += "com.github.play-rconf" % "play-rconf" % "release~19.09"

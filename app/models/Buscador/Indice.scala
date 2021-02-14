@@ -41,6 +41,7 @@ class Indice {
   analyzerPerField.put("Carrera", new KeywordAnalyzer())
   analyzerPerField.put("Curso", new KeywordAnalyzer())
   analyzerPerField.put("Asignatura", new KeywordAnalyzer())
+  analyzerPerField.put("id", new KeywordAnalyzer())
 
   // Se crea el analizador para todos los datos que se indexen
 
@@ -92,11 +93,11 @@ class Indice {
         doc.add(new StringField("Carrera", value.asignatura.carrera, Store.YES))
         doc.add(new StringField("Curso", value.asignatura.curso, Store.YES))
         doc.add(new StringField("Asignatura", value.asignatura.nombre, Store.YES))
-    		doc.add (new StoredField ("id", key))
+    		doc.add(new StoredField("id", key))
 
         // Se crean las distintas facetas (filtros)
 
-        doc.add(new FacetField ("Universidad", value.asignatura.universidad))
+        doc.add(new FacetField("Universidad", value.asignatura.universidad))
         doc.add(new FacetField("Carrera", value.asignatura.carrera))
         doc.add(new FacetField("Curso", value.asignatura.curso))
         doc.add(new FacetField("Asignatura", value.asignatura.nombre))

@@ -6,6 +6,7 @@ import play.api.mvc._
 import play.api.libs.json._
 
 import models.SharingNotes._
+import models.Buscador._
 
 @Singleton
 class ApunteController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
@@ -21,8 +22,11 @@ class ApunteController @Inject()(val controllerComponents: ControllerComponents)
       Ok(Json.toJson(apuntes.values.toList))
     }
 
-    else
-      Ok(Json.toJson("Aún nada"))
+    else{
+      new Indice().indexarDocumentos
+      Ok(Json.toJson(new Buscador().buscar(apunte, universidad,
+      carrera, curso, asignatura)))
+    }
   }
 
   def apuntesAsignatura (id: String) = Action { implicit request: Request[AnyContent] =>

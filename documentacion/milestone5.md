@@ -60,7 +60,7 @@ Las siguientes rutas que se han creado son las siguientes:
 
     * *POST /asignatura*: se añade al sistema una nueva asignatura dada. Esta URL corresponde a la historia de usuario [HU8](https://github.com/mjls130598/SharingNotes/issues/18).
 
-    * *DELETE /asignatura/:id/*: borra una asignatura dada de la memoria del sistema si el usuario es el administrador. Su historia de usuario correspondiente es [HU9](https://github.com/mjls130598/SharingNotes/issues/19).
+    * *DELETE /asignatura/:id*: borra una asignatura dada de la memoria del sistema si el usuario es el administrador. Su historia de usuario correspondiente es [HU9](https://github.com/mjls130598/SharingNotes/issues/19).
 
     En el archivo [*AsignaturaControllerSpec.scala*](https://github.com/mjls130598/SharingNotes/blob/master/test/controllers/AsignaturaControllerSpec.scala) se encuentran los tests relacionados con estas rutas.
 
@@ -110,3 +110,12 @@ Se ha encontrado una biblioteca que crea una configuración remota con *ectd* co
 Los pasos que se han seguido para su implementación se encuentra en el README de la biblioteca genérica [*play-rconf*](https://github.com/play-rconf/play-rconf) y [*play-rconf-etcd*](https://github.com/play-rconf/play-rconf-etcd).
 
 Únicamente se han añadido las correspondientes dependencias en el archivo [build.sbt](https://github.com/mjls130598/SharingNotes/blob/master/build.sbt) y modificado el fichero [application.conf](https://github.com/mjls130598/SharingNotes/blob/master/conf/application.conf) para que configure *etcd*.
+
+## Avance del proyecto
+
+En este milestone se ha centrado en desarrollar el buscador para este proyecto en el cual se devuelve los apuntes resultado de una consulta dada por el usuario y resultado de los distintos filtrados que haya querido realizar.
+
+El archivo correspondiente a este "buscador" se encuentra en [*Buscador.scala*](https://github.com/mjls130598/SharingNotes/blob/master/app/models/Buscador.scala) y cuyos tests están indicados en [*BuscadorTest.scala*](https://github.com/mjls130598/SharingNotes/blob/master/test/models/BuscadorTest.scala). Esta funcionalidad corresponde a las siguientes historias de usuario:
+
+* [[HU3] Como estudiante, necesito poder dejar algún comentario sobre un apunte.](https://github.com/mjls130598/SharingNotes/issues/14)
+* [[HU11] Como estudiante, quiero filtrar la búsqueda de apuntes por universidad, carrera, curso y asignatura](https://github.com/mjls130598/SharingNotes/issues/30).

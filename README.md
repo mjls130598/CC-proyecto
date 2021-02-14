@@ -11,9 +11,11 @@ Por lo tanto, este proyecto se basa en crear una plataforma donde cualquier alum
 Las rubricas realizadas para este milestone se encuentra documentadas en los siguientes enlaces:
 
 * [Biblioteca de logs](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#biblioteca-log).
-* [Configuración distribuida](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#configuraci%C3%B3n-distribuida).
-* [API](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#api).
 * [Microservicio](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#framework-microservicio).
+* [API](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#api).
+* [Configuración distribuida](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#configuraci%C3%B3n-distribuida).
+* [Avance del proyecto](https://github.com/mjls130598/SharingNotes/blob/master/documentacion/milestone5.md#avance-del-proyecto)
+
 
 ## Herramientas y tecnologías escogidas
 
