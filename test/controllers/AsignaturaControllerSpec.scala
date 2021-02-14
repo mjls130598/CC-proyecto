@@ -29,7 +29,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que guarda una asignatura dada" in {
         
-      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura")
+      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignaturas")
       .withSession("usuario" -> admin.correo).withJsonBody(
       Json.parse(s"""{"nombre":"CC", "universidad":"Universidad de Granada",
       "carrera":"MUII", "curso": "1º"}""")
@@ -41,7 +41,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que un usuario común no añade una asignatura" in {
 
-      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").
+      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignaturas").
       withSession("usuario" -> usuario.correo).withJsonBody(
       Json.parse(s"""{"nombre":"CC","universidad":"Universidad de Granada", "carrera":"MUII",
       "curso": "1º"}""")
@@ -53,7 +53,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que un usuario no registrado no añade una asignatura" in {
 
-      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignatura").withJsonBody(
+      val home = controller.addAsignatura().apply(FakeRequest(POST, "/asignaturas").withJsonBody(
       Json.parse(s"""{"nombre":"CC","universidad":"Universidad de Granada", "carrera":"MUII",
       "curso": "1º"}""")
       ))
@@ -64,7 +64,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que un usuario no registrado no borra una asignatura" in {
       val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1).
-      apply(FakeRequest(DELETE, "/asignatura"))
+      apply(FakeRequest(DELETE, "/asignaturas"))
 
       status(home) mustBe UNAUTHORIZED
       contentType(home) mustBe Some("application/json")
@@ -72,7 +72,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que un usuario común no borra una asignatura" in {
       val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1).
-      apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> usuario.correo))
+      apply(FakeRequest(DELETE, "/asignaturas").withSession("usuario" -> usuario.correo))
 
       status(home) mustBe UNAUTHORIZED
       contentType(home) mustBe Some("application/json")
@@ -80,7 +80,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que se ha eliminado una asignatura" in {
       val home = controller.deleteAsignatura(SharingNotes.getAsignaturas.last._1).
-      apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> admin.correo))
+      apply(FakeRequest(DELETE, "/asignaturas").withSession("usuario" -> admin.correo))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("application/json")
@@ -88,7 +88,7 @@ class AsignaturaControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que no se ha eliminado una asignatura que no existe" in {
       val home = controller.deleteAsignatura("ASIG1234").
-      apply(FakeRequest(DELETE, "/asignatura").withSession("usuario" -> admin.correo))
+      apply(FakeRequest(DELETE, "/asignaturas").withSession("usuario" -> admin.correo))
 
       status(home) mustBe NOT_FOUND
       contentType(home) mustBe Some("application/json")

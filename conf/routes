@@ -5,29 +5,29 @@
 
 # APUNTES
 
-GET     /apunte                                controllers.ApunteController.apuntes(universidad: Option[String], carrera: Option[String], asignatura: Option[String], apunte: Option[String], curso: Option[String])
+GET     /apuntes                                controllers.ApunteController.apuntes(universidad: Option[String], carrera: Option[String], asignatura: Option[String], apunte: Option[String], curso: Option[String])
 
-GET     /asignatura/:idAsignatura              controllers.ApunteController.apuntesAsignatura(idAsignatura)
+GET     /asignaturas/:idAsignatura              controllers.ApunteController.apuntesAsignatura(idAsignatura)
 
-GET     /apunte/:id                            controllers.ApunteController.apunte(id) 
+GET     /apuntes/:id                            controllers.ApunteController.apunte(id) 
 
-POST    /apunte                                controllers.ApunteController.addApunte
+POST    /apuntes                                controllers.ApunteController.addApunte
 
-DELETE  /apunte/:id/                           controllers.ApunteController.deleteApunte(id)
+DELETE  /apuntes/:id/                           controllers.ApunteController.deleteApunte(id)
 
 # ASIGNATURA
 
-POST    /asignatura                            controllers.AsignaturaController.addAsignatura
+POST    /asignaturas                            controllers.AsignaturaController.addAsignatura
 
-DELETE  /asignatura/:id/                       controllers.AsignaturaController.deleteAsignatura(id)
+DELETE  /asignaturas/:id/                       controllers.AsignaturaController.deleteAsignatura(id)
 
 # COMENTARIO
 
-GET     /comentario/:idApunte                  controllers.ComentarioController.comentariosApunte(idApunte)
+GET     /comentarios/:idApunte                  controllers.ComentarioController.comentariosApunte(idApunte)
 
-POST    /comentario                            controllers.ComentarioController.addComentario
+POST    /comentarios                            controllers.ComentarioController.addComentario
 
-DELETE  /comentario/:id/                       controllers.ComentarioController.deleteComentario(id)
+DELETE  /comentarios/:id/                       controllers.ComentarioController.deleteComentario(id)
 
 # USUARIO
 

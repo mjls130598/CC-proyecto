@@ -27,12 +27,12 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
     val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
     val PGPI_T1 = admin.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
     "Tema 1: Definiciones", SharingNotes.getAsignaturas(PGPI_ID))
-    val PGPI_C1 = usuario.aniadirComentario("El primer comentario", SharingNotes.getApuntes(PGPI_T1))
+    val PGPI_C1 = usuario.aniadirComentario("El primer comentarios", SharingNotes.getApuntes(PGPI_T1))
 
     val controller = new ComentarioController(stubControllerComponents())
 
     "Comprueba que devuelve todos los comentarios" in {
-      val home = controller.comentariosApunte(PGPI_T1).apply(FakeRequest(GET, "/comentario"))
+      val home = controller.comentariosApunte(PGPI_T1).apply(FakeRequest(GET, "/comentarios"))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("application/json")
@@ -40,9 +40,9 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que guarda un comentario sobre un apunte dado" in {
         
-      val home = controller.addComentario().apply(FakeRequest(POST, "/comentario").withSession("usuario" -> usuario.correo)
+      val home = controller.addComentario().apply(FakeRequest(POST, "/comentarios").withSession("usuario" -> usuario.correo)
       .withJsonBody(
-        Json.parse(s"""{"apunte":"$PGPI_T1","comentario":"El segundo comentario sobre este apunte"}""")
+        Json.parse(s"""{"apunte":"$PGPI_T1","comentario":"El segundo comentarios sobre este apunte"}""")
       ))
 
       status(home) mustBe CREATED
@@ -51,8 +51,8 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
 
     "Comprueba que no se guarda un comentario sobre un apunte dado de un usuario no registrado" in {
         
-      val home = controller.addComentario().apply(FakeRequest(POST, "/comentario").withJsonBody(
-        Json.parse(s"""{"apunte":"$PGPI_T1","comentario":"El segundo comentario sobre este apunte"}""")
+      val home = controller.addComentario().apply(FakeRequest(POST, "/comentarios").withJsonBody(
+        Json.parse(s"""{"apunte":"$PGPI_T1","comentario":"El segundo comentarios sobre este apunte"}""")
       ))
 
       status(home) mustBe UNAUTHORIZED
@@ -60,7 +60,7 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
     }
 
     "Comprueba que un usuario común no borra un comentario" in {
-      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentario").
+      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentarios").
       withSession("usuario" -> usuario.correo))
 
       status(home) mustBe UNAUTHORIZED
@@ -68,14 +68,14 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
     }
 
     "Comprueba que un usuario no registrado no borra un comentario" in {
-      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentario"))
+      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentarios"))
 
       status(home) mustBe UNAUTHORIZED
       contentType(home) mustBe Some("application/json")
     }
 
     "Comprueba que un comentario que no existe no se borrar" in {
-      val home = controller.deleteComentario("COM1234").apply(FakeRequest(DELETE, "/comentario").
+      val home = controller.deleteComentario("COM1234").apply(FakeRequest(DELETE, "/comentarios").
       withSession("usuario" -> admin.correo))
 
       status(home) mustBe NOT_FOUND
@@ -83,7 +83,7 @@ class ComentarioControllerSpec extends PlaySpec with GuiceOneAppPerTest with Inj
     }
 
     "Comprueba que se ha eliminado un comentario" in {
-      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentario").
+      val home = controller.deleteComentario(PGPI_C1).apply(FakeRequest(DELETE, "/comentarios").
       withSession("usuario" -> admin.correo))
 
       status(home) mustBe OK
