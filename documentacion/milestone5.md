@@ -107,7 +107,7 @@ Se puede ver en este archivo donde se han realizado los [ejercicios relacionados
 
 Se ha encontrado una biblioteca que crea una configuración remota con *ectd* con el microframework elegido para el desarrollo de la API de este proyecto. Esta biblioteca se llama [*play-rconf-etcd*](https://github.com/play-rconf/play-rconf-etcd).
 
-Los pasos que se han seguido para su implementación se encuentra en el README de la biblioteca genérica [*play-rconf*](https://github.com/play-rconf/play-rconf) y [*play-rconf-etcd*](https://github.com/play-rconf/play-rconf-etcd).
+Los pasos que se han seguido para su implementación se encuentra en el README de la biblioteca [*play-rconf-etcd*](https://github.com/play-rconf/play-rconf-etcd).
 
 Únicamente se han añadido las correspondientes dependencias en el archivo [build.sbt](https://github.com/mjls130598/SharingNotes/blob/master/build.sbt) y modificado el fichero [application.conf](https://github.com/mjls130598/SharingNotes/blob/master/conf/application.conf) para que configure *etcd*.
 
