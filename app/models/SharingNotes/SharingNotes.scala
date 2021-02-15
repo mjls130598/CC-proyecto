@@ -56,11 +56,7 @@ object SharingNotes{
 
   def resetearBD : Unit = sharing = new SharingNotes()
 
-    /*val usuario = new Usuario("María Jesús", "mjls130598@gmail.com", "MUII", "Granada")
-    val admin = new Administrador()
-
-    aniadirUsuario(usuario)
-    aniadirUsuario(admin)
+    /*
 
     val PGPI_ID = admin.aniadirAsignatura("PGPI", "1º", "MUII", "Granada")
 
