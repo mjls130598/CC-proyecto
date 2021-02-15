@@ -56,12 +56,6 @@ object SharingNotes{
 
   def resetearBD : Unit = sharing = new SharingNotes()
 
-    /*
-    usuario.aniadirApunte("./documentos_prueba/Tema1_Definiciones.pdf",
-      "Tema 1: Definiciones", getAsignaturas(PGPI_ID))
-    usuario.aniadirApunte("./documentos_prueba/Tema2_Preparacióndeproyectos.pdf",
-      "Tema 2: Preparación de proyectos", getAsignaturas(PGPI_ID))*/
-
   // Método para generar identificadores únicos
 
   private def generateUiid(key: String): String = {
