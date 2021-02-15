@@ -4,7 +4,7 @@ ENV SCALA_VERSION=2.13.3 \
 
 RUN \
   echo "$SCALA_VERSION $SBT_VERSION" && \
-  apk add --no-cache bash curl bc ca-certificates && \
+  apk add --no-cache bash curl bc ca-certificates make && \
   update-ca-certificates && \
   scala -version && \
   scalac -version && \
